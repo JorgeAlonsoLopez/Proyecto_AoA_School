@@ -50,4 +50,14 @@ class Aeronave (
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null
 ){
+    fun addFoto(foto:FotoAeronave){
+        this.foto = foto
+        foto.aeronave = this
+    }
+
+    fun deleteFoto(){
+        this.foto!!.aeronave = null
+        this.foto = null
+    }
+
 }

@@ -30,7 +30,7 @@ class ImagenServicio(
 
 
 @Service
-class ImagenViviendaServicio(
+class FotoAeronaveServicio(
     private val imageStorageService: ImgurStorageService
 
 ) : BaseService<FotoAeronave, UUID, FotoRepository>() {
