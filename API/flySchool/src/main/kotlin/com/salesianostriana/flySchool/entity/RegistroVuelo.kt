@@ -22,6 +22,8 @@ class RegistroVuelo (
     @ManyToOne
     var aeronave: Aeronave,
 
+    var tipoLibre : Boolean,
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null

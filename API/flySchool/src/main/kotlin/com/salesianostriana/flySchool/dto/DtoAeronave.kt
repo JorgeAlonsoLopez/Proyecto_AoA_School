@@ -1,14 +1,12 @@
-package com.salesianostriana.flySchool.entity
+package com.salesianostriana.flySchool.dto
 
+import com.salesianostriana.flySchool.entity.Aeronave
 import java.util.*
-import javax.persistence.*
 import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 
-@Entity
-class Aeronave (
+data class DtoAeronaveForm(
     @get:NotBlank(message="{aeronave.matricula.blank}")
-    @Column(nullable = false, unique = true)
     var matricula : String,
 
     @get:NotBlank(message="{aeronave.marca.blank}")
@@ -38,16 +36,26 @@ class Aeronave (
 
     @get:NotBlank(message="{aeronave.velCru.blank}")
     @get:Min(value=40,message="{aeronave.velCru.min}")
+    var velCru : Double
+)
+
+data class DtoAeronaveResp(
+    val id:UUID,
+    var matricula : String,
+    var marca : String,
+    var modelo : String,
+    var motor : String,
+    var potencia : Double,
+    var autonomia : Double,
+    var velMax : Double,
+    var velMin : Double,
     var velCru : Double,
+    var mantenimiento : Boolean,
+    var foto:DTOFotoUrl
+)
 
-    var mantenimiento : Boolean? = false,
+fun Aeronave.toGetDtoAeronaveResp():DtoAeronaveResp{
+    return DtoAeronaveResp(id!!, matricula, marca , modelo, motor, potencia, autonomia, velMax, velMin, velCru, mantenimiento!!, foto!!.toGetDTOFotoUrl() )
 
-    @OneToOne(cascade = [CascadeType.REMOVE])
-    @JoinColumn(name = "foto_id", referencedColumnName = "id")
-    var foto : FotoAeronave? = null,
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null
-){
 }
+
