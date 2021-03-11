@@ -70,12 +70,14 @@ class WebSecurityConfiguration(
             .and()
             .authorizeRequests()
             .antMatchers( "/h2-console/**").permitAll()
-            .antMatchers(POST, "/auth/login", "/auth/token", "/user/", "/auth/register").permitAll()
-            .antMatchers(GET, "/viviendas/", "/viviendas/{id}").permitAll()
-            .antMatchers(GET, "/viviendas/mine", "/viviendas/favs").hasRole("USER")
-            .antMatchers(PUT,"/viviendas/{id}").hasRole("USER")
-            .antMatchers(POST, "/viviendas/**").hasRole("USER")
-            .antMatchers(DELETE, "/viviendas/**").hasRole("USER")
+            .antMatchers(POST, "/auth/login", "/auth/token", "/user/", "/auth/register", "/aeronave/**").permitAll()
+            .antMatchers(DELETE, "/viviendas/**", "/aeronave/**").permitAll()
+
+//            .antMatchers(GET, "/viviendas/", "/viviendas/{id}").permitAll()
+//            .antMatchers(GET, "/viviendas/mine", "/viviendas/favs").hasRole("USER")
+//            .antMatchers(PUT,"/viviendas/{id}").hasRole("USER")
+//            .antMatchers(POST, "/viviendas/**").hasRole("USER")
+//            .antMatchers(DELETE, "/viviendas/**", "/aeronave/**").hasRole("USER")
 
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter::class.java)
