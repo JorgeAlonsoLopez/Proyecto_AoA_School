@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface AdminRepository : JpaRepository<Admin, UUID?> {
+interface AdminRepository : JpaRepository<Admin, UUID> {
 }

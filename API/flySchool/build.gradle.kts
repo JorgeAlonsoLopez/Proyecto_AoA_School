@@ -38,6 +38,8 @@ dependencies {
 	runtimeOnly (group= "io.jsonwebtoken", name= "jjwt-jackson", version= "0.11.2")
 	runtimeOnly (group= "io.jsonwebtoken", name= "jjwt-impl", version= "0.11.2")
 	implementation(group="org.springframework.security", name= "spring-security-crypto", version= "5.4.5")
+
+
 }
 
 tasks.withType<KotlinCompile> {

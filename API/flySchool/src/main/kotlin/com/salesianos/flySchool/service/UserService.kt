@@ -15,8 +15,8 @@ import java.util.*
 @Service
 class UsuarioService(
     private val encoder: PasswordEncoder,
-    private val AdminRepo : AdminRepository,
-    private val PilotoRepo : PilotoRepository,
+    private val AdminServ : AdminService,
+    private val PilotoServ : PilotoService,
 ) : BaseService<Usuario, UUID?, UsuarioRepository>(){
 
     override fun save(t: Usuario): Usuario {
@@ -29,7 +29,7 @@ class UsuarioService(
         }else{
             if(nuevoUsuario.tarjetaCredito == ""){
                 return Optional.of(
-                        AdminRepo.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
+                    AdminServ.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
                             nuevoUsuario.nombreCompleto, fecha, mutableSetOf("ADMIN")))
                 )
             }else{
