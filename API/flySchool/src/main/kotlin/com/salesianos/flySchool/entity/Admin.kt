@@ -9,7 +9,7 @@ import javax.persistence.Id
 
 @Entity
 class Admin (usuario:String, password:String, email:String, telefono:String,
-             nombreCompleto:String, fechaNacimiento: LocalDate)
+             nombreCompleto:String, fechaNacimiento: LocalDate, roles: MutableSet<String> = HashSet())
     : Usuario(usuario, password, email, telefono, nombreCompleto,
-    fechaNacimiento){
+    fechaNacimiento, roles){
 }

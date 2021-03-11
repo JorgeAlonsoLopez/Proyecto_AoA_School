@@ -7,9 +7,9 @@ import java.util.*
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
-data class DtoPilotoForm(
+data class DtoUserForm(
     @get:NotBlank(message="{usuario.username.blank}")
-    var usuario : String,
+    var username : String,
 
     @get:NotBlank(message="{usuario.password.blank}")
     var password : String,
@@ -26,32 +26,12 @@ data class DtoPilotoForm(
     @get:NotNull(message="{usuario.fechaNacimiento.null}")
     var fechaNacimiento : String,
 
-    @get:NotBlank(message="{usuario.tarjeta.blank}")
+   // @get:NotBlank(message="{usuario.tarjeta.blank}")
     var tarjetaCredito :  String
 )
 
-data class DtoAdminForm(
-    @get:NotBlank(message="{usuario.username.blank}")
-    var usuario : String,
-
-    @get:NotBlank(message="{usuario.password.blank}")
-    var password : String,
-
-    @get:NotBlank(message="{usuario.email.blank}")
-    var email : String,
-
-    @get:NotBlank(message="{usuario.telefono.blank}")
-    var telefono : String,
-
-    @get:NotBlank(message="{usuario.nombreCompleto.blank}")
-    var nombreCompleto : String,
-
-    @get:NotNull(message="{usuario.fechaNacimiento.null}")
-    var fechaNacimiento : String
-)
-
 data class DtoUserInfo(
-    var usuario : String,
+    var username : String,
     var nombreCompleto : String,
     var tipo: String,
     var id:UUID
@@ -64,13 +44,13 @@ fun Usuario.toGetDtoUserInfo(obj : Usuario):DtoUserInfo{
     }else{
         tipo = "Admin"
     }
-    return DtoUserInfo(usuario, nombreCompleto, tipo, id!!)
+    return DtoUserInfo(username, nombreCompleto, tipo, id!!)
 
 }
 
 data class DtoUserInfoSpeci(
     val id:UUID,
-    var usuario : String,
+    var username : String,
     var password : String,
     var email : String,
     var telefono : String,
@@ -79,9 +59,15 @@ data class DtoUserInfoSpeci(
 )
 
 fun Usuario.toGetDtoUserInfoSpeciDtoUserInfo():DtoUserInfoSpeci{
-    return DtoUserInfoSpeci(id!!, usuario, password, email, telefono, nombreCompleto, fechaNacimiento)
+    return DtoUserInfoSpeci(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento)
 
 }
+
+data class DtoLogin(
+    var username: String,
+    var password : String
+)
+
 
 
 

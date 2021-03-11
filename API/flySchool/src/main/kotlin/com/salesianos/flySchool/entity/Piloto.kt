@@ -14,6 +14,7 @@ class Piloto (
     telefono:String,
     nombreCompleto:String,
     fechaNacimiento: LocalDate,
+    roles: MutableSet<String> = HashSet(),
 
     @get:NotBlank(message="{usuario.tarjeta.blank}")
     @Column(nullable = false, unique = true)
@@ -26,5 +27,5 @@ class Piloto (
     var alta : Boolean? = true)
 
     : Usuario(usuario, password, email, telefono, nombreCompleto,
-    fechaNacimiento) {
+    fechaNacimiento, roles) {
 }
