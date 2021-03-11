@@ -36,6 +36,10 @@ class Usuario (
     @ElementCollection(fetch = FetchType.EAGER)
     val roles: MutableSet<String> = HashSet(),
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: UUID? = null,
+
     private val nonExpired: Boolean = true,
 
     private val nonLocked: Boolean = true,
@@ -44,13 +48,10 @@ class Usuario (
 
     private val credentialsNonExpired : Boolean = true,
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    val id: UUID? = null
 
 ) : UserDetails {
     constructor(usuario: String, password: String, email : String , telefono: String, nombreCompleto : String, fechaNacimiento: LocalDate, role: String) :
-            this(usuario, password, email, telefono, nombreCompleto, fechaNacimiento, mutableSetOf(role), true, true, true, true)
+            this(usuario, password, email, telefono, nombreCompleto, fechaNacimiento, mutableSetOf(role))
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> =
         roles.map { SimpleGrantedAuthority("ROLE_$it") }.toMutableList()
@@ -67,17 +68,5 @@ class Usuario (
 
     override fun isEnabled(): Boolean = enabled
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (other == null || javaClass != other.javaClass) return false
-        val that = other as Usuario
-        if (id != that.id) return false
-        return true
-    }
 
-    override fun hashCode(): Int {
-        return if (id != null)
-            id.hashCode()
-        else 0
-    }
 }

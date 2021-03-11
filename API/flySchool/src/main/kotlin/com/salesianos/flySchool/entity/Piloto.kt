@@ -17,15 +17,27 @@ class Piloto (
     roles: MutableSet<String> = HashSet(),
 
     @get:NotBlank(message="{usuario.tarjeta.blank}")
-    @Column(nullable = false, unique = true)
     var tarjetaCredito :  String,
-
     var horas : Double? = 0.0,
-
     var licencia : Boolean? = false,
+    var alta : Boolean? = true,
 
-    var alta : Boolean? = true)
+
+    )
 
     : Usuario(usuario, password, email, telefono, nombreCompleto,
     fechaNacimiento, roles) {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
+        val that = other as Piloto
+        if (id != that.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return if (id != null)
+            id.hashCode()
+        else 0
+    }
 }

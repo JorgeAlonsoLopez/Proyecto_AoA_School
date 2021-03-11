@@ -4,6 +4,8 @@ import com.salesianos.flySchool.dto.DtoUserForm
 import com.salesianos.flySchool.entity.Admin
 import com.salesianos.flySchool.entity.Piloto
 import com.salesianos.flySchool.entity.Usuario
+import com.salesianos.flySchool.repository.AdminRepository
+import com.salesianos.flySchool.repository.PilotoRepository
 import com.salesianos.flySchool.repository.UsuarioRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -12,30 +14,31 @@ import java.util.*
 
 @Service
 class UsuarioService(
-    private val encoder: PasswordEncoder
+    private val encoder: PasswordEncoder,
+    private val AdminRepo : AdminRepository,
+    private val PilotoRepo : PilotoRepository,
 ) : BaseService<Usuario, UUID?, UsuarioRepository>(){
 
     override fun save(t: Usuario): Usuario {
         return super.save(t)
     }
 
-    fun create(nuevoUsuario : DtoUserForm): Optional<Usuario> {
-        if (findByUsername(nuevoUsuario.username).isPresent)
+    fun create(nuevoUsuario : DtoUserForm, fecha:LocalDate): Optional<Usuario> {
+        if (findByUsername(nuevoUsuario.username).isPresent){
             return Optional.empty()
-        return Optional.of(
-            with(nuevoUsuario) {
-                val fechaNac = LocalDate.of(nuevoUsuario.fechaNacimiento.split("/")[0].toInt(),
-                    nuevoUsuario.fechaNacimiento.split("/")[1].toInt(), nuevoUsuario.fechaNacimiento.split("/")[2].toInt())
-                if(nuevoUsuario.tarjetaCredito == ""){
-                    super.repository.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email,
-                        nuevoUsuario.telefono ,nuevoUsuario.nombreCompleto, fechaNac, mutableSetOf("ADMIN")))
-                }else{
-                    super.repository.save(Piloto(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email,
-                        nuevoUsuario.telefono ,nuevoUsuario.nombreCompleto, fechaNac, mutableSetOf("PILOT"), nuevoUsuario.tarjetaCredito))
-                }
+        }else{
+            if(nuevoUsuario.tarjetaCredito == ""){
+                return Optional.of(
+                        AdminRepo.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
+                            nuevoUsuario.nombreCompleto, fecha, mutableSetOf("ADMIN")))
+                )
+            }else{
+                return Optional.of(
+                        super.repository.save(Piloto(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
+                            nuevoUsuario.nombreCompleto, fecha, mutableSetOf("PILOT"), nuevoUsuario.tarjetaCredito))
+                )
             }
-
-        )
+        }
     }
 
     override fun findAll(): List<Usuario> {

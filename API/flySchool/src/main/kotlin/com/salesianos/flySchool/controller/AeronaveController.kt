@@ -25,7 +25,7 @@ class ImagenController(
 ) {
 
     @PostMapping("/")
-    fun create(@Valid @RequestBody nueva:DtoAeronaveForm) : ResponseEntity<DtoAeronaveSinFoto> {
+    fun crear(@Valid @RequestBody nueva:DtoAeronaveForm) : ResponseEntity<DtoAeronaveSinFoto> {
         var aeronave = Aeronave(nueva.matricula, nueva.marca, nueva.modelo, nueva.motor, nueva.potencia,
             nueva.autonomia, nueva.velMax, nueva.velMin, nueva.velCru, false)
         aeronaveService.save(aeronave)

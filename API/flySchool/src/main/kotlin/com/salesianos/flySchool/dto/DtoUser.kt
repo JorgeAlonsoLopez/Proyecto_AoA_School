@@ -55,11 +55,12 @@ data class DtoUserInfoSpeci(
     var email : String,
     var telefono : String,
     var nombreCompleto : String,
-    var fechaNacimiento : LocalDate
+    var fechaNacimiento : LocalDate,
+    var rol : String
 )
 
-fun Usuario.toGetDtoUserInfoSpeciDtoUserInfo():DtoUserInfoSpeci{
-    return DtoUserInfoSpeci(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento)
+fun Usuario.toGetDtoUserInfoSpeci():DtoUserInfoSpeci{
+    return DtoUserInfoSpeci(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento, roles.first())
 
 }
 
