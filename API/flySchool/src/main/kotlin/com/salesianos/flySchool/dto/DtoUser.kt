@@ -4,6 +4,7 @@ import com.salesianos.flySchool.entity.Piloto
 import com.salesianos.flySchool.entity.Usuario
 import java.time.LocalDate
 import java.util.*
+import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
@@ -15,6 +16,7 @@ data class DtoUserForm(
     var password : String,
 
     @get:NotBlank(message="{usuario.email.blank}")
+    @get:Email(message="{usuario.email.format}")
     var email : String,
 
     @get:NotBlank(message="{usuario.telefono.blank}")
@@ -26,7 +28,6 @@ data class DtoUserForm(
     @get:NotNull(message="{usuario.fechaNacimiento.null}")
     var fechaNacimiento : String,
 
-   // @get:NotBlank(message="{usuario.tarjeta.blank}")
     var tarjetaCredito :  String
 )
 

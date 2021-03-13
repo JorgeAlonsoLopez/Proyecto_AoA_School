@@ -3,8 +3,7 @@ package com.salesianos.flySchool.controller
 import com.salesianos.flySchool.dto.*
 import com.salesianos.flySchool.entity.Aeronave
 import com.salesianos.flySchool.entity.FotoAeronave
-import com.salesianos.flySchool.error.ListEntityNotFoundException
-import com.salesianos.flySchool.error.SingleEntityNotFoundException
+import com.salesianos.flySchool.error.*
 import com.salesianos.flySchool.service.AeronaveService
 import com.salesianos.flySchool.service.FotoAeronaveServicio
 import com.salesianos.flySchool.service.RegistroService
@@ -76,19 +75,19 @@ class ImagenController(
     @GetMapping("/")
     fun listado() : ResponseEntity<List<DtoAeronaveSinFoto>> {
             return ResponseEntity.status(HttpStatus.OK).body(service.findAll().map{it.toGetDtoAeronaveSinFoto()}
-                .takeIf { it.isNotEmpty() } ?: throw ListEntityNotFoundException(Aeronave::class.java))
+                .takeIf { it.isNotEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java))
     }
 
     @GetMapping("/alta")
     fun listadoAlta() : ResponseEntity<List<DtoAeronaveSinFoto>> {// it.isNotEmpty()
         return ResponseEntity.status(HttpStatus.OK).body(service.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListEntityNotFoundException(Aeronave::class.java))
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java))
     }
 
     @GetMapping("/{id}")
     fun aeronaveId(@PathVariable id: UUID): ResponseEntity<DtoAeronaveResp> {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id).map { it.toGetDtoAeronaveResp() }
-            .orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+            .orElseThrow { AeronaveSearchNotFoundException(id.toString()) })
     }
 
     @PutMapping("/{id}")
@@ -106,7 +105,7 @@ class ImagenController(
                 fromRepo.velMin = editada.velMin
                 fromRepo.velCru = editada.velCru
                 service.save(fromRepo).toGetDtoAeronaveSinFoto()
-            }.orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) })
     }
 
     @PutMapping("/{id}/{opt}")
@@ -119,7 +118,7 @@ class ImagenController(
                 else
                     aero.alta = !aero.alta
                 service.save(aero).toGetDtoAeronaveSinFoto()
-            }.orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) })
     }
 
 

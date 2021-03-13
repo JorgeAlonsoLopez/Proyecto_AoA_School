@@ -13,13 +13,6 @@ class InitDataComponent {
     @PostConstruct
     fun initData() {
 
-        var user= Usuario("pepepe", "123456", "www@ww.com", "123456879", "Pepe Pepe", LocalDate.now(), "USER")
-
-        var admin= Admin("pepepe", "123456", "www@ww.com", "123456879", "Pepe Pepe", LocalDate.now(), mutableSetOf("ADMIN"))
-
-        var demo = Aeronave("", "", "", ", ", 0.0, 0.0, 0.0, 0.0, 0.0, false)
-
-        println("hola")
 
     }
 

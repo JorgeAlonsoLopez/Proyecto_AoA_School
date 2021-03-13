@@ -5,13 +5,7 @@ import com.salesianos.flySchool.entity.Piloto
 import com.salesianos.flySchool.entity.Producto
 import java.time.LocalDateTime
 import java.util.*
-import javax.persistence.ManyToOne
 
-data class DtoFacturaForm(
-
-    var horaInicial : String,
-    var horaFinal : String
-)
 
 data class DtoFacturaCliente(
 

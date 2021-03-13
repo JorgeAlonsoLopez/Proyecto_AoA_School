@@ -2,8 +2,7 @@ package com.salesianos.flySchool.controller
 
 import com.salesianos.flySchool.dto.*
 import com.salesianos.flySchool.entity.Producto
-import com.salesianos.flySchool.error.ListEntityNotFoundException
-import com.salesianos.flySchool.error.SingleEntityNotFoundException
+import com.salesianos.flySchool.error.*
 import com.salesianos.flySchool.service.FacturaService
 import com.salesianos.flySchool.service.ProductoService
 import org.springframework.http.HttpStatus
@@ -38,7 +37,7 @@ class ProductoController(
                 fromRepo.horasVuelo = editada.horasVuelo
                 fromRepo.tipoLibre = editada.tipoLibre
                 service.save(fromRepo).toGetDtoProductoEspecf()
-            }.orElseThrow { SingleEntityNotFoundException(id.toString(), Producto::class.java) })
+            }.orElseThrow { ProductoModifNotFoundException(id.toString()) })
     }
 
     @PutMapping("/{id}/est")
@@ -48,13 +47,13 @@ class ProductoController(
             .map { prod ->
                 prod.alta = !prod.alta
                 service.save(prod).toGetDtoProductoEspecf()
-            }.orElseThrow { SingleEntityNotFoundException(id.toString(), Producto::class.java) })
+            }.orElseThrow { ProductoModifNotFoundException(id.toString()) })
     }
 
     @DeleteMapping("/{id}")
     fun delete(@PathVariable id: UUID): ResponseEntity<Any> {
 
-        val producto = service.findById(id).orElseThrow { SingleEntityNotFoundException(id.toString(), Producto::class.java) }
+        val producto = service.findById(id).orElseThrow { ProductoSearchNotFoundException(id.toString()) }
         if(facturaService.countByProducto(producto) == 0 )
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body( service.delete(producto))
         else
@@ -64,19 +63,19 @@ class ProductoController(
     @GetMapping("/")
     fun listado() : ResponseEntity<List<DtoProductoEspecf>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.findAll().map{it.toGetDtoProductoEspecf()}
-            .takeIf { it.isNotEmpty() } ?: throw ListEntityNotFoundException(Producto::class.java))
+            .takeIf { it.isNotEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java))
     }
 
     @GetMapping("/alta/{licencia}")
     fun listadoAlta(@PathVariable licencia: Boolean) : ResponseEntity<List<DtoProductoEspecf>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.findAllAlta(licencia)?.map{it.toGetDtoProductoEspecf()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListEntityNotFoundException(Producto::class.java))
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java))
     }
 
     @GetMapping("/{id}")
     fun aeronaveId(@PathVariable id: UUID): ResponseEntity<DtoProductoEspecf> {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id).map { it.toGetDtoProductoEspecf() }
-            .orElseThrow { SingleEntityNotFoundException(id.toString(), Producto::class.java) })
+            .orElseThrow { ProductoSearchNotFoundException(id.toString()) })
     }
 
 
