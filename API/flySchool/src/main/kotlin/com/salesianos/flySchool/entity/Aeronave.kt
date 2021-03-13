@@ -20,23 +20,18 @@ class Aeronave (
     @get:NotBlank(message="{aeronave.motor.blank}")
     var motor : String,
 
-    @get:NotBlank(message="{aeronave.potencia.blank}")
     @get:Min(value=60,message="{aeronave.potencia.min}")
     var potencia : Double,
 
-    @get:NotBlank(message="{aeronave.autonomia.blank}")
     @get:Min(value=50,message="{aeronave.autonomia.min}")
     var autonomia : Double,
 
-    @get:NotBlank(message="{aeronave.velMax.blank}")
     @get:Min(value=55,message="{aeronave.velMax.min}")
     var velMax : Double,
 
-    @get:NotBlank(message="{aeronave.velMin.blank}")
     @get:Min(value=20,message="{aeronave.velMin.min}")
     var velMin : Double,
 
-    @get:NotBlank(message="{aeronave.velCru.blank}")
     @get:Min(value=40,message="{aeronave.velCru.min}")
     var velCru : Double,
 
@@ -50,6 +45,20 @@ class Aeronave (
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null
 ){
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || javaClass != other.javaClass) return false
+        val that = other as Aeronave
+        if (id != that.id) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return if (id != null)
+            id.hashCode()
+        else 0
+    }
+
     fun addFoto(foto:FotoAeronave){
         this.foto = foto
         foto.aeronave = this
