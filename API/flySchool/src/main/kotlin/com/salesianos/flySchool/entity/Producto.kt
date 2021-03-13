@@ -25,6 +25,8 @@ class Producto (
 
     var tipoLibre : Boolean,
 
+    var alta : Boolean = true,
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null

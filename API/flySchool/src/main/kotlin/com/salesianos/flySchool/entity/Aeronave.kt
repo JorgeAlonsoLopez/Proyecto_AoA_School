@@ -35,7 +35,9 @@ class Aeronave (
     @get:Min(value=40,message="{aeronave.velCru.min}")
     var velCru : Double,
 
-    var mantenimiento : Boolean? = false,
+    var mantenimiento : Boolean = false,
+
+    var alta : Boolean = true,
 
     @OneToOne(cascade = [CascadeType.REMOVE])
     @JoinColumn(name = "foto_id", referencedColumnName = "id")

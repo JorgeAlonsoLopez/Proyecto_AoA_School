@@ -3,6 +3,8 @@ package com.salesianos.flySchool.controller
 import com.salesianos.flySchool.dto.*
 import com.salesianos.flySchool.entity.Aeronave
 import com.salesianos.flySchool.entity.FotoAeronave
+import com.salesianos.flySchool.error.ListEntityNotFoundException
+import com.salesianos.flySchool.error.SingleEntityNotFoundException
 import com.salesianos.flySchool.service.AeronaveService
 import com.salesianos.flySchool.service.FotoAeronaveServicio
 import com.salesianos.flySchool.upload.ImgurBadRequest
@@ -19,7 +21,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/aeronave")
 class ImagenController(
-    private val aeronaveService: AeronaveService,
+    private val service: AeronaveService,
     private val servicioFoto: FotoAeronaveServicio,
     val imgurStorageService: ImgurStorageService
 ) {
@@ -28,7 +30,7 @@ class ImagenController(
     fun crear(@Valid @RequestBody nueva:DtoAeronaveForm) : ResponseEntity<DtoAeronaveSinFoto> {
         var aeronave = Aeronave(nueva.matricula, nueva.marca, nueva.modelo, nueva.motor, nueva.potencia,
             nueva.autonomia, nueva.velMax, nueva.velMin, nueva.velCru, false)
-        aeronaveService.save(aeronave)
+        service.save(aeronave)
         return ResponseEntity.status(HttpStatus.CREATED).body(aeronave.toGetDtoAeronaveSinFoto())
     }
 
@@ -38,9 +40,9 @@ class ImagenController(
         try {
             var foto = FotoAeronave()
             var guardado = servicioFoto.save( foto, file)
-            var aeronave = aeronaveService.findById(id).get()
+            var aeronave = service.findById(id).get()
             aeronave.addFoto(guardado)
-            aeronaveService.save(aeronave)
+            service.save(aeronave)
             servicioFoto.save(guardado)
             return ResponseEntity.status(HttpStatus.CREATED).body(aeronave.toGetDtoAeronaveResp())
         } catch ( ex : ImgurBadRequest) {
@@ -51,17 +53,70 @@ class ImagenController(
     @DeleteMapping("/{id}/{hash}")
     fun delete(@PathVariable hash: String, @PathVariable id: UUID): ResponseEntity<Any> {
 
-        var aeronave = aeronaveService.findById(id)
+        var aeronave = service.findById(id)
         if (aeronave!=null){
             var foto = aeronave.get().foto!!
             if (aeronave.get().foto!!.deleteHash==hash){
                 imgurStorageService.delete(hash)
                 aeronave.get().deleteFoto()
                 servicioFoto.delete(foto)
-                aeronaveService.delete(aeronave.get())
+                service.delete(aeronave.get())
             }
         }
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
     }
+
+    @GetMapping("/")
+    fun listado() : ResponseEntity<List<DtoAeronaveSinFoto>> {
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAll().map{it.toGetDtoAeronaveSinFoto()}
+                .takeIf { it.isNotEmpty() } ?: throw ListEntityNotFoundException(Aeronave::class.java))
+    }
+
+    @GetMapping("/alta")
+    fun listadoAlta() : ResponseEntity<List<DtoAeronaveSinFoto>> {// it.isNotEmpty()
+        return ResponseEntity.status(HttpStatus.OK).body(service.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListEntityNotFoundException(Aeronave::class.java))
+    }
+
+    @GetMapping("/{id}")
+    fun aeronaveId(@PathVariable id: UUID): ResponseEntity<DtoAeronaveResp> {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id).map { it.toGetDtoAeronaveResp() }
+            .orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+    }
+
+    @PutMapping("/{id}")
+    fun editar(@Valid @RequestBody editada:DtoAeronaveForm, @PathVariable id: UUID) : ResponseEntity<DtoAeronaveSinFoto> {
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id)
+            .map { fromRepo ->
+                fromRepo.matricula = editada.matricula
+                fromRepo.marca = editada.marca
+                fromRepo.modelo = editada.modelo
+                fromRepo.motor = editada.motor
+                fromRepo.potencia = editada.potencia
+                fromRepo.autonomia = editada.autonomia
+                fromRepo.velMax = editada.velMax
+                fromRepo.velMin = editada.velMin
+                fromRepo.velCru = editada.velCru
+                service.save(fromRepo).toGetDtoAeronaveSinFoto()
+            }.orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+    }
+
+    @PutMapping("/{id}/{opt}")
+    fun cambiarEstado(@PathVariable id: UUID, @PathVariable opt:Int) : ResponseEntity<DtoAeronaveSinFoto> {
+
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id)
+            .map { aero ->
+                if(opt==1)
+                    aero.mantenimiento = !aero.mantenimiento
+                else
+                    aero.alta = !aero.alta
+                service.save(aero).toGetDtoAeronaveSinFoto()
+            }.orElseThrow { SingleEntityNotFoundException(id.toString(),Aeronave::class.java) })
+    }
+
+
+
+
 
 }
