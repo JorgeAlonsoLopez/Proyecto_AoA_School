@@ -7,6 +7,7 @@ import com.salesianos.flySchool.error.ListEntityNotFoundException
 import com.salesianos.flySchool.error.SingleEntityNotFoundException
 import com.salesianos.flySchool.service.AeronaveService
 import com.salesianos.flySchool.service.FotoAeronaveServicio
+import com.salesianos.flySchool.service.RegistroService
 import com.salesianos.flySchool.upload.ImgurBadRequest
 import com.salesianos.flySchool.upload.ImgurStorageService
 import org.springframework.http.HttpStatus
@@ -23,7 +24,8 @@ import javax.validation.Valid
 class ImagenController(
     private val service: AeronaveService,
     private val servicioFoto: FotoAeronaveServicio,
-    val imgurStorageService: ImgurStorageService
+    private val imgurStorageService: ImgurStorageService,
+    private val registroService:RegistroService
 ) {
 
     @PostMapping("/")
@@ -54,16 +56,21 @@ class ImagenController(
     fun delete(@PathVariable hash: String, @PathVariable id: UUID): ResponseEntity<Any> {
 
         var aeronave = service.findById(id)
-        if (aeronave!=null){
-            var foto = aeronave.get().foto!!
-            if (aeronave.get().foto!!.deleteHash==hash){
-                imgurStorageService.delete(hash)
-                aeronave.get().deleteFoto()
-                servicioFoto.delete(foto)
-                service.delete(aeronave.get())
+        if(aeronave!=null){
+            if (registroService.countByAeronave(aeronave.get()) == 0 ){
+                var foto = aeronave.get().foto!!
+                if (aeronave.get().foto!!.deleteHash==hash){
+                    imgurStorageService.delete(hash)
+                    aeronave.get().deleteFoto()
+                    servicioFoto.delete(foto)
+                    service.delete(aeronave.get())
+                }
             }
+            return ResponseEntity.status(HttpStatus.CONFLICT).build()
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
         }
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+
     }
 
     @GetMapping("/")

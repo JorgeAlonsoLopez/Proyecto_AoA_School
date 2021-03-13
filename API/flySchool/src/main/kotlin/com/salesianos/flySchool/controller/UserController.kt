@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDate
+import javax.validation.Valid
 
 @Controller
 @RequestMapping("/auth")
 class UserController(val usuarioServicio: UsuarioService, private val encoder: PasswordEncoder) {
 
     @PostMapping("/register")
-    fun nuevoUsuario(@RequestBody newUser: DtoUserForm): ResponseEntity<DtoUserInfoSpeci> {
+    fun nuevoUsuario(@Valid @RequestBody newUser: DtoUserForm): ResponseEntity<DtoUserInfoSpeci> {
 
         lateinit var nuevoUsuario : Usuario
         var fecNac= LocalDate.of((newUser.fechaNacimiento.split("/")[2]).toInt(),(newUser.fechaNacimiento.split("/")[1]).toInt(),(newUser.fechaNacimiento.split("/")[0]).toInt())

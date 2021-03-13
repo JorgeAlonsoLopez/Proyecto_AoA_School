@@ -1,20 +1,17 @@
 package com.salesianos.flySchool.service
 
+import com.salesianos.flySchool.entity.Aeronave
 import com.salesianos.flySchool.entity.Producto
+import com.salesianos.flySchool.entity.RegistroVuelo
 import com.salesianos.flySchool.repository.ProductoRepository
-import org.springframework.stereotype.Service
+import com.salesianos.flySchool.repository.RegistroRepository
 import java.util.*
 
-@Service
-class ProductoService(
-): BaseService<Producto, UUID, ProductoRepository>()
-{
+class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>(){
 
-    override fun save(produc: Producto) = super.save(produc)
+    override fun save(registro: RegistroVuelo) = super.save(registro)
 
     override fun findAll() = super.findAll()
-
-    fun findAllAlta(opt : Boolean) = repository.findByAltaAndTipoLibre(true, opt)
 
     override fun findById(id : UUID) = super.findById(id)
 
@@ -23,5 +20,7 @@ class ProductoService(
     fun editById(id : UUID) = super.save(super.findById(id).get())
 
     fun existById(id : UUID)= repository.existsById(id)
+
+    fun countByAeronave(aeronave: Aeronave) = repository.countByAeronave(aeronave)
 
 }
