@@ -52,6 +52,7 @@ class Usuario (
         roles.map { SimpleGrantedAuthority("ROLE_$it") }.toMutableList()
 
     override fun getPassword() = password
+    fun setPassword(pass:String){ this.password=pass}
 
     override fun getUsername() = username
 

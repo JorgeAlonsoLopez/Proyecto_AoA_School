@@ -76,13 +76,13 @@ class UserController(
     }
 
     @PutMapping("usuario/password")
-    fun editPassword(@RequestBody passw: DtoPassword,): ResponseEntity<DtoUserInfoSpeci> {
+    fun editPassword(@RequestBody passw: DtoPassword,): Any {
         var user = Usuario("", "", "", "", "", LocalDate.now(), mutableSetOf(""))
         if(passw.password1 == passw.password2){
             user.password = passw.password1
             usuarioServicio.save(user)
         }
-        /*
+
         return ResponseEntity.status(HttpStatus.OK).body(usuarioServicio.findById(id)
                 .map { fromRepo ->
                     fromRepo.email = user.email
@@ -90,7 +90,7 @@ class UserController(
                     fromRepo.telefono = user.telefono
                     fromRepo.fechaNacimiento = LocalDate.of((user.fechaNacimiento.split("/")[2]).toInt(),(user.fechaNacimiento.split("/")[1]).toInt(),(user.fechaNacimiento.split("/")[0]).toInt())
                     usuarioServicio.save(fromRepo).toGetDtoUserInfoSpeci()
-                }.orElseThrow { ProductoModifNotFoundException(id.toString()) })*/
+                }.orElseThrow { ProductoModifNotFoundException(id.toString()) })
     }
 
 
