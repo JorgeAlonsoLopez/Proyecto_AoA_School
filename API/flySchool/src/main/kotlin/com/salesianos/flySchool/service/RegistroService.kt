@@ -39,9 +39,17 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
     fun findByPiloto(piloto: Piloto) = repository.findByPiloto(piloto)
 
     fun difference(start: LocalTime, stop: LocalTime): LocalTime {
-        stop.minusMinutes(start.minute.toLong())
-        stop.minusHours(start.hour.toLong())
-        return stop
+        lateinit var end : LocalTime
+        var min = stop.minute - start.minute
+        var hor = 0
+        if(min < 0){
+            hor = stop.hour - start.hour - 1
+            min = (60+min)
+        }else{
+            hor = stop.hour - start.hour
+        }
+        end = LocalTime.of(hor, min)
+        return end
     }
 
     fun listado() : ResponseEntity<List<DtoRegistro>> {

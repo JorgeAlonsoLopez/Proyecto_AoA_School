@@ -11,6 +11,7 @@ import com.salesianos.flySchool.error.ProductoModifNotFoundException
 import com.salesianos.flySchool.error.ProductoSearchNotFoundException
 import com.salesianos.flySchool.service.FacturaService
 import com.salesianos.flySchool.service.ProductoService
+import com.salesianos.flySchool.service.UsuarioService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -23,7 +24,8 @@ import javax.validation.Valid
 @RequestMapping("/factura")
 class FacturaController(
         private val service: FacturaService,
-        private val productoService: ProductoService
+        private val productoService: ProductoService,
+        private val usuarioService: UsuarioService
 ) {
 
     @GetMapping("/")
@@ -38,7 +40,7 @@ class FacturaController(
 
     @PostMapping("/{id}")
     fun crear(@PathVariable id: UUID, @AuthenticationPrincipal user: Usuario) : ResponseEntity<DtoFacturaAdmin> {
-        return service.crear(id, user, productoService)
+        return service.crear(id, user, productoService, usuarioService)
 
 
     }

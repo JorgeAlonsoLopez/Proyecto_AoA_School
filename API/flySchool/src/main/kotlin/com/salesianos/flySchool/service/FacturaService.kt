@@ -45,10 +45,12 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
             .takeIf { !it.isNullOrEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java))
     }
 
-    fun crear(id: UUID,  user: Usuario, productoService: ProductoService): ResponseEntity<DtoFacturaAdmin> {
+    fun crear(id: UUID,  user: Usuario, productoService: ProductoService, usuarioService: UsuarioService): ResponseEntity<DtoFacturaAdmin> {
         val producto = productoService.findById(id).orElseThrow{ ProductoSearchNotFoundException(id.toString()) }
         var factura = Factura(producto.precio, LocalDateTime.now(), user as Piloto, producto)
         this.save(factura)
+        user.horas += producto.horasVuelo
+        usuarioService.edit(user)
         return ResponseEntity.status(HttpStatus.CREATED).body(factura.toGetDtoFacturaAdmin())
 
     }
