@@ -42,7 +42,7 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
 
     fun listadoUsuario(user: Usuario): ResponseEntity<List<DtoFacturaCliente>> {
         return ResponseEntity.status(HttpStatus.OK).body(this.findByComprador(user as Piloto).map{it.toGetDtoFacturaCliente()}
-            .takeIf { it.isNullOrEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java))
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java))
     }
 
     fun crear(id: UUID,  user: Usuario, productoService: ProductoService): ResponseEntity<DtoFacturaAdmin> {

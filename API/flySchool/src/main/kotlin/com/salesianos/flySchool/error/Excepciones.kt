@@ -37,7 +37,7 @@ data class ListaAeronaveNotFoundException(
 
 data class ListaFacturasNotFoundException(
     val javaClass: Class<out Any>
-) : EntityNotFoundException("Las facturas que desea buscar no se encunetran en la base de datos")
+) : EntityNotFoundException("Las facturas que desea buscar no se encuentran en la base de datos")
 
 data class ListaRegistroVueloNotFoundException(
     val javaClass: Class<out Any>

@@ -20,10 +20,11 @@ data class DtoProductoEspecf(
     var tipoLibre : Boolean,
     var nombre : String,
     var precio : Double,
-    var horasVuelo : Int
+    var horasVuelo : Int,
+    var alta : Boolean
 )
 
 fun Producto.toGetDtoProductoEspecf():DtoProductoEspecf{
-    return DtoProductoEspecf( id!!, tipoLibre ,nombre, precio, horasVuelo)
+    return DtoProductoEspecf( id!!, tipoLibre ,nombre, precio, horasVuelo, alta)
 
 }
