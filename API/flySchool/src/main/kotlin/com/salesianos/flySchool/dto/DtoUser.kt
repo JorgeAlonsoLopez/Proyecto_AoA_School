@@ -70,6 +70,25 @@ data class DtoPassword(
     var password2 : String
 )
 
+data class DtoPilot(
+    val id:UUID,
+    var username : String,
+    var password : String,
+    var email : String,
+    var telefono : String,
+    var nombreCompleto : String,
+    var fechaNacimiento : LocalDate,
+    var horas: Double,
+    var licencia: Boolean,
+    var alta: Boolean
+
+)
+
+fun Piloto.toGetDtoUserInfoSpeciPilot():DtoPilot{
+    return DtoPilot(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento, horas, licencia, alta)
+
+}
+
 
 
 

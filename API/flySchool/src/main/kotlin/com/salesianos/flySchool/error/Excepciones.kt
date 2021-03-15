@@ -34,3 +34,23 @@ data class AeronaveSearchNotFoundException(
 data class ListaAeronaveNotFoundException(
     val javaClass: Class<out Any>
 ) : EntityNotFoundException("Para la operación que desa llevar a cabo, no se pudo encontrar ninguna de las aeronaves en la base de datos")
+
+data class ListaFacturasNotFoundException(
+    val javaClass: Class<out Any>
+) : EntityNotFoundException("Las facturas que desea buscar no se encunetran en la base de datos")
+
+data class ListaRegistroVueloNotFoundException(
+    val javaClass: Class<out Any>
+) : EntityNotFoundException("No se pudo encontrar ninguno de los registros de vuelos en la base de datos")
+
+data class UserSearchNotFoundException(
+    val id: String
+) : EntityNotFoundException("El usuario a buscar con ID: ${id}, no se pudo encontrar en la base de datos")
+
+data class UserModifNotFoundException(
+    val id: String
+) : EntityNotFoundException("El usuario que desea modificar con ID: ${id}, no se pudo encontrar en la base de datos")
+
+data class ListaUsuariosNotFoundException(
+    val javaClass: Class<out Any>
+) : EntityNotFoundException("No se ha podido encontrar usuarios en la base de datos")

@@ -47,12 +47,11 @@ data class DtoAeronaveResp(
     var velCru : Double,
     var mantenimiento : Boolean,
     var alta: Boolean,
-    var foto:DTOFotoUrl
+    var fotoURL:DTOFotoUrl
 )
 
 fun Aeronave.toGetDtoAeronaveResp():DtoAeronaveResp{
     return DtoAeronaveResp(id!!, matricula, marca , modelo, motor, potencia, autonomia, velMax, velMin, velCru, mantenimiento!!, alta, foto!!.toGetDTOFotoUrl() )
-
 }
 
 data class DtoAeronaveSinFoto(
