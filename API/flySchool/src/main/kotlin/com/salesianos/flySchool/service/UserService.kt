@@ -29,12 +29,12 @@ class UsuarioService(
         }else{
             if(nuevoUsuario.tarjetaCredito == ""){
                 return Optional.of(
-                    AdminServ.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
+                    repository.save(Admin(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
                             nuevoUsuario.nombreCompleto, fecha, mutableSetOf("ADMIN")))
                 )
             }else{
                 return Optional.of(
-                    PilotoServ.save(Piloto(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
+                    repository.save(Piloto(nuevoUsuario.username, encoder.encode(nuevoUsuario.password), nuevoUsuario.email, nuevoUsuario.telefono,
                             nuevoUsuario.nombreCompleto, fecha, mutableSetOf("PILOT"), nuevoUsuario.tarjetaCredito))
                 )
             }
@@ -48,6 +48,8 @@ class UsuarioService(
     override fun edit(t: Usuario): Usuario {
         return super.edit(t)
     }
+
+    override fun findById(id: UUID?) = super.findById(id)
 
     override fun deleteById(id: UUID?) {
         super.deleteById(id)

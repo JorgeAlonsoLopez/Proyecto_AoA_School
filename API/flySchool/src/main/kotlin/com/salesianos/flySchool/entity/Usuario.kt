@@ -10,31 +10,26 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 class Usuario (
 
-    @get:NotBlank(message="{usuario.username.blank}")
     @Column(nullable = false, unique = true)
     private var username : String,
 
-    @get:NotBlank(message="{usuario.password.blank}")
     private var password : String,
 
-    @get:NotBlank(message="{usuario.email.blank}")
     @Column(nullable = false, unique = true)
     var email : String,
 
-    @get:NotBlank(message="{usuario.telefono.blank}")
     @Column(nullable = false, unique = true)
     var telefono : String,
 
-    @get:NotBlank(message="{usuario.nombreCompleto.blank}")
     var nombreCompleto : String,
 
-    @get:NotNull(message="{usuario.fechaNacimiento.null}")
     var fechaNacimiento : LocalDate,
 
     @ElementCollection(fetch = FetchType.EAGER)
-    val roles: MutableSet<String> = HashSet(),
+    val roles: MutableSet<String> = mutableSetOf(),
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,7 +44,7 @@ class Usuario (
     private val credentialsNonExpired : Boolean = true,
 
 
-) : UserDetails {
+    ) : UserDetails {
     constructor(usuario: String, password: String, email : String , telefono: String, nombreCompleto : String, fechaNacimiento: LocalDate, role: String) :
             this(usuario, password, email, telefono, nombreCompleto, fechaNacimiento, mutableSetOf(role))
 
@@ -57,6 +52,7 @@ class Usuario (
         roles.map { SimpleGrantedAuthority("ROLE_$it") }.toMutableList()
 
     override fun getPassword() = password
+    fun setPassword(pass:String){ this.password=pass}
 
     override fun getUsername() = username
 

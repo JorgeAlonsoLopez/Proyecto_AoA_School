@@ -1,7 +1,9 @@
 package com.salesianos.flySchool.service
 
+import com.salesianos.flySchool.entity.Aeronave
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 
 open class BaseService<T, ID, R : JpaRepository<T, ID>>  {
 
