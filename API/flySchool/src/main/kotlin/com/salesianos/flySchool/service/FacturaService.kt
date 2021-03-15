@@ -2,6 +2,7 @@ package com.salesianos.flySchool.service
 
 import com.salesianos.flySchool.entity.Aeronave
 import com.salesianos.flySchool.entity.Factura
+import com.salesianos.flySchool.entity.Piloto
 import com.salesianos.flySchool.entity.Producto
 import com.salesianos.flySchool.repository.AeronaveRepository
 import com.salesianos.flySchool.repository.FacturaRepository
@@ -24,5 +25,7 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
     fun existById(id : UUID)= repository.existsById(id)
 
     fun countByProducto(producto: Producto) = repository.countByProducto(producto)
+
+    fun findByComprador(piloto: Piloto) = repository.findByComprador(piloto)
 
 }

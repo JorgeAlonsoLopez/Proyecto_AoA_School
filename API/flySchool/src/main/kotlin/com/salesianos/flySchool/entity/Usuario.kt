@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotNull
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 class Usuario (
 
     @Column(nullable = false, unique = true)

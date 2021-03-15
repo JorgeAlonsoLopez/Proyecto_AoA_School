@@ -15,7 +15,6 @@ import javax.validation.Valid
 @RequestMapping("/producto")
 class ProductoController(
     private val service: ProductoService,
-    private val servicioFacuras: FacturaService,
     private val facturaService: FacturaService
 ) {
 
@@ -57,7 +56,7 @@ class ProductoController(
         if(facturaService.countByProducto(producto) == 0 )
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body( service.delete(producto))
         else
-            return ResponseEntity.status(HttpStatus.CONFLICT).build()
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
     }
 
     @GetMapping("/")

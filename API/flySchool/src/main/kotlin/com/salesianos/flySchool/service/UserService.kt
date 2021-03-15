@@ -49,6 +49,8 @@ class UsuarioService(
         return super.edit(t)
     }
 
+    override fun findById(id: UUID?) = super.findById(id)
+
     override fun deleteById(id: UUID?) {
         super.deleteById(id)
     }

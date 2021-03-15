@@ -27,10 +27,8 @@ data class DtoFacturaAdmin(
 
 fun Factura.toGetDtoFacturaCliente():DtoFacturaCliente{
     return DtoFacturaCliente( precioTotal, fecha ,producto, producto.tipoLibre)
-
 }
 
 fun Factura.toGetDtoFacturaAdmin():DtoFacturaAdmin{
     return DtoFacturaAdmin( id!!, precioTotal, fecha ,producto.toGetDtoProductoEspecf(), comprador, producto.tipoLibre)
-
 }

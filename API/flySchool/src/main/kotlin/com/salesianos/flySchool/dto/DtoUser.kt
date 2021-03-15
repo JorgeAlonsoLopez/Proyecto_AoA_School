@@ -65,9 +65,9 @@ fun Usuario.toGetDtoUserInfoSpeci():DtoUserInfoSpeci{
 
 }
 
-data class DtoLogin(
-    var username: String,
-    var password : String
+data class DtoPassword(
+    var password1 : String,
+    var password2 : String
 )
 
 
