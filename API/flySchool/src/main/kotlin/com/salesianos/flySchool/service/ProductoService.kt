@@ -33,52 +33,54 @@ class ProductoService(
 
     fun existById(id : UUID)= repository.existsById(id)
 
-    fun crear(nueva: DtoProductoForm): ResponseEntity<DtoProductoEspecf> {
+    fun crear(nueva: DtoProductoForm): DtoProductoEspecf {
         var producto = Producto(nueva.nombre, nueva.precio, nueva.horasVuelo, nueva.tipoLibre)
         this.save(producto)
-        return ResponseEntity.status(HttpStatus.CREATED).body(producto.toGetDtoProductoEspecf())
+        return producto.toGetDtoProductoEspecf()
     }
 
-    fun editar(editada: DtoProductoForm, id: UUID): ResponseEntity<DtoProductoEspecf> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
+    fun editar(editada: DtoProductoForm, id: UUID): DtoProductoEspecf? {
+        return this.findById(id)
             .map { fromRepo ->
                 fromRepo.nombre = editada.nombre
                 fromRepo.precio = editada.precio
                 fromRepo.horasVuelo = editada.horasVuelo
                 fromRepo.tipoLibre = editada.tipoLibre
                 this.save(fromRepo).toGetDtoProductoEspecf()
-            }.orElseThrow { ProductoModifNotFoundException(id.toString()) })
+            }.orElseThrow { ProductoModifNotFoundException(id.toString()) }
     }
 
-    fun cambiarEstado(id : UUID): ResponseEntity<DtoProductoEspecf> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
+    fun cambiarEstado(id : UUID): DtoProductoEspecf {
+        return this.findById(id)
             .map { prod ->
                 prod.alta = !prod.alta
                 this.save(prod).toGetDtoProductoEspecf()
-            }.orElseThrow { ProductoModifNotFoundException(id.toString()) })
+            }.orElseThrow { ProductoModifNotFoundException(id.toString()) }
     }
 
-    fun eliminar(id : UUID,  facturaService: FacturaService): ResponseEntity<Unit> {
+    fun eliminar(id : UUID,  facturaService: FacturaService): Int {
         val producto = this.findById(id).orElseThrow { ProductoSearchNotFoundException(id.toString()) }
-        if(facturaService.countByProducto(producto) == 0 )
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body( this.delete(producto))
-        else
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+        if(facturaService.countByProducto(producto) == 0 ) {
+            this.delete(producto)
+            return 1
+        }else {
+            return 0
+        }
     }
 
-    fun listado(): ResponseEntity<List<DtoProductoEspecf>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAll().map{it.toGetDtoProductoEspecf()}
-            .takeIf { it.isNotEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java))
+    fun listado(): List<DtoProductoEspecf> {
+        return this.findAll().map{it.toGetDtoProductoEspecf()}
+            .takeIf { it.isNotEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java)
     }
 
-    fun listadoAlta(licencia: Boolean): ResponseEntity<List<DtoProductoEspecf>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAllAlta(licencia)?.map{it.toGetDtoProductoEspecf()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java))
+    fun listadoAlta(licencia: Boolean): List<DtoProductoEspecf> {
+        return this.findAllAlta(licencia)?.map{it.toGetDtoProductoEspecf()}
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java)
     }
 
-    fun productoId(id : UUID): ResponseEntity<DtoProductoEspecf> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id).map { it.toGetDtoProductoEspecf() }
-            .orElseThrow { ProductoSearchNotFoundException(id.toString()) })
+    fun productoId(id : UUID): DtoProductoEspecf? {
+        return this.findById(id).map { it.toGetDtoProductoEspecf() }
+            .orElseThrow { ProductoSearchNotFoundException(id.toString()) }
     }
 
 }

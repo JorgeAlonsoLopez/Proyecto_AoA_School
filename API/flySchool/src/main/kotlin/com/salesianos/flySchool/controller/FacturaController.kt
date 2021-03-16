@@ -30,17 +30,17 @@ class FacturaController(
 
     @GetMapping("/")
     fun listado() : ResponseEntity<List<DtoFacturaAdmin>> {
-        return service.litado()
+        return ResponseEntity.status(HttpStatus.OK).body(service.litado())
     }
 
     @GetMapping("/user")
     fun listadoUsuario(@AuthenticationPrincipal user: Usuario) : ResponseEntity<List<DtoFacturaCliente>> {
-        return service.listadoUsuario(user)
+        return ResponseEntity.status(HttpStatus.OK).body(service.listadoUsuario(user))
     }
 
     @PostMapping("/{id}")
     fun crear(@PathVariable id: UUID, @AuthenticationPrincipal user: Usuario) : ResponseEntity<DtoFacturaAdmin> {
-        return service.crear(id, user, productoService, usuarioService)
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(id, user, productoService, usuarioService))
 
 
     }

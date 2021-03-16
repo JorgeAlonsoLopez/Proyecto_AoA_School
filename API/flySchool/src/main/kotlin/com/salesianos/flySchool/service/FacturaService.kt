@@ -35,24 +35,23 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
 
     fun findByComprador(piloto: Piloto) = repository.findByComprador(piloto)
 
-    fun litado(): ResponseEntity<List<DtoFacturaAdmin>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAll().map{it.toGetDtoFacturaAdmin()}
-            .takeIf { it.isNotEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java))
+    fun litado(): List<DtoFacturaAdmin> {
+        return this.findAll().map{it.toGetDtoFacturaAdmin()}
+            .takeIf { it.isNotEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java)
     }
 
-    fun listadoUsuario(user: Usuario): ResponseEntity<List<DtoFacturaCliente>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findByComprador(user as Piloto).map{it.toGetDtoFacturaCliente()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java))
+    fun listadoUsuario(user: Usuario): List<DtoFacturaCliente> {
+        return this.findByComprador(user as Piloto).map{it.toGetDtoFacturaCliente()}
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaFacturasNotFoundException(Factura::class.java)
     }
 
-    fun crear(id: UUID,  user: Usuario, productoService: ProductoService, usuarioService: UsuarioService): ResponseEntity<DtoFacturaAdmin> {
+    fun crear(id: UUID,  user: Usuario, productoService: ProductoService, usuarioService: UsuarioService): DtoFacturaAdmin {
         val producto = productoService.findById(id).orElseThrow{ ProductoSearchNotFoundException(id.toString()) }
         var factura = Factura(producto.precio, LocalDateTime.now(), user as Piloto, producto)
         this.save(factura)
         user.horas += producto.horasVuelo
         usuarioService.edit(user)
-        return ResponseEntity.status(HttpStatus.CREATED).body(factura.toGetDtoFacturaAdmin())
-
+        return factura.toGetDtoFacturaAdmin()
     }
 
 }

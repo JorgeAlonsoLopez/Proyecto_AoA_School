@@ -35,14 +35,14 @@ class AeronaveService(
 
     fun existById(id : UUID)= repository.existsById(id)
 
-    fun create (nueva: DtoAeronaveForm): ResponseEntity<DtoAeronaveSinFoto> {
+    fun create (nueva: DtoAeronaveForm): DtoAeronaveSinFoto {
         var aeronave = Aeronave(nueva.matricula, nueva.marca, nueva.modelo, nueva.motor, nueva.potencia,
             nueva.autonomia, nueva.velMax, nueva.velMin, nueva.velCru, false)
         this.save(aeronave)
-        return ResponseEntity.status(HttpStatus.CREATED).body(aeronave.toGetDtoAeronaveSinFoto())
+        return aeronave.toGetDtoAeronaveSinFoto()
     }
 
-    fun addFoto(id: UUID, file: MultipartFile, servicioFoto:FotoAeronaveServicio): ResponseEntity<DtoAeronaveResp> {
+    fun addFoto(id: UUID, file: MultipartFile, servicioFoto:FotoAeronaveServicio): DtoAeronaveResp {
         try {
             var foto = FotoAeronave()
             var guardado = servicioFoto.save( foto, file)
@@ -50,14 +50,14 @@ class AeronaveService(
             aeronave.addFoto(guardado)
             this.save(aeronave)
             servicioFoto.save(guardado)
-            return ResponseEntity.status(HttpStatus.CREATED).body(aeronave.toGetDtoAeronaveResp())
+            return aeronave.toGetDtoAeronaveResp()
         } catch ( ex : ImgurBadRequest) {
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Error en la subida de la imagen")
         }
     }
 
     fun delete(hash: String, id: UUID, imgurStorageService: ImgurStorageService,
-        registroService: RegistroService, servicioFoto: FotoAeronaveServicio):ResponseEntity<Any>{
+        registroService: RegistroService, servicioFoto: FotoAeronaveServicio): Boolean {
         var aeronave = this.findById(id).orElseThrow{ListaAeronaveNotFoundException(Aeronave::class.java)}
         if (registroService.countByAeronave(aeronave) == 0 ){
             var foto = aeronave.foto!!
@@ -67,31 +67,31 @@ class AeronaveService(
                 servicioFoto.delete(foto)
                 this.delete(aeronave)
             }
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+            return true
         }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+            return false
         }
 
 
     }
 
-    fun listado(): ResponseEntity<List<DtoAeronaveSinFoto>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAll().map{it.toGetDtoAeronaveSinFoto()}
-            .takeIf { it.isNotEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java))
+    fun listado(): List<DtoAeronaveSinFoto> {
+        return this.findAll().map{it.toGetDtoAeronaveSinFoto()}
+            .takeIf { it.isNotEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 
-    fun listadoAlta(): ResponseEntity<List<DtoAeronaveSinFoto>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java))
+    fun listadoAlta(): List<DtoAeronaveSinFoto> {
+        return this.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 
-    fun aeronaveId(id: UUID): ResponseEntity<DtoAeronaveResp> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id).map { it.toGetDtoAeronaveResp() }
-            .orElseThrow { AeronaveSearchNotFoundException(id.toString()) })
+    fun aeronaveId(id: UUID): DtoAeronaveResp? {
+        return this.findById(id).map { it.toGetDtoAeronaveResp() }
+            .orElseThrow { AeronaveSearchNotFoundException(id.toString()) }
     }
 
-    fun editar(editada:DtoAeronaveForm, id: UUID): ResponseEntity<DtoAeronaveSinFoto> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
+    fun editar(editada:DtoAeronaveForm, id: UUID): DtoAeronaveSinFoto? {
+        return this.findById(id)
             .map { fromRepo ->
                 fromRepo.matricula = editada.matricula
                 fromRepo.marca = editada.marca
@@ -103,18 +103,18 @@ class AeronaveService(
                 fromRepo.velMin = editada.velMin
                 fromRepo.velCru = editada.velCru
                 this.save(fromRepo).toGetDtoAeronaveSinFoto()
-            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) })
+            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) }
     }
 
-    fun cambiarEstado(id: UUID, opt:Int): ResponseEntity<DtoAeronaveSinFoto> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
+    fun cambiarEstado(id: UUID, opt:Int): DtoAeronaveSinFoto? {
+        return this.findById(id)
             .map { aero ->
                 if(opt==1)
                     aero.mantenimiento = !aero.mantenimiento
                 else
                     aero.alta = !aero.alta
                 this.save(aero).toGetDtoAeronaveSinFoto()
-            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) })
+            }.orElseThrow { AeronaveModifNotFoundException(id.toString()) }
     }
 
 

@@ -3,6 +3,7 @@ package com.salesianos.flySchool.controller
 import com.salesianos.flySchool.dto.*
 import com.salesianos.flySchool.service.FacturaService
 import com.salesianos.flySchool.service.ProductoService
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -17,37 +18,43 @@ class ProductoController(
 
     @PostMapping("/")
     fun crear(@Valid @RequestBody nueva: DtoProductoForm) : ResponseEntity<DtoProductoEspecf> {
-       return service.crear(nueva)
+       return ResponseEntity.status(HttpStatus.CREATED).body(service.crear(nueva))
     }
 
     @PutMapping("/{id}")
     fun editar(@Valid @RequestBody editada: DtoProductoForm, @PathVariable id: UUID): ResponseEntity<DtoProductoEspecf> {
-        return service.editar(editada, id)
+        return ResponseEntity.status(HttpStatus.OK).body(service.editar(editada, id))
     }
 
     @PutMapping("/{id}/est")
     fun cambiarEstado(@PathVariable id: UUID): ResponseEntity<DtoProductoEspecf> {
-        return service.cambiarEstado(id)
+        return ResponseEntity.status(HttpStatus.OK).body(service.cambiarEstado(id))
     }
 
     @DeleteMapping("/{id}")
     fun eliminar(@PathVariable id: UUID): ResponseEntity<Unit> {
-        return service.eliminar(id, facturaService)
+        var resl = service.eliminar(id, facturaService)
+        if(resl != 0){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+        }
+
     }
 
     @GetMapping("/")
     fun listado() : ResponseEntity<List<DtoProductoEspecf>> {
-        return service.listado()
+        return ResponseEntity.status(HttpStatus.OK).body(service.listado())
     }
 
     @GetMapping("/alta/{licencia}")
     fun listadoAlta(@PathVariable licencia: Boolean) : ResponseEntity<List<DtoProductoEspecf>> {
-        return service.listadoAlta(licencia)
+        return ResponseEntity.status(HttpStatus.OK).body(service.listadoAlta(licencia))
     }
 
     @GetMapping("/{id}")
     fun productoId(@PathVariable id: UUID): ResponseEntity<DtoProductoEspecf> {
-        return service.productoId(id)
+        return ResponseEntity.status(HttpStatus.OK).body(service.productoId(id))
     }
 
 

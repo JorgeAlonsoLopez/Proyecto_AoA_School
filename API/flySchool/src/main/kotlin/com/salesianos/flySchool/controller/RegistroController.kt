@@ -23,18 +23,22 @@ class RegistroController(
 
     @GetMapping("/")
     fun listado() : ResponseEntity<List<DtoRegistro>> {
-        return service.listado()
+        return ResponseEntity.status(HttpStatus.OK).body(service.listado())
     }
 
     @GetMapping("/user")
     fun listadoUsuario(@AuthenticationPrincipal user: Usuario) : ResponseEntity<List<DtoRegistro>> {
-        return service.listadoUsuario(user)
+        return ResponseEntity.status(HttpStatus.OK).body(service.listadoUsuario(user))
     }
 
     @PostMapping("/{id}")
     fun crear(@RequestBody nueva: DtoRegistroForm, @PathVariable id: UUID, @AuthenticationPrincipal user: Usuario) : ResponseEntity<DtoRegistro> {
-        return service.crear(nueva, id, user, aeronaveService, pilotoService)
-
+        var resl = service.crear(nueva, id, user, aeronaveService, pilotoService)
+        if(resl != null){
+            return ResponseEntity.status(HttpStatus.CREATED).body(resl!!)
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+        }
     }
 
 }

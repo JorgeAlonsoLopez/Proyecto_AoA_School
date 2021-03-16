@@ -70,62 +70,62 @@ class UsuarioService(
 
     fun findByUsername(username : String) = super.repository.findByUsername(username)
 
-    fun listado() : ResponseEntity<List<DtoUserInfo>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAll().map{it.toGetDtoUserInfo(it)}
-            .takeIf { it.isNotEmpty() } ?: throw ListaUsuariosNotFoundException(Usuario::class.java))
+    fun listado() : List<DtoUserInfo> {
+        return this.findAll().map{it.toGetDtoUserInfo(it)}
+            .takeIf { it.isNotEmpty() } ?: throw ListaUsuariosNotFoundException(Usuario::class.java)
     }
 
-    fun detalle( id: UUID) : ResponseEntity<DtoUserInfoSpeci> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id).map { it.toGetDtoUserInfoSpeci() }
-            .orElseThrow { UserSearchNotFoundException(id.toString()) })
+    fun detalle( id: UUID) : DtoUserInfoSpeci {
+        return this.findById(id).map { it.toGetDtoUserInfoSpeci() }
+            .orElseThrow { UserSearchNotFoundException(id.toString()) }
     }
 
-    fun cambiarEstado(id: UUID, pilotoService: PilotoService): ResponseEntity<DtoUserInfoSpeci> {
+    fun cambiarEstado(id: UUID, pilotoService: PilotoService): DtoUserInfoSpeci? {
 
-        return ResponseEntity.status(HttpStatus.OK).body(pilotoService.findById(id)
+        return pilotoService.findById(id)
             .map { prod ->
                 prod.alta = !prod.alta!!
                 pilotoService.save(prod).toGetDtoUserInfoSpeci()
-            }.orElseThrow { UserModifNotFoundException(id.toString()) })
+            }.orElseThrow { UserModifNotFoundException(id.toString()) }
     }
 
-    fun editar(user: DtoUserEdit, id: UUID): ResponseEntity<DtoUserInfoSpeci> {
+    fun editar(user: DtoUserEdit, id: UUID): DtoUserInfoSpeci? {
 
-        return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
+        return this.findById(id)
             .map { fromRepo ->
                 fromRepo.email = user.email
                 fromRepo.nombreCompleto = user.nombreCompleto
                 fromRepo.telefono = user.telefono
                 fromRepo.fechaNacimiento = LocalDate.of((user.fechaNacimiento.split("/")[2]).toInt(),(user.fechaNacimiento.split("/")[1]).toInt(),(user.fechaNacimiento.split("/")[0]).toInt())
                 this.save(fromRepo).toGetDtoUserInfoSpeci()
-            }.orElseThrow { UserModifNotFoundException(id.toString()) })
+            }.orElseThrow { UserModifNotFoundException(id.toString()) }
     }
 
-    fun editPassword(passw: DtoPassword,user: Usuario):ResponseEntity<Any> {
+    fun editPassword(passw: DtoPassword,user: Usuario): Boolean {
 
         if(passw.password1 == passw.password2){
             user.password =  encoder.encode(passw.password1)
             this.edit(user)
-            return ResponseEntity.status(HttpStatus.OK).build()
+            return true
         }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+            return false
         }
     }
 
-    fun me(user: Usuario): ResponseEntity<Any> {
+    fun me(user: Usuario): Any {
         if(user.roles.first()=="PILOT"){
-            return ResponseEntity.ok().body(PilotoServ.findById(user.id!!).get().toGetDtoUserInfoSpeciPilot())
+            return PilotoServ.findById(user.id!!).get().toGetDtoUserInfoSpeciPilot()
         }else{
-            return ResponseEntity.ok().body(user.toGetDtoUserInfoSpeci())
+            return user.toGetDtoUserInfoSpeci()
         }
     }
 
-    fun nuevoUsuario(newUser: DtoUserForm): ResponseEntity<DtoUserInfoSpeci> {
+    fun nuevoUsuario(newUser: DtoUserForm): Optional<DtoUserInfoSpeci>? {
 
-        var fecNac= LocalDate.of((newUser.fechaNacimiento.split("/")[2]).toInt(),(newUser.fechaNacimiento.split("/")[1]).toInt(),(newUser.fechaNacimiento.split("/")[0]).toInt())
-        return this.create(newUser, fecNac).map { ResponseEntity.status(HttpStatus.CREATED).body(it.toGetDtoUserInfoSpeci()) }.orElseThrow {
-            ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre de usuario ${newUser.username} ya existe")
-        }
+        var fecNac= LocalDate.of((newUser.fechaNacimiento.split("/")[2]).toInt(),
+            (newUser.fechaNacimiento.split("/")[1]).toInt(),(newUser.fechaNacimiento.split("/")[0]).toInt())
+        return this.create(newUser, fecNac).map { it.toGetDtoUserInfoSpeci() }
+
 
     }
 

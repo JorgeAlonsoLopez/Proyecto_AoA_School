@@ -54,3 +54,8 @@ data class UserModifNotFoundException(
 data class ListaUsuariosNotFoundException(
     val javaClass: Class<out Any>
 ) : EntityNotFoundException("No se ha podido encontrar usuarios en la base de datos")
+
+data class NewUserException(
+    val name: String
+) : EntityNotFoundException("El usuario que intenta registrar con el nombre de usuario ${name} ya existe, inténtelo con otro")
+

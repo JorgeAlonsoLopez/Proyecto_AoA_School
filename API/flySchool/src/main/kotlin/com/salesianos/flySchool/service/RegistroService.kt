@@ -52,17 +52,17 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
         return end
     }
 
-    fun listado() : ResponseEntity<List<DtoRegistro>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findAll().map{it.toGetDtoRegistro()}
-            .takeIf { it.isNotEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java))
+    fun listado() : List<DtoRegistro> {
+        return this.findAll().map{it.toGetDtoRegistro()}
+            .takeIf { it.isNotEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java)
     }
 
-    fun listadoUsuario(user: Usuario) : ResponseEntity<List<DtoRegistro>> {
-        return ResponseEntity.status(HttpStatus.OK).body(this.findByPiloto(user as Piloto).map{it.toGetDtoRegistro()}
-            .takeIf { !it.isNullOrEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java))
+    fun listadoUsuario(user: Usuario) : List<DtoRegistro> {
+        return this.findByPiloto(user as Piloto).map{it.toGetDtoRegistro()}
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java)
     }
 
-    fun crear(nueva: DtoRegistroForm, id: UUID, user: Usuario, aeronaveService: AeronaveService, pilotoService: PilotoService) : ResponseEntity<DtoRegistro> {
+    fun crear(nueva: DtoRegistroForm, id: UUID, user: Usuario, aeronaveService: AeronaveService, pilotoService: PilotoService) : DtoRegistro? {
         val piloto = user as Piloto
         val aeronave = aeronaveService.findById(id).orElseThrow{ AeronaveSearchNotFoundException(id.toString()) }
         val inicio = LocalTime.of(nueva.horaInicio.split(":")[0].toInt(),nueva.horaInicio.split(":")[1].toInt())
@@ -75,9 +75,9 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
             var tiemp : Double = registro.tiempo.hour.toDouble() + (registro.tiempo.minute.toDouble()/60)
             piloto.horas = piloto.horas!! - tiemp
             pilotoService.save(piloto)
-            return ResponseEntity.status(HttpStatus.CREATED).body(registro.toGetDtoRegistro())
+            return registro.toGetDtoRegistro()
         }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+            return null
         }
 
     }
