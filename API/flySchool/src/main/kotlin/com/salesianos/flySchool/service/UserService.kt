@@ -7,20 +7,15 @@ import com.salesianos.flySchool.entity.Usuario
 import com.salesianos.flySchool.error.ListaUsuariosNotFoundException
 import com.salesianos.flySchool.error.UserModifNotFoundException
 import com.salesianos.flySchool.error.UserSearchNotFoundException
-import com.salesianos.flySchool.repository.AdminRepository
-import com.salesianos.flySchool.repository.PilotoRepository
 import com.salesianos.flySchool.repository.UsuarioRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.server.ResponseStatusException
 import java.time.LocalDate
 import java.util.*
-import javax.validation.Valid
 
 @Service
 class UsuarioService(
@@ -94,7 +89,7 @@ class UsuarioService(
             }.orElseThrow { UserModifNotFoundException(id.toString()) })
     }
 
-    fun editar(user: DtoUserForm, id: UUID): ResponseEntity<DtoUserInfoSpeci> {
+    fun editar(user: DtoUserEdit, id: UUID): ResponseEntity<DtoUserInfoSpeci> {
 
         return ResponseEntity.status(HttpStatus.OK).body(this.findById(id)
             .map { fromRepo ->
@@ -106,11 +101,14 @@ class UsuarioService(
             }.orElseThrow { UserModifNotFoundException(id.toString()) })
     }
 
-    fun editPassword(passw: DtoPassword,) {
-        var user = Usuario("", "", "", "", "", LocalDate.now(), mutableSetOf(""))
+    fun editPassword(passw: DtoPassword,user: Usuario):ResponseEntity<Any> {
+
         if(passw.password1 == passw.password2){
-            user.password = passw.password1
-            this.save(user)
+            user.password =  encoder.encode(passw.password1)
+            this.edit(user)
+            return ResponseEntity.status(HttpStatus.OK).build()
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
         }
     }
 

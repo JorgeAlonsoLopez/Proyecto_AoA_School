@@ -28,7 +28,7 @@ class RegistroController(
 
     @GetMapping("/user")
     fun listadoUsuario(@AuthenticationPrincipal user: Usuario) : ResponseEntity<List<DtoRegistro>> {
-        return service.listado()
+        return service.listadoUsuario(user)
     }
 
     @PostMapping("/{id}")

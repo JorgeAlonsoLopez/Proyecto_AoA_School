@@ -59,7 +59,7 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
 
     fun listadoUsuario(user: Usuario) : ResponseEntity<List<DtoRegistro>> {
         return ResponseEntity.status(HttpStatus.OK).body(this.findByPiloto(user as Piloto).map{it.toGetDtoRegistro()}
-            .takeIf { it.isNullOrEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java))
+            .takeIf { !it.isNullOrEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java))
     }
 
     fun crear(nueva: DtoRegistroForm, id: UUID, user: Usuario, aeronaveService: AeronaveService, pilotoService: PilotoService) : ResponseEntity<DtoRegistro> {

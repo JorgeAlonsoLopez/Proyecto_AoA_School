@@ -2,16 +2,12 @@ package com.salesianos.flySchool.controller
 
 import com.salesianos.flySchool.dto.*
 import com.salesianos.flySchool.entity.Usuario
-import com.salesianos.flySchool.error.*
 import com.salesianos.flySchool.service.PilotoService
 import com.salesianos.flySchool.service.UsuarioService
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.server.ResponseStatusException
-import java.time.LocalDate
 import java.util.*
 import javax.validation.Valid
 
@@ -45,14 +41,14 @@ class UserController(
     }
 
     @PutMapping("usuario/{id}")
-    fun editar(@Valid @RequestBody user: DtoUserForm, @PathVariable id: UUID): ResponseEntity<DtoUserInfoSpeci> {
+    fun editar(@Valid @RequestBody user: DtoUserEdit, @PathVariable id: UUID): ResponseEntity<DtoUserInfoSpeci> {
 
         return service.editar(user, id)
     }
 
     @PutMapping("usuario/password")
-    fun editPassword(@RequestBody passw: DtoPassword,) {
-        return service.editPassword(passw)
+    fun editPassword(@RequestBody passw: DtoPassword,@AuthenticationPrincipal user: Usuario): ResponseEntity<Any> {
+        return service.editPassword(passw, user)
     }
 
     @GetMapping("usuario/me")
