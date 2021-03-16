@@ -21,7 +21,7 @@ data class DtoFacturaAdmin(
     var precioTotal : Double,
     var fecha : LocalDateTime,
     var producto: DtoProductoEspecf,
-    var comprador: Piloto,
+    var comprador: DtoPilot,
     var tipo: Boolean
 )
 
@@ -30,5 +30,5 @@ fun Factura.toGetDtoFacturaCliente():DtoFacturaCliente{
 }
 
 fun Factura.toGetDtoFacturaAdmin():DtoFacturaAdmin{
-    return DtoFacturaAdmin( id!!, precioTotal, fecha ,producto.toGetDtoProductoEspecf(), comprador, producto.tipoLibre)
+    return DtoFacturaAdmin( id!!, precioTotal, fecha ,producto.toGetDtoProductoEspecf(), comprador.toGetDtoUserInfoSpeciPilot(), producto.tipoLibre)
 }

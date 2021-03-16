@@ -70,14 +70,21 @@ class WebSecurityConfiguration(
             .and()
             .authorizeRequests()
             .antMatchers( "/h2-console/**").permitAll()
-            .antMatchers(POST, "/auth/login", "/auth/token", "/user/", "/auth/register", "/aeronave/**").permitAll()
-            .antMatchers(DELETE, "/viviendas/**", "/aeronave/**").permitAll()
+            .antMatchers(POST, "/auth/login", "/auth/token", "/auth/register").permitAll()
+            .antMatchers(PUT, "/usuario/password").hasAnyRole("PILOT","ADMIN")
+            .antMatchers(GET,  "/usuario/me", "/aeronave/{id}").hasAnyRole("PILOT","ADMIN")
+            .antMatchers(POST, "/user/", "/aeronave/**", "/producto/**").hasRole("ADMIN")
+            .antMatchers(DELETE, "/aeronave/**", "/producto/**").hasRole("ADMIN")
+            .antMatchers(PUT, "/aeronave/**", "/producto/**", "/usuario/{id}/", "/usuario/{id}/est").hasRole("ADMIN")
+            .antMatchers(GET, "/aeronave/", "/factura/", "/producto/",
+                "/producto/{id}", "/registro/", "/usuario/", "/usuario/{id}").hasRole("ADMIN")
 
-//            .antMatchers(GET, "/viviendas/", "/viviendas/{id}").permitAll()
-//            .antMatchers(GET, "/viviendas/mine", "/viviendas/favs").hasRole("USER")
-//            .antMatchers(PUT,"/viviendas/{id}").hasRole("USER")
-//            .antMatchers(POST, "/viviendas/**").hasRole("USER")
-//            .antMatchers(DELETE, "/viviendas/**", "/aeronave/**").hasRole("USER")
+            .antMatchers(GET, "/aeronave/alta", "/factura/user", "/producto/alta/{licencia}",
+                "/registro/user").hasRole("PILOT")
+            .antMatchers(POST, "/factura/{id}", "/registro/{id}").hasRole("PILOT")
+
+
+//TODO cambiar el registro a admin cuando se termine el testeo
 
 
         http.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter::class.java)

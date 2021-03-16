@@ -18,9 +18,9 @@ class Piloto (
 
     @get:NotBlank(message="{usuario.tarjeta.blank}")
     var tarjetaCredito :  String,
-    var horas : Double? = 0.0,
-    var licencia : Boolean? = false,
-    var alta : Boolean? = true,
+    var horas : Double = 0.0,
+    var licencia : Boolean = false,
+    var alta : Boolean = true,
 
 
     )

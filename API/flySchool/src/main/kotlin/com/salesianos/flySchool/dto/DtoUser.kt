@@ -35,17 +35,20 @@ data class DtoUserInfo(
     var username : String,
     var nombreCompleto : String,
     var tipo: String,
-    var id:UUID
+    var id:UUID,
+    var alta: Boolean
 )
 
 fun Usuario.toGetDtoUserInfo(obj : Usuario):DtoUserInfo{
     var tipo = ""
     if(obj is Piloto){
         tipo = "Piloto"
+        return DtoUserInfo(username, nombreCompleto, tipo, id!!, obj.alta)
     }else{
         tipo = "Admin"
+        return DtoUserInfo(username, nombreCompleto, tipo, id!!, true)
     }
-    return DtoUserInfo(username, nombreCompleto, tipo, id!!)
+
 
 }
 
@@ -68,6 +71,32 @@ fun Usuario.toGetDtoUserInfoSpeci():DtoUserInfoSpeci{
 data class DtoPassword(
     var password1 : String,
     var password2 : String
+)
+
+data class DtoPilot(
+    val id:UUID,
+    var username : String,
+    var password : String,
+    var email : String,
+    var telefono : String,
+    var nombreCompleto : String,
+    var fechaNacimiento : LocalDate,
+    var horas: Double,
+    var licencia: Boolean,
+    var alta: Boolean
+
+)
+
+fun Piloto.toGetDtoUserInfoSpeciPilot():DtoPilot{
+    return DtoPilot(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento, horas, licencia, alta)
+
+}
+
+data class DtoUserEdit(
+    var email : String,
+    var telefono : String,
+    var nombreCompleto : String,
+    var fechaNacimiento : String
 )
 
 

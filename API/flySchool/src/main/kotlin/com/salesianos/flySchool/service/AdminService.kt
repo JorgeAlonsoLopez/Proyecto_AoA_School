@@ -9,7 +9,6 @@ import java.util.*
 class AdminService (
 ): BaseService<Admin, UUID, AdminRepository>()
 {
-
     override fun save(admin: Admin) = super.save(admin)
 
     override fun findAll() = super.findAll()
@@ -21,5 +20,7 @@ class AdminService (
     fun editById(id : UUID) = super.save(super.findById(id).get())
 
     fun existById(id : UUID)= repository.existsById(id)
+
+
 
 }

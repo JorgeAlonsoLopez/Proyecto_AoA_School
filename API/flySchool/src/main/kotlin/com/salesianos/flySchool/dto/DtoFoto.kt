@@ -16,11 +16,12 @@ fun FotoAeronave.toGetDTOFoto():DTOFoto{
 }
 
 data class DTOFotoUrl(
-    var url : String
+    var url : String,
+    var hash : String
 )
 
 
 fun FotoAeronave.toGetDTOFotoUrl():DTOFotoUrl{
-    return DTOFotoUrl(dataId!!)
+    return DTOFotoUrl(dataId!!, deleteHash!!)
 
 }
