@@ -1,12 +1,12 @@
-package com.salesianos.flyschool.ui.detalles.piloto.detalleAeronave
+package com.salesianos.flyschool.ui.detalle.admin.registroProducto
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.salesianos.flyschool.R
 
-class PilotoDetalleAeronaveActivity : AppCompatActivity() {
+class RegistroProductoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_piloto_detalle_aeronave)
+        setContentView(R.layout.activity_registro_producto)
     }
 }

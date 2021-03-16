@@ -16,4 +16,30 @@
     <string name="textPassw">Contraseña</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="registro_vuelo">Registrar vuelo</string>
+    <string name="texto_horas">Horas restantes : </string>
+    <string name="text_fecha">Fecha : </string>
+    <string name="text_tipo">Tipo : </string>
+    <string name="text_hora_inicio">Hora de inicio : </string>
+    <string name="text_horaFin">Hora de fin : </string>
+    <string name="text_aeronave">Aeronave : </string>
+    <string name="text_euro">€</string>
+    <string name="text_precio">Precio : </string>
+    <string name="text_importe">Importe : </string>
+    <string name="text_matricula">Matrícula : </string>
+    <string name="hp">(HP)</string>
+    <string name="autonomia">Autonomía (Km) : </string>
+    <string name="VelMax">Velocidad máxima (Km) : </string>
+    <string name="VelMin">Velocidad mínima (Km) : </string>
+    <string name="VelCruc">Velocidad de crucero (Km) : </string>
+    <string name="btn_hora_inicio">Seleccione la hora del despege</string>
+    <string name="btn_hora_fin">Seleccione la hora del aterrizaje</string>
+    <string name="btn_envio_registro_horas">Crear registro de vuelo</string>
+    <string name="text_aeronave_sin">Aeronave</string>
 </resources>

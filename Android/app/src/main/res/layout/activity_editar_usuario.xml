@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detalles.admin.editarUsuarios.EditarUsuarioActivity">
+    tools:context=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

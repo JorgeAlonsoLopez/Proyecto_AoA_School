@@ -1,4 +1,4 @@
-package com.salesianos.flyschool.ui.detalles.admin.detalleAeronave
+package com.salesianos.flyschool.ui.detalle.admin.detalleAeronave
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
