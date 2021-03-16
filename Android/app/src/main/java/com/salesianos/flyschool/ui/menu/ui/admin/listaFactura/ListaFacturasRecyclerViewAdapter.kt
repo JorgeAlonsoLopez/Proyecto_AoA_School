@@ -13,9 +13,9 @@ import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.dummy.DummyContent
  * [RecyclerView.Adapter] that can display a [DummyItem].
  * TODO: Replace the implementation with code for your data type.
  */
-class LisatFacturasRecyclerViewAdapter(
+class ListaFacturasRecyclerViewAdapter(
     private val values: List<DummyItem>
-) : RecyclerView.Adapter<LisatFacturasRecyclerViewAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ListaFacturasRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

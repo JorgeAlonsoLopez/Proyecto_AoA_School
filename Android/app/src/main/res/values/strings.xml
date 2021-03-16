@@ -42,4 +42,20 @@
     <string name="btn_hora_fin">Seleccione la hora del aterrizaje</string>
     <string name="btn_envio_registro_horas">Crear registro de vuelo</string>
     <string name="text_aeronave_sin">Aeronave</string>
+    <string name="text_registrar_usuario">Registrar usuario</string>
+    <string name="text_registrar_producto">Registrar producto</string>
+    <string name="text_horas">Horas : </string>
+    <string name="text_eliminar">Eliminar</string>
+    <string name="text_alta_baja">Dar de alta/baja</string>
+    <string name="text_editar">editar</string>
+    <string name="text_piloto">Piloto : </string>
+    <string name="text_registrar_aeronave">Registrar aeronave</string>
+    <string name="textEstado">Estado : </string>
+    <string name="testUsuario">Usuario : </string>
+    <string name="text_fechaNaci">Fecha de nacimiento : </string>
+    <string name="text_correo">Correo : </string>
+    <string name="test_telefono">Telefono : </string>
+    <string name="text_confirm">Confirmar</string>
+    <string name="text_nueva_passw">Nueva contraseña</string>
+    <string name="text_reprt_pass">Repetir contraseña</string>
 </resources>

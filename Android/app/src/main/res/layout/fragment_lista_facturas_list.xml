@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.menu.ui.admin.listaFactura.LisatFacturasFragment"
+    tools:context=".ui.menu.ui.admin.listaFactura.ListaFacturasFragment"
     tools:listitem="@layout/fragment_lista_facturas" />

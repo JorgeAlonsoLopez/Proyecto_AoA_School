@@ -14,7 +14,7 @@ import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.dummy.DummyContent
 /**
  * A fragment representing a list of Items.
  */
-class LisatFacturasFragment : Fragment() {
+class ListaFacturasFragment : Fragment() {
 
     private var columnCount = 1
 
@@ -39,7 +39,7 @@ class LisatFacturasFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = LisatFacturasRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = ListaFacturasRecyclerViewAdapter(DummyContent.ITEMS)
             }
         }
         return view
@@ -53,7 +53,7 @@ class LisatFacturasFragment : Fragment() {
         // TODO: Customize parameter initialization
         @JvmStatic
         fun newInstance(columnCount: Int) =
-            LisatFacturasFragment().apply {
+            ListaFacturasFragment().apply {
                 arguments = Bundle().apply {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
