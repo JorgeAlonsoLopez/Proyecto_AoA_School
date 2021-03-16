@@ -19,10 +19,10 @@ data class DtoRegistro(
         var horaFin : LocalTime,
         var tipoLibre : Boolean,
         var piloto: DtoPilot,
-        var aeronave: Aeronave
+        var aeronave: DtoAeronavePeq
 )
 
 fun RegistroVuelo.toGetDtoRegistro():DtoRegistro{
-    return DtoRegistro( id!!, fecha ,horaInicio, horaFin, tipoLibre, piloto.toGetDtoUserInfoSpeciPilot(), aeronave)
+    return DtoRegistro( id!!, fecha ,horaInicio, horaFin, tipoLibre, piloto.toGetDtoUserInfoSpeciPilot(), aeronave.toGetDtoAeronavePeq())
 
 }

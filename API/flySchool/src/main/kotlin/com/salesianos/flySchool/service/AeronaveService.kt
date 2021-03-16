@@ -57,18 +57,21 @@ class AeronaveService(
     }
 
     fun delete(hash: String, id: UUID, imgurStorageService: ImgurStorageService,
-               registroService: RegistroService, servicioFoto: FotoAeronaveServicio):ResponseEntity<Any>{
+        registroService: RegistroService, servicioFoto: FotoAeronaveServicio):ResponseEntity<Any>{
         var aeronave = this.findById(id).orElseThrow{ListaAeronaveNotFoundException(Aeronave::class.java)}
-            if (registroService.countByAeronave(aeronave) == 0 ){
-                var foto = aeronave.foto!!
-                if (aeronave.foto!!.deleteHash==hash){
-                    imgurStorageService.delete(hash)
-                    aeronave.deleteFoto()
-                    servicioFoto.delete(foto)
-                    this.delete(aeronave)
-                }
+        if (registroService.countByAeronave(aeronave) == 0 ){
+            var foto = aeronave.foto!!
+            if (aeronave.foto!!.deleteHash==hash){
+                imgurStorageService.delete(hash)
+                aeronave.deleteFoto()
+                servicioFoto.delete(foto)
+                this.delete(aeronave)
             }
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build()
+        }
+
 
     }
 
