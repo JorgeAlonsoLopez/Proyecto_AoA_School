@@ -6,4 +6,111 @@
     android:layout_height="match_parent"
     tools:context=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity">
 
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/text_nombre_completo"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/text_email"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/input_editar_usuario_nombre"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/input_editar_usuario_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/input_editar_usuario_nombre" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/text_telefono_sin"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/input_editar_usuario_correo"
+        app:layout_constraintStart_toStartOf="@+id/input_editar_usuario_correo"
+        app:layout_constraintTop_toBottomOf="@+id/input_editar_usuario_correo" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="@string/text_fechaNacimiento_son"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/input_editar_usuario_telef"
+        app:layout_constraintStart_toStartOf="@+id/input_editar_usuario_telef"
+        app:layout_constraintTop_toBottomOf="@+id/input_editar_usuario_telef" />
+
+    <Button
+        android:id="@+id/btn_confirm_editar_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="112dp"
+        android:text="@string/text_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_editar_usuario_fecha" />
+
+    <Button
+        android:id="@+id/btn_cancel_editar_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:text="@string/text_cancelar"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_editar_usuario"
+        app:layout_constraintStart_toEndOf="@+id/btn_confirm_editar_usuario"
+        app:layout_constraintTop_toTopOf="@+id/btn_confirm_editar_usuario"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/input_editar_usuario_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView21"
+        app:layout_constraintStart_toStartOf="@+id/textView21"
+        app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+    <EditText
+        android:id="@+id/input_editar_usuario_correo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <EditText
+        android:id="@+id/input_editar_usuario_telef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintStart_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <EditText
+        android:id="@+id/input_editar_usuario_fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView26"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="@+id/textView26"
+        app:layout_constraintTop_toBottomOf="@+id/textView26" />
 </androidx.constraintlayout.widget.ConstraintLayout>

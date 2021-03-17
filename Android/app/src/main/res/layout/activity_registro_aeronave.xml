@@ -6,4 +6,155 @@
     android:layout_height="match_parent"
     tools:context=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity">
 
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="68dp"
+        android:text="@string/text_adjuntar_foto"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="438dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_marca"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_marca"
+                android:inputType="textPersonName"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_modelo"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_modelo"
+                android:inputType="textPersonName"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_matricula"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_matricula_sin"
+                android:inputType="textPersonName"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_motor"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_motor"
+                android:inputType="textPersonName"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_potenc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_potencia"
+                android:inputType="number"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_autonom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_autonomia_sin"
+                android:inputType="number"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_velMax_sin"
+                android:inputType="number"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_velMin_sin"
+                android:inputType="number"
+                android:paddingBottom="20dp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/inpt_new_aeron_cruc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/text_VelCruc_sin"
+                android:inputType="number"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="35dp"
+        android:text="@string/text_confirm"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/text_cancelar"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toTopOf="@+id/button"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/img_form_aeronave"
+        android:layout_width="43dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView31"
+        app:layout_constraintStart_toEndOf="@+id/textView31"
+        app:layout_constraintTop_toTopOf="@+id/textView31"
+        app:layout_constraintVertical_bias="0.47"
+        app:srcCompat="@drawable/ic_menu_gallery" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
