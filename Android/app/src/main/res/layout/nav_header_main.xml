@@ -18,12 +18,12 @@
         android:layout_height="wrap_content"
         android:paddingBottom="30dp"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/text_menu_nombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
 </LinearLayout>

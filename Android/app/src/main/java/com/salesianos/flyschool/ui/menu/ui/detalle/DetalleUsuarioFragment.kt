@@ -1,33 +1,48 @@
 package com.salesianos.flyschool.ui.menu.ui.detalle
 
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.ui.AppBarConfiguration
+import com.salesianos.flyschool.MainActivity
 import com.salesianos.flyschool.R
+import com.salesianos.flyschool.poko.DtoUserInfoSpeci
+import com.salesianos.flyschool.retrofit.UsuarioService
+import com.salesianos.flyschool.ui.menu.MenuActivity
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetalleUsuarioFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetalleUsuarioFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    lateinit var retrofit: Retrofit
+    lateinit var service: UsuarioService
+    val baseUrl = "https://aoa-school.herokuapp.com/"
+    lateinit var token: String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        service = retrofit.create(UsuarioService::class.java)
+
+        val sharedPref = this.activity?.getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
+        if (sharedPref != null) {
+            token = sharedPref.getString("TOKEN", "")!!
         }
+
     }
 
     override fun onCreateView(
@@ -35,26 +50,44 @@ class DetalleUsuarioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalle_usuario, container, false)
-    }
+        val root = inflater.inflate(R.layout.fragment_detalle_usuario, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetalleUsuarioFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetalleUsuarioFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = "Detalle del usuario"
+
+        val nombre: TextView = root.findViewById(R.id.text_detalle_usuario_nombre)
+        val user: TextView = root.findViewById(R.id.text_detalle_usuario_nombreUsuario)
+        val fecha: TextView = root.findViewById(R.id.text_detalle_usuario_fecha)
+        val email: TextView = root.findViewById(R.id.text_detalle_usuario_email)
+        val telefono: TextView = root.findViewById(R.id.text_detalle_usuario_telefono)
+
+
+        service.me("Bearer "+token).enqueue(object : Callback<DtoUserInfoSpeci> {
+            override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
+            ) {
+                if (response.code() == 200) {
+                    user.text = response.body()?.username
+                    nombre.text = response.body()?.nombreCompleto
+                    fecha.text = response.body()?.fechaNacimiento
+                    email.text = response.body()?.email
+                    telefono.text = response.body()?.telefono
                 }
             }
+            override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
+                Log.i("Error", "Error")
+                Log.d("Error", t.message!!)
+            }
+        })
+
+
+
+
+
+
+
+
+
+        return root
     }
+
+
 }

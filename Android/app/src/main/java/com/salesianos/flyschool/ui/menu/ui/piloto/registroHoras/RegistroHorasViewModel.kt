@@ -11,7 +11,7 @@ class RegistroHorasViewModel : ViewModel() {
 
     var baseUrl = "https://api.themoviedb.org/3/"
     var retrofit: Retrofit
-    var filmService: FilmService
+   // var filmService: FilmService
 
     private var _registros = MutableLiveData<List<DtoRegistro>>()
 
@@ -24,7 +24,7 @@ class RegistroHorasViewModel : ViewModel() {
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        filmService = retrofit.create(FilmService::class.java)
+      //  filmService = retrofit.create(FilmService::class.java)
         getRegistros()
     }
 

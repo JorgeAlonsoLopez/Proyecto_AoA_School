@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.salesianos.flyschool.R
-import com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.dummy.DummyContent
 
 /**
  * A fragment representing a list of Items.
@@ -39,7 +38,7 @@ class ListadoAeronavesAdminFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = ListadoAeronavesRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = ListadoAeronavesRecyclerViewAdapter()
             }
         }
         return view

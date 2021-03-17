@@ -9,11 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.salesianos.flyschool.R
-import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.dummy.DummyContent
 
-/**
- * A fragment representing a list of Items.
- */
 class ListaFacturasFragment : Fragment() {
 
     private var columnCount = 1
@@ -39,7 +35,7 @@ class ListaFacturasFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = ListaFacturasRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = ListaFacturasRecyclerViewAdapter()
             }
         }
         return view

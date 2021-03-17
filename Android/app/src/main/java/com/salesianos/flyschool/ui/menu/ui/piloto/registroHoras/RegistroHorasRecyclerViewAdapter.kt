@@ -36,7 +36,7 @@ class RegistroHorasRecyclerViewAdapter(
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
+       // val idView: TextView = view.findViewById(R.id.item_number)
 
     }
 }

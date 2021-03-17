@@ -15,22 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FlySchool">
-        <activity android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity"></activity>
+        <activity android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity" />
         <activity android:name=".ui.detalle.admin.registroProducto.RegistroProductoActivity" />
         <activity android:name=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity" />
         <activity android:name=".ui.detalle.admin.registroUsuario.RegistroUsuariosActivity" />
         <activity android:name=".ui.detalle.piloto.registroVuelo.RegistroVueloActivity" />
 
-        <uses-library
-            android:name="com.google.android.wearable"
-            android:required="true" />
-        <!--
-               Set to true if your app is Standalone, that is, it does not require the handheld
-               app to run.
-        -->
-        <meta-data
-            android:name="com.google.android.wearable.standalone"
-            android:value="true" />
+
+
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -44,7 +36,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ui.detalle.admin.editarUsuarios.EditarUsuarioActivity" />
+
         <activity android:name=".ui.detalle.admin.detallePiloto.DetallePilotoActivity" />
         <activity android:name=".ui.detalle.admin.detalleAeronave.DetalleAeronaveActivity" />
         <activity android:name=".ui.detalle.admin.detalleAdmin.DetalleAdminActivity" />

@@ -3,26 +3,40 @@ package com.salesianos.flyschool.ui.menu
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.TextureView
+import android.view.View
 import android.widget.TextView
-import com.google.android.material.navigation.NavigationView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.google.android.material.navigation.NavigationView
 import com.salesianos.flyschool.MainActivity
 import com.salesianos.flyschool.R
+import com.salesianos.flyschool.poko.DtoUserInfoSpeci
+import com.salesianos.flyschool.poko.LoginResponse
+import com.salesianos.flyschool.retrofit.UsuarioService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class MenuActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var ctx: Context
+    lateinit var retrofit: Retrofit
+    lateinit var service: UsuarioService
+    val baseUrl = "https://aoa-school.herokuapp.com/"
+    lateinit var token: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,20 +44,44 @@ class MenuActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        ctx = this
-
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        val headerView: View = navView.getHeaderView(0)
+        var nombreUsuario : TextView = headerView.findViewById(R.id.text_menu_user)
+        var nombreCompleto : TextView = headerView.findViewById(R.id.text_menu_nombre)
 
-        var nombreUsuario : TextView = findViewById(R.id.text_menu_user)
-        nombreUsuario.text = "HOLAAAA"
+
+        retrofit = Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        ctx = this
+        service = retrofit.create(UsuarioService::class.java)
+
+        val sharedPref = getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
+        token = sharedPref.getString("TOKEN", "")!!
+
+        service.me("Bearer "+token).enqueue(object : Callback<DtoUserInfoSpeci> {
+            override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
+            ) {
+                if (response.code() == 200) {
+                    nombreUsuario.text = response.body()?.username
+                    nombreCompleto.text = response.body()?.nombreCompleto
+                }
+            }
+            override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
+                Log.i("Error", "Error")
+                Log.d("Error", t.message!!)
+            }
+        })
+
+
+
 
         appBarConfiguration = AppBarConfiguration(
             setOf(
-
+            R.id.tiempoFragment, R.id.detalleUsuarioFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
