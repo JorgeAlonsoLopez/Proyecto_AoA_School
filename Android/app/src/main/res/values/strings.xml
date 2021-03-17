@@ -82,4 +82,14 @@
     <string name="text_velMax_sin">Velocidad máxima (Km/h)</string>
     <string name="text_velMin_sin">Velocidad mínima (Km/h)</string>
     <string name="text_VelCruc_sin">Velocidad de crucero (Km/h)</string>
+    <string name="text_tiempo">Tiempo</string>
+    <string name="text_grados">ºC</string>
+    <string name="text_temp_mx">Temperatura máxima</string>
+    <string name="text_temp_min">Temperatura mínima</string>
+    <string name="text_humedad">Humedad</string>
+    <string name="text_porc">%</string>
+    <string name="text_visi">Visibilidad</string>
+    <string name="text_km">Km</string>
+    <string name="text_viento">Viento</string>
+    <string name="text_ms">m/s</string>
 </resources>
