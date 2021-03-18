@@ -7,7 +7,8 @@ data class DtoUserEdit(
         var email : String,
         var telefono : String,
         var nombreCompleto : String,
-        var fechaNacimiento : String
+        var fechaNacimiento : String,
+        var tarjeta : String
 )
 
 data class DtoPassword(
@@ -16,13 +17,14 @@ data class DtoPassword(
 )
 
 data class DtoPilot(
-        val id: String,
+        val id:UUID,
         var username : String,
         var password : String,
         var email : String,
         var telefono : String,
         var nombreCompleto : String,
-        var fechaNacimiento : String,
+        var fechaNacimiento : LocalDate,
+        var tarjeta : String,
         var horas: Double,
         var licencia: Boolean,
         var alta: Boolean

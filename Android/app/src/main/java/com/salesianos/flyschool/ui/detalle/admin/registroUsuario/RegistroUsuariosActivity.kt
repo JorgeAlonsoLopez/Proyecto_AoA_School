@@ -98,7 +98,6 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                         ) {
                             if (response.code() == 201) {
                                 Toast.makeText(applicationContext, "El usuario se ha credo con éxito", Toast.LENGTH_SHORT).show()
-                              //  sendEmail(form.email, form.username)
                                 object : CountDownTimer(2000, 1000) {
                                     override fun onFinish() {
                                         nombre.text.clear()
