@@ -1,6 +1,7 @@
 package com.salesianos.flyschool.retrofit
 
 import com.salesianos.flyschool.poko.DtoLogin
+import com.salesianos.flyschool.poko.DtoUserInfo
 import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.poko.LoginResponse
 import retrofit2.Call
@@ -17,6 +18,8 @@ interface UsuarioService {
     @GET("usuario/me")
     fun me(@Header("Authorization") token: String): Call<DtoUserInfoSpeci>
 
+    @GET("usuario/")
+    fun getLstaUsuarios(@Header("Authorization") token: String): Call<List<DtoUserInfo>>
 
 
 }

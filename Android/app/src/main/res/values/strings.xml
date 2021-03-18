@@ -27,6 +27,7 @@
 
     <string name="menu_detalle">Detalle de usuario</string>
     <string name="menu_tiempo">Tiempo</string>
+    <string name="menu_listado_usuarios">Listado de usuarios</string>
 
 
     <string name="hello_world">Hello Square World!</string>

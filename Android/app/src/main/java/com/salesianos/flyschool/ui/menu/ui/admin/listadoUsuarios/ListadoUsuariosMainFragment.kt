@@ -13,15 +13,17 @@ class ListadoUsuariosMainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        var root = inflater.inflate(R.layout.fragment_listado_usuarios_main, container, false)
 
 
 
-        return inflater.inflate(R.layout.fragment_listado_usuarios_main, container, false)
+
+
+
+        return root
     }
 
 
