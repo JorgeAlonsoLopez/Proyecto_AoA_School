@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoUserInfo
 import com.salesianos.flyschool.retrofit.UsuarioService
@@ -29,7 +28,7 @@ class ListaUsuariosViewModel(application : Application) : AndroidViewModel(appli
         get() = _usuarios
 
     init {
-        
+
         val sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         if (sharedPref != null) {
             token = sharedPref.getString("TOKEN", "")!!
@@ -46,7 +45,7 @@ class ListaUsuariosViewModel(application : Application) : AndroidViewModel(appli
     }
 
     private fun getUsuarios() {
-        service.getLstaUsuarios("Bearer "+token).enqueue(object: Callback<List<DtoUserInfo>> {
+        service.getListaUsuarios("Bearer "+token).enqueue(object: Callback<List<DtoUserInfo>> {
             override fun onResponse(call: Call<List<DtoUserInfo>>, response: Response<List<DtoUserInfo>>) {
                 if(response.code() == 200) {
                     _usuarios.value = response.body()

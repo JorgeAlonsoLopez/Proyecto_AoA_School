@@ -29,6 +29,11 @@
     <string name="menu_tiempo">Tiempo</string>
     <string name="menu_listado_usuarios">Listado de usuarios</string>
 
+    <string name="con_licencia">Posee la licencia de vuelo</string>
+    <string name="sin_licencia">No posee la licencia de vuelo</string>
+    <string name="dar_de_alta">Dar de alta</string>
+    <string name="dar_de_baja">Dar de baja</string>
+
 
     <string name="hello_world">Hello Square World!</string>
     <string name="registro_vuelo">Registrar vuelo</string>

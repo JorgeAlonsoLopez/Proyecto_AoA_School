@@ -80,6 +80,11 @@ class UsuarioService(
             .orElseThrow { UserSearchNotFoundException(id.toString()) }
     }
 
+    fun detallePiloto( id: UUID) : DtoPilot {
+        return PilotoServ.findById(id).map { it.toGetDtoUserInfoSpeciPilot() }
+            .orElseThrow { UserSearchNotFoundException(id.toString()) }
+    }
+
     fun cambiarEstado(id: UUID, pilotoService: PilotoService): DtoUserInfoSpeci? {
 
         return pilotoService.findById(id)
@@ -126,6 +131,17 @@ class UsuarioService(
             (newUser.fechaNacimiento.split("/")[1]).toInt(),(newUser.fechaNacimiento.split("/")[0]).toInt())
         return this.create(newUser, fecNac).map { it.toGetDtoUserInfoSpeci() }
 
+
+    }
+
+    fun licencia(id: UUID){
+        var piloto = PilotoServ.findById(id).map { it }
+            .orElseThrow { UserSearchNotFoundException(id.toString()) }
+
+        if(!piloto.licencia){
+            piloto.licencia = true
+        }
+        PilotoServ.edit(piloto)
 
     }
 

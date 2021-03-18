@@ -16,7 +16,7 @@ data class DtoPassword(
 )
 
 data class DtoPilot(
-        val id: UUID,
+        val id: String,
         var username : String,
         var password : String,
         var email : String,
@@ -30,7 +30,7 @@ data class DtoPilot(
 )
 
 data class DtoUserInfoSpeci(
-        val id: UUID,
+        val id: String,
         var username : String,
         var password : String,
         var email : String,
@@ -54,7 +54,7 @@ data class DtoUserInfo(
         var username : String,
         var nombreCompleto : String,
         var tipo: String,
-        var id: UUID,
+        var id: String,
         var alta: Boolean
 )
 
