@@ -9,11 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.salesianos.flyschool.R
-import com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.dummy.DummyContent
 
-/**
- * A fragment representing a list of Items.
- */
+
 class ListaProductosFragment : Fragment() {
 
     private var columnCount = 1
@@ -39,7 +36,7 @@ class ListaProductosFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = ListaProductosRecyclerViewAdapter(DummyContent.ITEMS)
+                adapter = ListaProductosRecyclerViewAdapter()
             }
         }
         return view

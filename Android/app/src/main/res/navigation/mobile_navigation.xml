@@ -3,7 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_registroHoras">
+    app:startDestination="@+id/tiempoFragment">
 
 
+    <fragment
+        android:id="@+id/tiempoFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.tiempo.TiempoFragment"
+        android:label="fragment_tiempo"
+        tools:layout="@layout/fragment_tiempo" />
+    <fragment
+        android:id="@+id/detalleUsuarioFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.detalle.DetalleUsuarioFragment"
+        android:label="fragment_detalle_usuario"
+        tools:layout="@layout/fragment_detalle_usuario" />
 </navigation>

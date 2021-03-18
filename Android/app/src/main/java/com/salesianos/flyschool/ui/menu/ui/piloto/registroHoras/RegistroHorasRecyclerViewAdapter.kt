@@ -1,20 +1,17 @@
 package com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras
 
+import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.salesianos.flyschool.R
+import com.salesianos.flyschool.poko.DtoRegistro
 
-import com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras.dummy.DummyContent.DummyItem
-
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class RegistroHorasRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private var activity: Context,
+    private var values: List<DtoRegistro>
 ) : RecyclerView.Adapter<RegistroHorasRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,18 +22,21 @@ class RegistroHorasRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+       // holder.idView.text = item.fecha
+
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+    fun setData(listaNueva: List<DtoRegistro>) {
+        if (listaNueva != null) {
+            values = listaNueva
+            notifyDataSetChanged()
         }
+    }
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+       // val idView: TextView = view.findViewById(R.id.item_number)
+
     }
 }

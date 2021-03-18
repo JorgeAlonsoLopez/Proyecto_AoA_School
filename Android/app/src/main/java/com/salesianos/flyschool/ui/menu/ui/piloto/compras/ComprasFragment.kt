@@ -9,21 +9,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.salesianos.flyschool.R
-import com.salesianos.flyschool.ui.menu.ui.piloto.compras.dummy.DummyContent
 
 /**
  * A fragment representing a list of Items.
  */
 class ComprasFragment : Fragment() {
 
-    private var columnCount = 1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
+
     }
 
     override fun onCreateView(
@@ -32,16 +29,7 @@ class ComprasFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_compras_list, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                adapter = ComprasRecyclerViewAdapter(DummyContent.ITEMS)
-            }
-        }
+
         return view
     }
 
