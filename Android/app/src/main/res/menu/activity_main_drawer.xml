@@ -8,6 +8,11 @@
             android:id="@+id/detalleUsuarioFragment"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_detalle" />
+
+        <item
+            android:id="@+id/tiempoFragment"
+            android:icon="@drawable/ic_baseline_wb_sunny_24"
+            android:title="@string/menu_tiempo" />
         
     </group>
 </menu>

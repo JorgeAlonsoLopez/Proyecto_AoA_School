@@ -60,7 +60,6 @@ class DetalleUsuarioFragment : Fragment() {
         val email: TextView = root.findViewById(R.id.text_detalle_usuario_email)
         val telefono: TextView = root.findViewById(R.id.text_detalle_usuario_telefono)
 
-
         service.me("Bearer "+token).enqueue(object : Callback<DtoUserInfoSpeci> {
             override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
             ) {
@@ -77,14 +76,6 @@ class DetalleUsuarioFragment : Fragment() {
                 Log.d("Error", t.message!!)
             }
         })
-
-
-
-
-
-
-
-
 
         return root
     }
