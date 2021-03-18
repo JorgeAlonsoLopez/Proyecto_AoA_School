@@ -55,6 +55,7 @@ class DetallePilotoActivity : AppCompatActivity() {
         var telef : TextView = findViewById(R.id.text_detalle_admin_piloto_telefono)
         var email : TextView = findViewById(R.id.text_detalle_admin_piloto_email)
         var licenc : TextView = findViewById(R.id.text_detalle_admin_piloto_licencia)
+        var tarj : TextView = findViewById(R.id.text_detalle_admin_piloto_tarjeta)
 
         var btnEditar : Button = findViewById(R.id.btn_editar_piloto)
         var alta_baja : Button = findViewById(R.id.btn_alta_baja_piloto)
@@ -69,6 +70,7 @@ class DetallePilotoActivity : AppCompatActivity() {
                     fecha.text = response.body()?.fechaNacimiento
                     telef.text = response.body()?.telefono
                     email.text = response.body()?.email
+                    tarj.text = response.body()?.tarjeta
                     licenciaPilot = response.body()?.licencia!!
                     altaPilot = response.body()?.alta!!
                     if(licenciaPilot){
