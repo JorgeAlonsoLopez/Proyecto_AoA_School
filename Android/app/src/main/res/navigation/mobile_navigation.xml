@@ -21,4 +21,9 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoUsuarios.ListadoUsuariosMainFragment"
         android:label="ListadoUsuariosMainFragment"
         tools:layout="@layout/fragment_listado_usuarios_main"/>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.password.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password" />
 </navigation>

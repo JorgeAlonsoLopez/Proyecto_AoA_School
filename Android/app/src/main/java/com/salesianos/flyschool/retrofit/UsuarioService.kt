@@ -28,5 +28,14 @@ interface UsuarioService {
     @PUT("usuario/{id}/est")
     fun estado(@Header("Authorization") token: String, @Path("id") id : UUID): Call<DtoUserInfoSpeci>
 
+    @PUT("usuario/password")
+    fun contrasenya(@Header("Authorization") token: String, @Body dto: DtoPassword): Call<Any>
+
+    @PUT("usuario/{id}")
+    fun editarUsuario(@Header("Authorization") token: String, @Body user: DtoUserEdit, @Path("id") id: UUID): Call<DtoUserInfoSpeci>
+
+    @POST("auth/register")
+    fun nuevoUsuario(@Header("Authorization") token: String, @Body user: DtoUserForm): Call<DtoUserInfoSpeci>
+
 
 }

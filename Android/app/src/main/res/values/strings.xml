@@ -28,6 +28,8 @@
     <string name="menu_detalle">Detalle de usuario</string>
     <string name="menu_tiempo">Tiempo</string>
     <string name="menu_listado_usuarios">Listado de usuarios</string>
+    <string name="menu_password">Cambiar la contraseña</string>
+    <string name="menu_new_user">Registrar usuario</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
@@ -108,4 +110,6 @@
     <string name="text_ms">m/s</string>
     <string name="text_grad">º</string>
     <string name="text_m">m</string>
+    <string name="text_nombre_usuario">Nombre de usuario</string>
+    <string name="text_tarjeta">Tarjeta de credito</string>
 </resources>

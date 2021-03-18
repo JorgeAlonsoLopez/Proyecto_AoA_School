@@ -1,7 +1,9 @@
 package com.salesianos.flyschool
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(ctx, MenuActivity::class.java)
                         startActivity(intent)
                     }else if (response.code() == 401){
-                        Toast.makeText(getApplicationContext(),"El usuario o la contraseña no son correctos.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext,"El usuario o la contraseña no son correctos.", Toast.LENGTH_SHORT).show()
                     }
                 }
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -75,4 +77,5 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
 }

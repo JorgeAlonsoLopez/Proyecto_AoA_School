@@ -7,22 +7,63 @@
     tools:context=".ui.detalle.admin.registroUsuario.RegistroUsuariosActivity">
 
     <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_tarjeta"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/input_new_usuario_fecha"
+        app:layout_constraintStart_toStartOf="@+id/input_new_usuario_fecha"
+        app:layout_constraintTop_toBottomOf="@+id/input_new_usuario_fecha" />
+
+    <EditText
+        android:id="@+id/input_new_usuario_tarjeta"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="@+id/textView34"
+        app:layout_constraintStart_toStartOf="@+id/textView34"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/text_nombre_usuario"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup_new_user" />
+
+    <EditText
+        android:id="@+id/input_new_usuario_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/textView33"
+        app:layout_constraintStart_toStartOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="@string/text_nombre_completo"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintEnd_toEndOf="@+id/input_new_usuario_usuario"
+        app:layout_constraintStart_toStartOf="@+id/input_new_usuario_usuario"
+        app:layout_constraintTop_toBottomOf="@+id/input_new_usuario_usuario" />
 
     <TextView
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="@string/text_email"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/input_new_usuario_nombre"
@@ -34,7 +75,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="@string/text_telefono_sin"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/input_new_usuario_correo"
@@ -45,7 +86,7 @@
         android:id="@+id/textView26"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="@string/text_fechaNacimiento_son"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/input_new_usuario_telef"
@@ -57,10 +98,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="10dp"
         android:text="@string/text_confirm"
+        app:cornerRadius="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_new_usuario_fecha" />
+        app:layout_constraintTop_toBottomOf="@+id/input_new_usuario_tarjeta" />
 
     <Button
         android:id="@+id/btn_cancel_new_usuario"
@@ -68,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
         android:text="@string/text_cancelar"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_new_usuario"
         app:layout_constraintStart_toEndOf="@+id/btn_confirm_new_usuario"
         app:layout_constraintTop_toTopOf="@+id/btn_confirm_new_usuario"
@@ -76,7 +119,7 @@
     <EditText
         android:id="@+id/input_new_usuario_nombre"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/textView21"
@@ -86,9 +129,9 @@
     <EditText
         android:id="@+id/input_new_usuario_correo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/textView24"
         app:layout_constraintStart_toStartOf="@+id/textView24"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -96,9 +139,9 @@
     <EditText
         android:id="@+id/input_new_usuario_telef"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="@+id/textView25"
         app:layout_constraintStart_toStartOf="@+id/textView25"
         app:layout_constraintTop_toBottomOf="@+id/textView25" />
@@ -106,35 +149,24 @@
     <EditText
         android:id="@+id/input_new_usuario_fecha"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:clickable="false"
+        android:focusable="false"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="@+id/textView26"
         app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="@string/text_tipo_sin"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="260dp"
+        android:id="@+id/radioGroup_new_user"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/textView27"
-        app:layout_constraintStart_toStartOf="@+id/textView27"
-        app:layout_constraintTop_toBottomOf="@+id/textView27">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RadioButton
             android:id="@+id/radio_new_user_pilot"

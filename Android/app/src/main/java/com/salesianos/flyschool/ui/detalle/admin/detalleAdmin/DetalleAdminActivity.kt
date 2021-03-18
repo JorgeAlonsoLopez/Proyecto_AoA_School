@@ -48,7 +48,7 @@ class DetalleAdminActivity : AppCompatActivity() {
 
         var nombre : TextView = findViewById(R.id.text_detalle_admin_admin_nombre)
         var user : TextView = findViewById(R.id.text_detalle_admin_admin_nombreUsuario)
-        var fecha : TextView = findViewById(R.id.textView21text_detalle_admin_admin_fecha)
+        var fecha : TextView = findViewById(R.id.text_detalle_admin_admin_fecha)
         var telef : TextView = findViewById(R.id.text_detalle_admin_admin_telefono)
         var email : TextView = findViewById(R.id.text_detalle_admin_admin_email)
 
