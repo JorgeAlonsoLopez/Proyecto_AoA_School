@@ -73,7 +73,8 @@ class DetalleAdminActivity : AppCompatActivity() {
 
         btnEditar.setOnClickListener(View.OnClickListener {
             val intent = Intent(ctx, EditarUsuarioActivity::class.java).apply {
-                putExtra("id", id)
+                putExtra("id", id.toString())
+                putExtra("admin", true)
             }
             ctx.startActivity(intent)
         })

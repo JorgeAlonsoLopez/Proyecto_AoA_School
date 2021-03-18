@@ -95,6 +95,7 @@
         android:layout_marginBottom="60dp"
         android:text="@string/text_confirm"
         android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -105,6 +106,7 @@
         android:layout_marginStart="64dp"
         android:text="@string/text_cancelar"
         android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_confirm_new_prodc"
         app:layout_constraintStart_toEndOf="@+id/btn_confirm_new_prodc"
         app:layout_constraintTop_toTopOf="@+id/btn_confirm_new_prodc"

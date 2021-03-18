@@ -23,7 +23,7 @@ data class DtoPilot(
         var email : String,
         var telefono : String,
         var nombreCompleto : String,
-        var fechaNacimiento : LocalDate,
+        var fechaNacimiento : String,
         var tarjeta : String,
         var horas: Double,
         var licencia: Boolean,

@@ -131,6 +131,7 @@
         android:layout_marginBottom="35dp"
         android:text="@string/text_confirm"
         android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -141,6 +142,7 @@
         android:layout_marginStart="32dp"
         android:text="@string/text_cancelar"
         android:textSize="18sp"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/button"
         app:layout_constraintTop_toTopOf="@+id/button"

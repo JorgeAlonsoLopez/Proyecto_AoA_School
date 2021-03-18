@@ -78,14 +78,11 @@ class RegistroUsuariosActivity : AppCompatActivity() {
             }
         })
 
-
         var form : DtoUserForm
-        supportActionBar?.hide()
-
 
         btnSend.setOnClickListener(View.OnClickListener {
 
-            if(user.text.toString().isNotBlank() && email.text.toString().isNotBlank() && telef.text.toString().isNotBlank() && fecha.text.toString().isNotBlank()) {
+            if(user.text.toString().isNotBlank() && nombre.text.toString().isNotBlank() && email.text.toString().isNotBlank() && telef.text.toString().isNotBlank() && fecha.text.toString().isNotBlank()) {
                 if(radioAdmin.isChecked || radioPilot.isChecked){
                     if (radioAdmin.isChecked) {
                         form = DtoUserForm(user.text.toString(), "1234", email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), "")
@@ -97,7 +94,7 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
                         ) {
                             if (response.code() == 201) {
-                                Toast.makeText(applicationContext, "El usuario se ha credo con éxito", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
                                 object : CountDownTimer(2000, 1000) {
                                     override fun onFinish() {
                                         nombre.text.clear()
@@ -114,9 +111,9 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                                     }
                                 }.start()
                             } else if (response.code() == 404) {
-                                Toast.makeText(applicationContext, "No se puede registrar a un usuario con un nombre de usuario repatido", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(applicationContext, "Ha ocurrido un error, revise los datos y si el error prosige, póngase en contacto con el servicio técnico", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
                             }
                         }
 
@@ -126,11 +123,11 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                         }
                     })
                 }else{
-                    Toast.makeText(applicationContext, "No se olvide de seleecionar administrador o piloto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, getString(R.string.aviso_radio), Toast.LENGTH_SHORT).show()
                 }
 
             }else{
-                Toast.makeText(applicationContext, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, getString(R.string.aviso_campos), Toast.LENGTH_SHORT).show()
             }
 
         })

@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>
                 ) {
                     if (response.code() == 200) {
-                        Log.d("APP", response.body()?.token!!)
                         val sharedPref = getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
                         token = response.body()?.token!!
                         with(sharedPref.edit()) {
