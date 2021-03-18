@@ -21,15 +21,16 @@ class ListaUsuariosViewModel(application : Application) : AndroidViewModel(appli
     val baseUrl = "https://aoa-school.herokuapp.com/"
     var retrofit: Retrofit
     var service: UsuarioService
-    var token:String = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkMzU1NzVkZC1jYWQ4LTQ5MmYtYjk3Mi1iMGExYmZjMTFjMDYiLCJleHAiOjE2MTYzMjU3MjEsImlhdCI6MTYxNjA2NjUyMSwicmVmcmVzaCI6ZmFsc2UsImZ1bGxuYW1lIjoiQUxiZXJ0byBHb256YWxleiIsInJvbGVzIjoiQURNSU4ifQ.-E3gikNV0RkRd_g1Y7aZjZ-20KD64bTmxOIPHv8RjosFDrB1Q_ecqrg8FyfaqCuYenUuP4rtZYTH5Yr5U2smKg"
+    var token:String = ""
     private var _usuarios = MutableLiveData<List<DtoUserInfo>>()
+    private val context = getApplication<Application>().applicationContext
 
     val usuarios: LiveData<List<DtoUserInfo>>
         get() = _usuarios
 
     init {
-
-        val sharedPref = this.getApplication<Application>().getSharedPreferences("PREFERENCES_FILE", Context.MODE_PRIVATE)
+        
+        val sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         if (sharedPref != null) {
             token = sharedPref.getString("TOKEN", "")!!
         }
