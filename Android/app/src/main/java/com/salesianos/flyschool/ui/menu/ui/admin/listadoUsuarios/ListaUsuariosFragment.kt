@@ -37,7 +37,6 @@ class ListaUsuariosFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(this).get(ListaUsuariosViewModel::class.java)
-        viewModel.setTok(token)
 
         list = listOf()
         adapterUsuarios = ListaUsuariosRecyclerViewAdapter(activity as Context, list)

@@ -1,7 +1,9 @@
 package com.salesianos.flyschool.ui.menu.ui.admin.listadoUsuarios
 
+import android.app.Application
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,7 +16,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ListaUsuariosViewModel : ViewModel(){
+class ListaUsuariosViewModel(application : Application) : AndroidViewModel(application){
 
     val baseUrl = "https://aoa-school.herokuapp.com/"
     var retrofit: Retrofit
@@ -26,6 +28,11 @@ class ListaUsuariosViewModel : ViewModel(){
         get() = _usuarios
 
     init {
+
+        val sharedPref = this.getApplication<Application>().getSharedPreferences("PREFERENCES_FILE", Context.MODE_PRIVATE)
+        if (sharedPref != null) {
+            token = sharedPref.getString("TOKEN", "")!!
+        }
 
         _usuarios.value = listOf()
         retrofit = Retrofit.Builder()
@@ -49,10 +56,6 @@ class ListaUsuariosViewModel : ViewModel(){
                 Log.d("Error",t.message!!)
             }
         })
-    }
-
-    fun setTok(tok:String){
-        token = tok
     }
 
 
