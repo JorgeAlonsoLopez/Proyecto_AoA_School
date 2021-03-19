@@ -1,0 +1,863 @@
+{
+	"info": {
+		"_postman_id": "3918b422-4234-4c4c-b65c-70131e0d79f0",
+		"name": "Aviación",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Aeronave",
+			"item": [
+				{
+					"name": "Nueva aeronave",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\" : \"\",\r\n    \"marca\" : \"\",\r\n    \"modelo\" : \"\",\r\n    \"motor\" : \"\",\r\n    \"potencia\" : 0.0,\r\n    \"autonomia\" : 0,\r\n    \"velMax\" : 0,\r\n    \"velMin\" : 0,\r\n    \"velCru\" : 0  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar aeronave",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/05fca441-2e66-43e0-9875-45cefd38f2e4/m2UnwodxTI4eCjm",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"05fca441-2e66-43e0-9875-45cefd38f2e4",
+								"m2UnwodxTI4eCjm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir foto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/cfc36a2d-2a93-42a0-8b25-368ccdc2f531",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"cfc36a2d-2a93-42a0-8b25-368ccdc2f531"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar altas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/alta",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/cfc36a2d-2a93-42a0-8b25-368ccdc2f531",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"cfc36a2d-2a93-42a0-8b25-368ccdc2f531"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar por id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"matricula\" : \"EDG-48\",\r\n    \"marca\" : \"Tecnam\",\r\n    \"modelo\" : \"P2002\",\r\n    \"motor\" : \"Rotax 000\",\r\n    \"potencia\" : 100.0,\r\n    \"autonomia\" : 450,\r\n    \"velMax\" : 180,\r\n    \"velMin\" : 60,\r\n    \"velCru\" : 140  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/20a35f88-1b86-4952-b359-0ec7440697e9",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"20a35f88-1b86-4952-b359-0ec7440697e9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/20a35f88-1b86-4952-b359-0ec7440697e9/0",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"20a35f88-1b86-4952-b359-0ec7440697e9",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "Crear administrador",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"admin\",\r\n    \"password\" : 1234,\r\n    \"email\" : \"admin@email.com\",\r\n    \"telefono\" : \"945874521\",\r\n    \"nombreCompleto\" : \"Alberto Gonzalez\",\r\n    \"fechaNacimiento\" : \"03/05/1991\",\r\n    \"tarjetaCredito\" :  \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/auth/register",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear piloto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"tdomin\",\r\n    \"password\" : 1234,\r\n    \"email\" : \"tdomin@email.com\",\r\n    \"telefono\" : \"684752985\",\r\n    \"nombreCompleto\" : \"Tania Dominguez\",\r\n    \"fechaNacimiento\" : \"03/05/1991\",\r\n    \"tarjetaCredito\" :  \"1254 1598 9854 7852\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/auth/register",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/auth/login",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/me",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todos los usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Piloto por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/piloto/7c50aecb-b84c-4554-9764-16e13e5e5381",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"piloto",
+								"7c50aecb-b84c-4554-9764-16e13e5e5381"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Usuario por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/d6b75e4f-822c-4c0a-8540-0fd109b27c8d",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"d6b75e4f-822c-4c0a-8540-0fd109b27c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado de usuario por id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/e9a19614-d748-4344-ac5a-ec24ce9b7919/est",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"e9a19614-d748-4344-ac5a-ec24ce9b7919",
+								"est"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar datos de usuario por id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"admin@email.com\",\r\n    \"telefono\" : \"945874521\",\r\n    \"nombreCompleto\" : \"Alberto Gonzalez\",\r\n    \"fechaNacimiento\" : \"03/05/1991\",\r\n    \"tarjeta\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/d35575dd-cad8-492f-b972-b0a1bfc11c06",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"d35575dd-cad8-492f-b972-b0a1bfc11c06"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar contraseña",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password1\" : \"1111\",\r\n    \"password2\" : \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/password",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Habilitar licencia por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/usuario/licencia/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"usuario",
+								"licencia",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Factura",
+			"item": [
+				{
+					"name": "Todas las facturas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/factura/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"factura",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Facturas por usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/factura/user",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"factura",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nueva factura",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/factura/322cfa3b-4225-4ebd-9958-340ffbf27da7",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"factura",
+								"322cfa3b-4225-4ebd-9958-340ffbf27da7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Producto",
+			"item": [
+				{
+					"name": "Todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar producto por id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoLibre\" : true,\r\n    \"nombre\" : \"5 horas de vuelo libre\",\r\n    \"precio\" : 120.00,\r\n    \"horasVuelo\" : 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/4767fcca-6a1c-4508-88e0-851103fa4d88",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								"4767fcca-6a1c-4508-88e0-851103fa4d88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoLibre\" : true,\r\n    \"nombre\" : \"15 horas de vuelo libre\",\r\n    \"precio\" : 150.00,\r\n    \"horasVuelo\" : 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar estado del producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/ea7141a5-96e3-47dd-962b-29ba71119df5/est",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								"ea7141a5-96e3-47dd-962b-29ba71119df5",
+								"est"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/0e336c3f-be71-449e-a2fd-03f2fd40adc4",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								"0e336c3f-be71-449e-a2fd-03f2fd40adc4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Producto por id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/4767fcca-6a1c-4508-88e0-851103fa4d88",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								"4767fcca-6a1c-4508-88e0-851103fa4d88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Producto disponible para usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/producto/alta/false",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"producto",
+								"alta",
+								"false"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Registro de vuelo",
+			"item": [
+				{
+					"name": "Todos los registros",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/registro/",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"registro",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registro por usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/registro/user",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"registro",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear registro",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"horaInicio\" : \"9:00\",\r\n    \"horaFin\" : \"9:45\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/registro/213c8d5c-5d8c-4c56-9dd7-1902bc7fae65",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"registro",
+								"213c8d5c-5d8c-4c56-9dd7-1902bc7fae65"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
