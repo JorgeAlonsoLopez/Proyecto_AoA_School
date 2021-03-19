@@ -12,9 +12,11 @@ import android.widget.TextView
 import coil.load
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveResp
+import com.salesianos.flyschool.poko.DtoAeronaveSinFoto
 import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.AeronaveService
 import com.salesianos.flyschool.retrofit.UsuarioService
+import com.salesianos.flyschool.ui.detalle.admin.detallePiloto.DetallePilotoActivity
 import com.salesianos.flyschool.ui.detalle.admin.editarUsuario.EditarUsuarioActivity
 import retrofit2.Call
 import retrofit2.Callback
@@ -111,6 +113,40 @@ class DetalleAeronaveActivity : AppCompatActivity() {
                 putExtra("admin", true)
             }
             ctx.startActivity(intent)
+        })
+
+        btnEliminar.setOnClickListener(View.OnClickListener {
+
+        })
+
+        btnAlta.setOnClickListener(View.OnClickListener {
+            service.estado("Bearer "+token, id,0).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
+                ) {
+                    if (response.code() == 200) {
+                        (ctx as DetalleAeronaveActivity).recreate()
+                    }
+                }
+                override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                    Log.i("Error", "Error")
+                    Log.d("Error", t.message!!)
+                }
+            })
+        })
+
+        btnMantenimiento.setOnClickListener(View.OnClickListener {
+            service.estado("Bearer "+token, id,1).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
+                ) {
+                    if (response.code() == 200) {
+                        (ctx as DetalleAeronaveActivity).recreate()
+                    }
+                }
+                override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                    Log.i("Error", "Error")
+                    Log.d("Error", t.message!!)
+                }
+            })
         })
 
 

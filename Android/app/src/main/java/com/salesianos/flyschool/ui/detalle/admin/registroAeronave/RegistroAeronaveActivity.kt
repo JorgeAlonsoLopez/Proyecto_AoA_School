@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveForm
+import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoAeronaveSinFoto
 import com.salesianos.flyschool.retrofit.AeronaveService
 import okhttp3.MediaType
@@ -82,16 +83,30 @@ class RegistroAeronaveActivity : AppCompatActivity() {
             service.crear("Bearer " + token, form).enqueue(object : Callback<DtoAeronaveSinFoto> {
                 override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
                     if (response.code() == 201) {
-                                matricula.text.clear()
-                                marca.text.clear()
-                                modelo.text.clear()
-                                motor.text.clear()
-                                potencia.text.clear()
-                                autonomia.text.clear()
-                                min.text.clear()
-                                max.text.clear()
-                                crucero.text.clear()
+                        id = UUID.fromString(response.body()?.id)
+                        service.addFoto("Bearer " + token, body, id).enqueue(object : Callback<DtoAeronaveResp> {
+                            override fun onResponse(call: Call<DtoAeronaveResp>, response: Response<DtoAeronaveResp>) {
+                                if (response.code() == 201) {
+                                    matricula.text.clear()
+                                    marca.text.clear()
+                                    modelo.text.clear()
+                                    motor.text.clear()
+                                    potencia.text.clear()
+                                    autonomia.text.clear()
+                                    min.text.clear()
+                                    max.text.clear()
+                                    crucero.text.clear()
 
+                                    finish()
+
+                                }
+                            }
+
+                            override fun onFailure(call: Call<DtoAeronaveResp>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
 
                     } else if (response.code() == 404) {
                         Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
