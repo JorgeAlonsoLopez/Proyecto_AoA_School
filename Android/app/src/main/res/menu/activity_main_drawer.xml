@@ -16,6 +16,11 @@
             android:title="@string/menu_listado_usuarios" />
 
         <item
+            android:id="@+id/listadoAeronavesMainFragment"
+            android:icon="@drawable/ic_baseline_airplanemode_active_24"
+            android:title="@string/menu_listado_aeronaves" />
+
+        <item
             android:id="@+id/detalleUsuarioFragment"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_detalle" />

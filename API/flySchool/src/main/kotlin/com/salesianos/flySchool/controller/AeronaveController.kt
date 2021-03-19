@@ -49,12 +49,12 @@ class ImagenController(
     }
 
     @GetMapping("/")
-    fun listado(): ResponseEntity<List<DtoAeronaveSinFoto>> {
+    fun listado(): ResponseEntity<List<DtoAeronaveResp>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.listado())
     }
 
     @GetMapping("/alta")
-    fun listadoAlta(): ResponseEntity<List<DtoAeronaveSinFoto>> {
+    fun listadoAlta(): ResponseEntity<List<DtoAeronaveResp>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.listadoAlta())
     }
 

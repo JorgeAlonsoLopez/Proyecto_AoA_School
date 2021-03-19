@@ -30,6 +30,7 @@
     <string name="menu_listado_usuarios">Listado de usuarios</string>
     <string name="menu_password">Cambiar la contraseña</string>
     <string name="menu_new_user">Registrar usuario</string>
+    <string name="menu_listado_aeronaves">Listado de aeronaves</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>

@@ -75,13 +75,13 @@ class AeronaveService(
 
     }
 
-    fun listado(): List<DtoAeronaveSinFoto> {
-        return this.findAll().map{it.toGetDtoAeronaveSinFoto()}
+    fun listado(): List<DtoAeronaveResp> {
+        return this.findAll().map{it.toGetDtoAeronaveResp()}
             .takeIf { it.isNotEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 
-    fun listadoAlta(): List<DtoAeronaveSinFoto> {
-        return this.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
+    fun listadoAlta(): List<DtoAeronaveResp> {
+        return this.findAllAlta()?.map{it.toGetDtoAeronaveResp()}
             .takeIf { !it.isNullOrEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 
