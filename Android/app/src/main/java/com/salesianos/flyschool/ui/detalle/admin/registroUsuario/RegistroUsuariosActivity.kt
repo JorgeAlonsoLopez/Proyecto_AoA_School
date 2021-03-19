@@ -96,12 +96,6 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
                         object : CountDownTimer(2000, 1000) {
                             override fun onFinish() {
-                                nombre.text.clear()
-                                user.text.clear()
-                                telef.text.clear()
-                                fecha.text.clear()
-                                email.text.clear()
-                                tarjeta.text.clear()
                                 val intent = Intent(ctx, MenuActivity::class.java)
                                 startActivity(intent)
                             }

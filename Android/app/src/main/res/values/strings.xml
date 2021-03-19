@@ -52,9 +52,9 @@
     <string name="text_matricula">Matrícula : </string>
     <string name="hp">(HP)</string>
     <string name="autonomia">Autonomía (Km) : </string>
-    <string name="VelMax">Velocidad máxima (Km) : </string>
-    <string name="VelMin">Velocidad mínima (Km) : </string>
-    <string name="VelCruc">Velocidad de crucero (Km) : </string>
+    <string name="VelMax">Velocidad máxima (Km/h) : </string>
+    <string name="VelMin">Velocidad mínima (Km/h) : </string>
+    <string name="VelCruc">Velocidad de crucero (Km/h) : </string>
     <string name="btn_hora_inicio">Seleccione la hora del despege</string>
     <string name="btn_hora_fin">Seleccione la hora del aterrizaje</string>
     <string name="btn_envio_registro_horas">Crear registro de vuelo</string>

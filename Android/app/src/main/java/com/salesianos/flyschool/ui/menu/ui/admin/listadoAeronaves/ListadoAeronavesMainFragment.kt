@@ -26,7 +26,10 @@ class ListadoAeronavesMainFragment : Fragment() {
         val boton: Button = root.findViewById(R.id.btn_direc_nueva_aeronave)
 
         boton.setOnClickListener(View.OnClickListener {
-            val intent = Intent(activity, RegistroAeronaveActivity::class.java)
+            val intent = Intent(activity, RegistroAeronaveActivity::class.java).apply {
+                putExtra("id", "N")
+                putExtra("edit", false)
+            }
             startActivity(intent)
         })
         return root

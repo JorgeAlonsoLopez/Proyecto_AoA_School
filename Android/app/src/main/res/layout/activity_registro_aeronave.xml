@@ -20,9 +20,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="350dp"
-        android:layout_height="438dp"
-        android:layout_marginTop="130dp"
+        android:layout_width="351dp"
+        android:layout_height="509dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/text_potencia"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingBottom="20dp"
                 android:textSize="24sp" />
 

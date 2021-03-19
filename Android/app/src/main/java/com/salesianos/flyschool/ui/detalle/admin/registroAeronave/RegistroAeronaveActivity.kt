@@ -4,15 +4,15 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveForm
 import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoAeronaveSinFoto
+import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.AeronaveService
+import com.salesianos.flyschool.ui.detalle.admin.editarUsuario.EditarUsuarioActivity
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -33,6 +33,7 @@ class RegistroAeronaveActivity : AppCompatActivity() {
     lateinit var ctx: Context
     lateinit var token: String
     lateinit var id : UUID
+    var edit : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +53,18 @@ class RegistroAeronaveActivity : AppCompatActivity() {
             token = sharedPref.getString("TOKEN", "")!!
         }
 
+        if(intent.extras?.getString("id") != "N"){
+            id = UUID.fromString(intent.extras?.getString("id"))
+        }
+        edit = intent.extras?.getBoolean("edit")!!
+
+
+        var textoFoto : TextView = findViewById(R.id.textView31)
+        var foto : ImageView = findViewById(R.id.img_form_aeronave)
+        textoFoto.visibility = View.INVISIBLE
+        foto.visibility = View.INVISIBLE
+
+
         var marca : EditText = findViewById(R.id.inpt_new_aeron_marca)
         var modelo : EditText = findViewById(R.id.inpt_new_aeron_modelo)
         var matricula : EditText = findViewById(R.id.inpt_new_aeron_matricula)
@@ -65,6 +78,30 @@ class RegistroAeronaveActivity : AppCompatActivity() {
         var btnSend : Button = findViewById(R.id.btn_registro_aseronave_ok)
         var btnCancel : Button = findViewById(R.id.btn_registro_aseronave_cancel)
 
+        if(edit){
+            service.aeronaveId("Bearer " + token, id).enqueue(object :
+                Callback<DtoAeronaveResp> {
+                override fun onResponse(call: Call<DtoAeronaveResp>, response: Response<DtoAeronaveResp>
+                ) {
+                    if (response.code() == 200) {
+                        marca.setText(response.body()?.marca)
+                        modelo.setText(response.body()?.modelo)
+                        matricula.setText(response.body()?.matricula)
+                        motor.setText(response.body()?.motor)
+                        potencia.setText(response.body()?.potencia.toString())
+                        autonomia.setText(response.body()?.autonomia.toString())
+                        max.setText(response.body()?.velMax.toString())
+                        min.setText(response.body()?.velMin.toString())
+                        crucero.setText(response.body()?.velCru.toString())
+                    }
+                }
+                override fun onFailure(call: Call<DtoAeronaveResp>, t: Throwable) {
+                    Log.i("Error", "Error")
+                    Log.d("Error", t.message!!)
+                }
+            })
+        }
+
 
         btnSend.setOnClickListener(View.OnClickListener {
 
@@ -75,53 +112,39 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                 max.text.toString().toDouble(), min.text.toString().toDouble(), crucero.text.toString().toDouble()
             )
 
-            val file = File("/")
-
-            val reqFile: RequestBody = RequestBody.create(MediaType.parse("image/*"), file)
-            val body = MultipartBody.Part.createFormData("upload", file.getName(), reqFile)
-
-            service.crear("Bearer " + token, form).enqueue(object : Callback<DtoAeronaveSinFoto> {
-                override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
-                    if (response.code() == 201) {
-                        id = UUID.fromString(response.body()?.id)
-                        service.addFoto("Bearer " + token, body, id).enqueue(object : Callback<DtoAeronaveResp> {
-                            override fun onResponse(call: Call<DtoAeronaveResp>, response: Response<DtoAeronaveResp>) {
-                                if (response.code() == 201) {
-                                    matricula.text.clear()
-                                    marca.text.clear()
-                                    modelo.text.clear()
-                                    motor.text.clear()
-                                    potencia.text.clear()
-                                    autonomia.text.clear()
-                                    min.text.clear()
-                                    max.text.clear()
-                                    crucero.text.clear()
-
-                                    finish()
-
-                                }
-                            }
-
-                            override fun onFailure(call: Call<DtoAeronaveResp>, t: Throwable) {
-                                Log.i("Error", "Error")
-                                Log.d("Error", t.message!!)
-                            }
-                        })
-
-                    } else if (response.code() == 404) {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+            if(!edit){
+                service.crear("Bearer " + token, form).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                    override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
+                        if (response.code() == 201) {
+                            (ctx as RegistroAeronaveActivity).finish()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                        Log.i("Error", "Error")
+                        Log.d("Error", t.message!!)
+                    }
+                })
+            }else{
+                service.editar("Bearer " + token, form, id).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                    override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
+                        if (response.code() == 200) {
+                            (ctx as RegistroAeronaveActivity).finish()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                        Log.i("Error", "Error")
+                        Log.d("Error", t.message!!)
+                    }
+                })
+            }
+
+
 
         })
+
+        btnCancel.setOnClickListener(View.OnClickListener { (ctx as RegistroAeronaveActivity).finish() })
 
 
     }
