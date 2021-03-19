@@ -44,7 +44,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://aoa-school.herokuapp.com/aeronave/8670cd0b-0f23-410a-8621-5790e8df95a0/WOktPLOEW1eOsCL",
+							"raw": "https://aoa-school.herokuapp.com/aeronave/8854dec6-09b3-4a55-882a-4f66e8d672c6/n",
 							"protocol": "https",
 							"host": [
 								"aoa-school",
@@ -53,8 +53,8 @@
 							],
 							"path": [
 								"aeronave",
-								"8670cd0b-0f23-410a-8621-5790e8df95a0",
-								"WOktPLOEW1eOsCL"
+								"8854dec6-09b3-4a55-882a-4f66e8d672c6",
+								"n"
 							]
 						}
 					},
@@ -76,7 +76,7 @@
 							]
 						},
 						"url": {
-							"raw": "https://aoa-school.herokuapp.com/aeronave/cfc36a2d-2a93-42a0-8b25-368ccdc2f531",
+							"raw": "https://aoa-school.herokuapp.com/aeronave/6ac4cc06-0072-49e5-b354-8115c2f6e773",
 							"protocol": "https",
 							"host": [
 								"aoa-school",
@@ -85,7 +85,7 @@
 							],
 							"path": [
 								"aeronave",
-								"cfc36a2d-2a93-42a0-8b25-368ccdc2f531"
+								"6ac4cc06-0072-49e5-b354-8115c2f6e773"
 							]
 						}
 					},
@@ -97,7 +97,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://aoa-school.herokuapp.com/aeronave/foto/8670cd0b-0f23-410a-8621-5790e8df95a0/7LZGYLRvj",
+							"raw": "https://aoa-school.herokuapp.com/aeronave/foto/6ac4cc06-0072-49e5-b354-8115c2f6e773/n91WINCnrsm47cs",
 							"protocol": "https",
 							"host": [
 								"aoa-school",
@@ -107,8 +107,8 @@
 							"path": [
 								"aeronave",
 								"foto",
-								"8670cd0b-0f23-410a-8621-5790e8df95a0",
-								"7LZGYLRvj"
+								"6ac4cc06-0072-49e5-b354-8115c2f6e773",
+								"n91WINCnrsm47cs"
 							]
 						}
 					},
