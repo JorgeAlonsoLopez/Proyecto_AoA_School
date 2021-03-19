@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"matricula\" : \"\",\r\n    \"marca\" : \"\",\r\n    \"modelo\" : \"\",\r\n    \"motor\" : \"\",\r\n    \"potencia\" : 0.0,\r\n    \"autonomia\" : 0,\r\n    \"velMax\" : 0,\r\n    \"velMin\" : 0,\r\n    \"velCru\" : 0  \r\n}",
+							"raw": "{\r\n    \"matricula\" : \"EC-215\",\r\n    \"marca\" : \"Tecnam\",\r\n    \"modelo\" : \"P96\",\r\n    \"motor\" : \"Rotax 912\",\r\n    \"potencia\" : 100.0,\r\n    \"autonomia\" : 885,\r\n    \"velMax\" : 214,\r\n    \"velMin\" : 64,\r\n    \"velCru\" : 150  \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -44,7 +44,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://aoa-school.herokuapp.com/aeronave/05fca441-2e66-43e0-9875-45cefd38f2e4/m2UnwodxTI4eCjm",
+							"raw": "https://aoa-school.herokuapp.com/aeronave/8670cd0b-0f23-410a-8621-5790e8df95a0/WOktPLOEW1eOsCL",
 							"protocol": "https",
 							"host": [
 								"aoa-school",
@@ -53,8 +53,8 @@
 							],
 							"path": [
 								"aeronave",
-								"05fca441-2e66-43e0-9875-45cefd38f2e4",
-								"m2UnwodxTI4eCjm"
+								"8670cd0b-0f23-410a-8621-5790e8df95a0",
+								"WOktPLOEW1eOsCL"
 							]
 						}
 					},
@@ -86,6 +86,29 @@
 							"path": [
 								"aeronave",
 								"cfc36a2d-2a93-42a0-8b25-368ccdc2f531"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar foto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://aoa-school.herokuapp.com/aeronave/foto/8670cd0b-0f23-410a-8621-5790e8df95a0/7LZGYLRvj",
+							"protocol": "https",
+							"host": [
+								"aoa-school",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"aeronave",
+								"foto",
+								"8670cd0b-0f23-410a-8621-5790e8df95a0",
+								"7LZGYLRvj"
 							]
 						}
 					},
@@ -268,7 +291,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"tdomin\",\r\n    \"password\" : 1234,\r\n    \"email\" : \"tdomin@email.com\",\r\n    \"telefono\" : \"684752985\",\r\n    \"nombreCompleto\" : \"Tania Dominguez\",\r\n    \"fechaNacimiento\" : \"03/05/1991\",\r\n    \"tarjetaCredito\" :  \"1254 1598 9854 7852\"\r\n}",
+							"raw": "{\r\n    \"username\" : \"\",\r\n    \"password\" : \"1234\",\r\n    \"email\" : \"\",\r\n    \"telefono\" : \"684752985\",\r\n    \"nombreCompleto\" : \"Tania Dominguez\",\r\n    \"fechaNacimiento\" : \"03/05/1991\",\r\n    \"tarjetaCredito\" :  \"1254 1598 9854 7852\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -835,7 +858,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkMzU1NzVkZC1jYWQ4LTQ5MmYtYjk3Mi1iMGExYmZjMTFjMDYiLCJleHAiOjE2MTY0Mjk5OTgsImlhdCI6MTYxNjE3MDc5OCwicmVmcmVzaCI6ZmFsc2UsImZ1bGxuYW1lIjoiQWxiZXJ0byBHb256YWxleiIsInJvbGVzIjoiQURNSU4ifQ.UrY9WZwwbhuPn0mRSTfm8kcUtF_dcCL-D20T59nmHMw22EH0Vg7Ko9afdC_WMxIkhubf9SdOBeS9xwavRV2A_A",
 				"type": "string"
 			}
 		]
