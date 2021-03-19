@@ -64,6 +64,7 @@
     <string name="text_horas">Horas : </string>
     <string name="text_eliminar">Eliminar</string>
     <string name="text_alta_baja">Dar de alta/baja</string>
+    <string name="text_mantenimiento">Cambiar operatividad</string>
     <string name="text_editar">editar</string>
     <string name="text_piloto">Piloto : </string>
     <string name="text_registrar_aeronave">Registrar aeronave</string>

@@ -81,9 +81,9 @@
         android:id="@+id/text_potencia_detalle_aeronave_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
         android:layout_marginStart="96dp"
         android:text="0"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_motor_detalle_aeronave_admin"
         app:layout_constraintStart_toEndOf="@+id/text_motor_detalle_aeronave_admin"
         app:layout_constraintTop_toTopOf="@+id/text_motor_detalle_aeronave_admin"
@@ -209,45 +209,58 @@
         android:id="@+id/btn_estado_aeronave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/text_alta_baja"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_operativo_aeronave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:text="@string/text_mantenimiento"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_redirect_form_aeronave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_redirect_form_aeronave" />
 
     <Button
         android:id="@+id/btn_eliminar_aeronave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="76dp"
         android:text="@string/text_eliminar"
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_estado_aeronave"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/btn_estado_aeronave"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_estado_aeronave" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/text_estado_detalle_aeronave_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/textEstado"
+        android:layout_marginTop="20dp"
+        android:text="Estado"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView18"
         app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
-        android:id="@+id/text_estado_detalle_aeronave_admin"
+        android:id="@+id/text_operatividad_detalle_aeronave_admin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:text="X"
+        android:layout_marginEnd="76dp"
+        android:text="Operatividad"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="@+id/textView8"
+        android:textStyle="bold"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/text_estado_detalle_aeronave_admin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_estado_detalle_aeronave_admin"
         app:layout_constraintVertical_bias="0.0" />
 
 
