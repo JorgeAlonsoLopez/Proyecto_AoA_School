@@ -40,6 +40,11 @@ class UserController(
         return ResponseEntity.status(HttpStatus.OK).body(service.detalle(id))
     }
 
+    @GetMapping("usuario/piloto/{id}")
+    fun detallePiloto(@PathVariable id: UUID) : ResponseEntity<DtoPilot> {
+        return ResponseEntity.status(HttpStatus.OK).body(service.detallePiloto(id))
+    }
+
     @PutMapping("usuario/{id}/est")
     fun cambiarEstado(@PathVariable id: UUID): ResponseEntity<DtoUserInfoSpeci> {
         return ResponseEntity.status(HttpStatus.OK).body(service.cambiarEstado(id, pilotoService))
@@ -67,8 +72,9 @@ class UserController(
     }
 
 
-
-
-
+    @PutMapping("usuario/licencia/{id}")
+    fun licencia(@PathVariable id: UUID): ResponseEntity<Any> {
+        return ResponseEntity.ok().body(service.licencia(id))
+    }
 
 }

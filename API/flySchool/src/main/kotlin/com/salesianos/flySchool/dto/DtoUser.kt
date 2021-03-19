@@ -81,6 +81,7 @@ data class DtoPilot(
     var telefono : String,
     var nombreCompleto : String,
     var fechaNacimiento : LocalDate,
+    var tarjeta : String,
     var horas: Double,
     var licencia: Boolean,
     var alta: Boolean
@@ -88,7 +89,7 @@ data class DtoPilot(
 )
 
 fun Piloto.toGetDtoUserInfoSpeciPilot():DtoPilot{
-    return DtoPilot(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento, horas, licencia, alta)
+    return DtoPilot(id!!, username, password, email, telefono, nombreCompleto, fechaNacimiento, tarjetaCredito ,horas, licencia, alta)
 
 }
 
@@ -96,8 +97,11 @@ data class DtoUserEdit(
     var email : String,
     var telefono : String,
     var nombreCompleto : String,
-    var fechaNacimiento : String
+    var fechaNacimiento : String,
+    var tarjeta : String
 )
+
+
 
 
 

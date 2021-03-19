@@ -80,6 +80,11 @@ class UsuarioService(
             .orElseThrow { UserSearchNotFoundException(id.toString()) }
     }
 
+    fun detallePiloto( id: UUID) : DtoPilot {
+        return PilotoServ.findById(id).map { it.toGetDtoUserInfoSpeciPilot() }
+            .orElseThrow { UserSearchNotFoundException(id.toString()) }
+    }
+
     fun cambiarEstado(id: UUID, pilotoService: PilotoService): DtoUserInfoSpeci? {
 
         return pilotoService.findById(id)
@@ -90,7 +95,7 @@ class UsuarioService(
     }
 
     fun editar(user: DtoUserEdit, id: UUID): DtoUserInfoSpeci? {
-
+        if(user.tarjeta == ""){
         return this.findById(id)
             .map { fromRepo ->
                 fromRepo.email = user.email
@@ -99,6 +104,17 @@ class UsuarioService(
                 fromRepo.fechaNacimiento = LocalDate.of((user.fechaNacimiento.split("/")[2]).toInt(),(user.fechaNacimiento.split("/")[1]).toInt(),(user.fechaNacimiento.split("/")[0]).toInt())
                 this.save(fromRepo).toGetDtoUserInfoSpeci()
             }.orElseThrow { UserModifNotFoundException(id.toString()) }
+        }else{
+            return PilotoServ.findById(id)
+                .map { fromRepo ->
+                    fromRepo.email = user.email
+                    fromRepo.nombreCompleto = user.nombreCompleto
+                    fromRepo.telefono = user.telefono
+                    fromRepo.fechaNacimiento = LocalDate.of((user.fechaNacimiento.split("/")[2]).toInt(),(user.fechaNacimiento.split("/")[1]).toInt(),(user.fechaNacimiento.split("/")[0]).toInt())
+                    fromRepo.tarjetaCredito = user.tarjeta
+                    PilotoServ.save(fromRepo).toGetDtoUserInfoSpeci()
+                }.orElseThrow { UserSearchNotFoundException(id.toString()) }
+        }
     }
 
     fun editPassword(passw: DtoPassword,user: Usuario): Boolean {
@@ -126,6 +142,17 @@ class UsuarioService(
             (newUser.fechaNacimiento.split("/")[1]).toInt(),(newUser.fechaNacimiento.split("/")[0]).toInt())
         return this.create(newUser, fecNac).map { it.toGetDtoUserInfoSpeci() }
 
+
+    }
+
+    fun licencia(id: UUID){
+        var piloto = PilotoServ.findById(id).map { it }
+            .orElseThrow { UserSearchNotFoundException(id.toString()) }
+
+        if(!piloto.licencia){
+            piloto.licencia = true
+        }
+        PilotoServ.edit(piloto)
 
     }
 

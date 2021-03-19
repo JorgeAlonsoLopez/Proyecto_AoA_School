@@ -4,15 +4,26 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/tiempoFragment"
+            android:icon="@drawable/ic_baseline_wb_sunny_24"
+            android:title="@string/menu_tiempo" />
+
+        <item
+            android:id="@+id/listadoUsuariosMainFragment3"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+            android:title="@string/menu_listado_usuarios" />
+
         <item
             android:id="@+id/detalleUsuarioFragment"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_detalle" />
 
         <item
-            android:id="@+id/tiempoFragment"
-            android:icon="@drawable/ic_baseline_wb_sunny_24"
-            android:title="@string/menu_tiempo" />
+            android:id="@+id/passwordFragment"
+            android:icon="@drawable/ic_baseline_vpn_key_24"
+            android:title="@string/menu_password" />
         
     </group>
 </menu>
