@@ -117,47 +117,28 @@ class EditarUsuarioActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener(View.OnClickListener {
 
-            if(nombre.text.toString().isNotBlank() && email.text.toString().isNotBlank() && telef.text.toString().isNotBlank() && fecha.text.toString().isNotBlank()) {
-                    if (adm!!) {
-                        form = DtoUserEdit(email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), "")
-                    } else {
-                        form = DtoUserEdit(email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), tarjeta.text.toString())
-                    }
-
-                    service.editarUsuario("Bearer " + token, form, id).enqueue(object :
-                        Callback<DtoUserInfoSpeci> {
-                        override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
-                        ) {
-                            if (response.code() == 200) {
-                                Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
-                                object : CountDownTimer(2000, 1000) {
-                                    override fun onFinish() {
-                                        nombre.text.clear()
-                                        telef.text.clear()
-                                        fecha.text.clear()
-                                        email.text.clear()
-                                        tarjeta.text.clear()
-                                        val intent = Intent(ctx, MenuActivity::class.java)
-                                        startActivity(intent)
-                                    }
-
-                                    override fun onTick(millisUntilFinished: Long) {
-                                    }
-                                }.start()
-                            } else {
-                                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
-                            }
-                        }
-
-                        override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
-                            Log.i("Error", "Error")
-                            Log.d("Error", t.message!!)
-                        }
-                    })
-
-            }else{
-                Toast.makeText(applicationContext, getString(R.string.aviso_campos), Toast.LENGTH_SHORT).show()
+            if (adm!!) {
+                form = DtoUserEdit(email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), "")
+            } else {
+                form = DtoUserEdit(email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), tarjeta.text.toString())
             }
+
+            service.editarUsuario("Bearer " + token, form, id).enqueue(object :
+                Callback<DtoUserInfoSpeci> {
+                override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
+                ) {
+                    if (response.code() == 200) {
+                        Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
+                        (ctx as EditarUsuarioActivity).finish()
+                    } else {
+                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
+                    Log.i("Error", "Error")
+                    Log.d("Error", t.message!!)
+                }
+            })
 
         })
 

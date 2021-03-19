@@ -58,8 +58,6 @@ class MainActivity : AppCompatActivity() {
                             putString("TOKEN", response.body()?.token)
                             commit()
                         }
-                        username.text.clear()
-                        password.text.clear()
                         val intent = Intent(ctx, MenuActivity::class.java)
                         startActivity(intent)
                     }else if (response.code() == 401){

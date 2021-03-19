@@ -8,7 +8,7 @@ data class DTOFotoUrl(
 )
 
 data class DtoAeronaveSinFoto(
-        val id: UUID,
+        val id: String,
         var matricula : String,
         var marca : String,
         var modelo : String,
@@ -23,7 +23,7 @@ data class DtoAeronaveSinFoto(
 )
 
 data class DtoAeronavePeq(
-        val id: UUID,
+        val id: String,
         var matricula : String,
         var marca : String,
         var modelo : String,
@@ -33,7 +33,7 @@ data class DtoAeronavePeq(
 
 
 data class DtoAeronaveResp(
-        val id:UUID,
+        val id:String,
         var matricula : String,
         var marca : String,
         var modelo : String,

@@ -58,5 +58,9 @@ class ListaUsuariosViewModel(application : Application) : AndroidViewModel(appli
         })
     }
 
+    fun reloadUsuarios() {
+        getUsuarios()
+    }
+
 
 }

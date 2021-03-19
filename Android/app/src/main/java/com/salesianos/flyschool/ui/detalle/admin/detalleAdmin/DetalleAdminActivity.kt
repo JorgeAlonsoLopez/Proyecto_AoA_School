@@ -27,6 +27,11 @@ class DetalleAdminActivity : AppCompatActivity() {
     lateinit var ctx: Context
     lateinit var token: String
     lateinit var id : UUID
+    lateinit var nombre : TextView
+    lateinit var user : TextView
+    lateinit var fecha : TextView
+    lateinit var telef : TextView
+    lateinit var email : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,14 +51,27 @@ class DetalleAdminActivity : AppCompatActivity() {
             token = sharedPref.getString("TOKEN", "")!!
         }
 
-        var nombre : TextView = findViewById(R.id.text_detalle_admin_admin_nombre)
-        var user : TextView = findViewById(R.id.text_detalle_admin_admin_nombreUsuario)
-        var fecha : TextView = findViewById(R.id.text_detalle_admin_admin_fecha)
-        var telef : TextView = findViewById(R.id.text_detalle_admin_admin_telefono)
-        var email : TextView = findViewById(R.id.text_detalle_admin_admin_email)
+        nombre = findViewById(R.id.text_detalle_admin_admin_nombre)
+        user = findViewById(R.id.text_detalle_admin_admin_nombreUsuario)
+        fecha = findViewById(R.id.text_detalle_admin_admin_fecha)
+        telef = findViewById(R.id.text_detalle_admin_admin_telefono)
+        email = findViewById(R.id.text_detalle_admin_admin_email)
 
         var btnEditar : Button = findViewById(R.id.btn_editar_admin)
 
+        cargarDatos()
+
+        btnEditar.setOnClickListener(View.OnClickListener {
+            val intent = Intent(ctx, EditarUsuarioActivity::class.java).apply {
+                putExtra("id", id.toString())
+                putExtra("admin", true)
+            }
+            ctx.startActivity(intent)
+        })
+
+        }
+
+    fun cargarDatos(){
         service.detalle("Bearer "+token, id).enqueue(object : Callback<DtoUserInfoSpeci> {
             override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
             ) {
@@ -70,14 +88,11 @@ class DetalleAdminActivity : AppCompatActivity() {
                 Log.d("Error", t.message!!)
             }
         })
+    }
 
-        btnEditar.setOnClickListener(View.OnClickListener {
-            val intent = Intent(ctx, EditarUsuarioActivity::class.java).apply {
-                putExtra("id", id.toString())
-                putExtra("admin", true)
-            }
-            ctx.startActivity(intent)
-        })
+    override fun onResume() {
+        super.onResume()
+        cargarDatos()
+    }
 
-        }
 }

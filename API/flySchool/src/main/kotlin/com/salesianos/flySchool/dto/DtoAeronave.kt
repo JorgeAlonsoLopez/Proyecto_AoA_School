@@ -51,7 +51,13 @@ data class DtoAeronaveResp(
 )
 
 fun Aeronave.toGetDtoAeronaveResp():DtoAeronaveResp{
-    return DtoAeronaveResp(id!!, matricula, marca , modelo, motor, potencia, autonomia, velMax, velMin, velCru, mantenimiento!!, alta, foto!!.toGetDTOFotoUrl() )
+    if(foto == null){
+        var dto = DTOFotoUrl("https://i.imgur.com/xVwZqCr.png", "n")
+        return DtoAeronaveResp(id!!, matricula, marca , modelo, motor, potencia, autonomia, velMax, velMin, velCru, mantenimiento!!, alta, dto )
+    }else{
+        return DtoAeronaveResp(id!!, matricula, marca , modelo, motor, potencia, autonomia, velMax, velMin, velCru, mantenimiento!!, alta, foto!!.toGetDTOFotoUrl() )
+    }
+
 }
 
 data class DtoAeronaveSinFoto(

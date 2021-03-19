@@ -60,28 +60,45 @@ class AeronaveService(
         registroService: RegistroService, servicioFoto: FotoAeronaveServicio): Boolean {
         var aeronave = this.findById(id).orElseThrow{ListaAeronaveNotFoundException(Aeronave::class.java)}
         if (registroService.countByAeronave(aeronave) == 0 ){
-            var foto = aeronave.foto!!
-            if (aeronave.foto!!.deleteHash==hash){
-                imgurStorageService.delete(hash)
-                aeronave.deleteFoto()
-                servicioFoto.delete(foto)
+            if(aeronave.foto == null){
                 this.delete(aeronave)
+            }else{
+                var foto = aeronave.foto!!
+                if (aeronave.foto!!.deleteHash==hash){
+                    imgurStorageService.delete(hash)
+                    aeronave.deleteFoto()
+                    servicioFoto.delete(foto)
+                    this.delete(aeronave)
+                }
             }
             return true
         }else{
             return false
         }
+    }
 
+    fun deleteFoto(hash: String, id: UUID, imgurStorageService: ImgurStorageService,
+               registroService: RegistroService, servicioFoto: FotoAeronaveServicio): Unit {
+        var aeronave = this.findById(id).orElseThrow{ListaAeronaveNotFoundException(Aeronave::class.java)}
+        if(aeronave.foto != null){
+            var foto = aeronave.foto!!
+            if (aeronave.foto!!.deleteHash==hash){
+                imgurStorageService.delete(hash)
+                aeronave.deleteFoto()
+                servicioFoto.delete(foto)
+                this.edit(aeronave)
+            }
+        }
 
     }
 
-    fun listado(): List<DtoAeronaveSinFoto> {
-        return this.findAll().map{it.toGetDtoAeronaveSinFoto()}
+    fun listado(): List<DtoAeronaveResp> {
+        return this.findAll().map{it.toGetDtoAeronaveResp()}
             .takeIf { it.isNotEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 
-    fun listadoAlta(): List<DtoAeronaveSinFoto> {
-        return this.findAllAlta()?.map{it.toGetDtoAeronaveSinFoto()}
+    fun listadoAlta(): List<DtoAeronaveResp> {
+        return this.findAllAlta()?.map{it.toGetDtoAeronaveResp()}
             .takeIf { !it.isNullOrEmpty() } ?: throw ListaAeronaveNotFoundException(Aeronave::class.java)
     }
 

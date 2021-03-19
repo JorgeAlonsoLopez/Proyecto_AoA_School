@@ -30,6 +30,16 @@ class DetallePilotoActivity : AppCompatActivity() {
     lateinit var id : UUID
     var licenciaPilot : Boolean = true
     var altaPilot : Boolean = true
+    lateinit var nombre : TextView
+    lateinit var user : TextView
+    lateinit var fecha : TextView
+    lateinit var telef : TextView
+    lateinit var email : TextView
+    lateinit var licenc : TextView
+    lateinit var tarj : TextView
+    lateinit var btnEditar : Button
+    lateinit var alta_baja : Button
+    lateinit var licencia : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,46 +59,19 @@ class DetallePilotoActivity : AppCompatActivity() {
             token = sharedPref.getString("TOKEN", "")!!
         }
 
-        var nombre : TextView = findViewById(R.id.text_detalle_admin_piloto_nombre)
-        var user : TextView = findViewById(R.id.text_detalle_admin_piloto_nombreUsuario)
-        var fecha : TextView = findViewById(R.id.textView21text_detalle_admin_piloto_fecha)
-        var telef : TextView = findViewById(R.id.text_detalle_admin_piloto_telefono)
-        var email : TextView = findViewById(R.id.text_detalle_admin_piloto_email)
-        var licenc : TextView = findViewById(R.id.text_detalle_admin_piloto_licencia)
-        var tarj : TextView = findViewById(R.id.text_detalle_admin_piloto_tarjeta)
+        nombre = findViewById(R.id.text_detalle_admin_piloto_nombre)
+        user = findViewById(R.id.text_detalle_admin_piloto_nombreUsuario)
+        fecha = findViewById(R.id.textView21text_detalle_admin_piloto_fecha)
+        telef = findViewById(R.id.text_detalle_admin_piloto_telefono)
+        email = findViewById(R.id.text_detalle_admin_piloto_email)
+        licenc = findViewById(R.id.text_detalle_admin_piloto_licencia)
+        tarj = findViewById(R.id.text_detalle_admin_piloto_tarjeta)
 
-        var btnEditar : Button = findViewById(R.id.btn_editar_piloto)
-        var alta_baja : Button = findViewById(R.id.btn_alta_baja_piloto)
-        var licencia : Button = findViewById(R.id.btn_habilitar_licencia)
+        btnEditar = findViewById(R.id.btn_editar_piloto)
+        alta_baja = findViewById(R.id.btn_alta_baja_piloto)
+        licencia = findViewById(R.id.btn_habilitar_licencia)
 
-        service.detallePiloto("Bearer "+token, id).enqueue(object : Callback<DtoPilot> {
-            override fun onResponse(call: Call<DtoPilot>, response: Response<DtoPilot>
-            ) {
-                if (response.code() == 200) {
-                    nombre.text = response.body()?.nombreCompleto
-                    user.text = response.body()?.username
-                    fecha.text = response.body()?.fechaNacimiento
-                    telef.text = response.body()?.telefono
-                    email.text = response.body()?.email
-                    tarj.text = response.body()?.tarjeta
-                    licenciaPilot = response.body()?.licencia!!
-                    altaPilot = response.body()?.alta!!
-                    if(licenciaPilot){
-                        licenc.text = getString(R.string.con_licencia)
-                    }else{
-                        licenc.text = getString(R.string.sin_licencia)
-                    }
-                    if(licenciaPilot){
-                        licencia.visibility = View.INVISIBLE
-                    }
-                    if(altaPilot) alta_baja.text = getString(R.string.dar_de_baja) else alta_baja.text = getString(R.string.dar_de_alta)
-                }
-            }
-            override fun onFailure(call: Call<DtoPilot>, t: Throwable) {
-                Log.i("Error", "Error")
-                Log.d("Error", t.message!!)
-            }
-        })
+        cargarDatos()
 
         btnEditar.setOnClickListener(View.OnClickListener {
             val intent = Intent(ctx, EditarUsuarioActivity::class.java).apply {
@@ -132,4 +115,41 @@ class DetallePilotoActivity : AppCompatActivity() {
 
 
     }
+
+    fun cargarDatos(){
+        service.detallePiloto("Bearer "+token, id).enqueue(object : Callback<DtoPilot> {
+            override fun onResponse(call: Call<DtoPilot>, response: Response<DtoPilot>
+            ) {
+                if (response.code() == 200) {
+                    nombre.text = response.body()?.nombreCompleto
+                    user.text = response.body()?.username
+                    fecha.text = response.body()?.fechaNacimiento
+                    telef.text = response.body()?.telefono
+                    email.text = response.body()?.email
+                    tarj.text = response.body()?.tarjeta
+                    licenciaPilot = response.body()?.licencia!!
+                    altaPilot = response.body()?.alta!!
+                    if(licenciaPilot){
+                        licenc.text = getString(R.string.con_licencia)
+                    }else{
+                        licenc.text = getString(R.string.sin_licencia)
+                    }
+                    if(licenciaPilot){
+                        licencia.visibility = View.INVISIBLE
+                    }
+                    if(altaPilot) alta_baja.text = getString(R.string.dar_de_baja) else alta_baja.text = getString(R.string.dar_de_alta)
+                }
+            }
+            override fun onFailure(call: Call<DtoPilot>, t: Throwable) {
+                Log.i("Error", "Error")
+                Log.d("Error", t.message!!)
+            }
+        })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        cargarDatos()
+    }
+
 }

@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FlySchool">
-        <activity android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity" />
+        <activity android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"/>
         <activity android:name=".ui.detalle.admin.registroProducto.RegistroProductoActivity" />
         <activity android:name=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity" />
         <activity android:name=".ui.detalle.admin.registroUsuario.RegistroUsuariosActivity" />

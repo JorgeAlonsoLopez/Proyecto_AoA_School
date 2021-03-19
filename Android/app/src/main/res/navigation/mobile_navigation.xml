@@ -26,4 +26,9 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.password.PasswordFragment"
         android:label="fragment_password"
         tools:layout="@layout/fragment_password" />
+    <fragment
+        android:id="@+id/listadoAeronavesMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesMainFragment"
+        android:label="ListadoAeronavesMainFragment"
+        tools:layout="@layout/fragment_listado_aeronaves_main"/>
 </navigation>

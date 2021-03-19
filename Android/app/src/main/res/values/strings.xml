@@ -30,6 +30,7 @@
     <string name="menu_listado_usuarios">Listado de usuarios</string>
     <string name="menu_password">Cambiar la contraseña</string>
     <string name="menu_new_user">Registrar usuario</string>
+    <string name="menu_listado_aeronaves">Listado de aeronaves</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
@@ -51,9 +52,9 @@
     <string name="text_matricula">Matrícula : </string>
     <string name="hp">(HP)</string>
     <string name="autonomia">Autonomía (Km) : </string>
-    <string name="VelMax">Velocidad máxima (Km) : </string>
-    <string name="VelMin">Velocidad mínima (Km) : </string>
-    <string name="VelCruc">Velocidad de crucero (Km) : </string>
+    <string name="VelMax">Velocidad máxima (Km/h) : </string>
+    <string name="VelMin">Velocidad mínima (Km/h) : </string>
+    <string name="VelCruc">Velocidad de crucero (Km/h) : </string>
     <string name="btn_hora_inicio">Seleccione la hora del despege</string>
     <string name="btn_hora_fin">Seleccione la hora del aterrizaje</string>
     <string name="btn_envio_registro_horas">Crear registro de vuelo</string>
@@ -63,6 +64,7 @@
     <string name="text_horas">Horas : </string>
     <string name="text_eliminar">Eliminar</string>
     <string name="text_alta_baja">Dar de alta/baja</string>
+    <string name="text_mantenimiento">Cambiar operatividad</string>
     <string name="text_editar">editar</string>
     <string name="text_piloto">Piloto : </string>
     <string name="text_registrar_aeronave">Registrar aeronave</string>
@@ -120,7 +122,7 @@
     <string name="aviso_repetipo">No se puede registrar a un usuario con un nombre de usuario repatido</string>
     <string name="aviso_radio">No se olvide de seleecionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
-    <string name="aviso_error">Ha ocurrido un error, revise los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
+    <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
 
 
 

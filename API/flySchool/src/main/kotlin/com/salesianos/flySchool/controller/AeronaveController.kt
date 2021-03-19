@@ -48,13 +48,18 @@ class ImagenController(
 
     }
 
+    @DeleteMapping("/foto/{id}/{hash}")
+    fun deleteFoto(@PathVariable hash: String, @PathVariable id: UUID) {
+        ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.deleteFoto(hash, id, imgurStorageService,registroService, servicioFoto))
+    }
+
     @GetMapping("/")
-    fun listado(): ResponseEntity<List<DtoAeronaveSinFoto>> {
+    fun listado(): ResponseEntity<List<DtoAeronaveResp>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.listado())
     }
 
     @GetMapping("/alta")
-    fun listadoAlta(): ResponseEntity<List<DtoAeronaveSinFoto>> {
+    fun listadoAlta(): ResponseEntity<List<DtoAeronaveResp>> {
         return ResponseEntity.status(HttpStatus.OK).body(service.listadoAlta())
     }
 

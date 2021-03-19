@@ -82,53 +82,44 @@ class RegistroUsuariosActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener(View.OnClickListener {
 
-            if(user.text.toString().isNotBlank() && nombre.text.toString().isNotBlank() && email.text.toString().isNotBlank() && telef.text.toString().isNotBlank() && fecha.text.toString().isNotBlank()) {
-                if(radioAdmin.isChecked || radioPilot.isChecked){
-                    if (radioAdmin.isChecked) {
-                        form = DtoUserForm(user.text.toString(), "1234", email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), "")
-                    } else {
-                        form = DtoUserForm(user.text.toString(), "1234", email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), tarjeta.text.toString())
-                    }
+        if(radioAdmin.isChecked || radioPilot.isChecked){
+            if (radioAdmin.isChecked) {
+                form = DtoUserForm(user.text.toString(), "1234", email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), "")
+            } else {
+                form = DtoUserForm(user.text.toString(), "1234", email.text.toString(), telef.text.toString(), nombre.text.toString(), fecha.text.toString(), tarjeta.text.toString())
+            }
 
-                    service.nuevoUsuario("Bearer " + token, form).enqueue(object : Callback<DtoUserInfoSpeci> {
-                        override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
-                        ) {
-                            if (response.code() == 201) {
-                                Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
-                                object : CountDownTimer(2000, 1000) {
-                                    override fun onFinish() {
-                                        nombre.text.clear()
-                                        user.text.clear()
-                                        telef.text.clear()
-                                        fecha.text.clear()
-                                        email.text.clear()
-                                        tarjeta.text.clear()
-                                        val intent = Intent(ctx, MenuActivity::class.java)
-                                        startActivity(intent)
-                                    }
-
-                                    override fun onTick(millisUntilFinished: Long) {
-                                    }
-                                }.start()
-                            } else if (response.code() == 404) {
-                                Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
-                            } else {
-                                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+            service.nuevoUsuario("Bearer " + token, form).enqueue(object : Callback<DtoUserInfoSpeci> {
+                override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
+                ) {
+                    if (response.code() == 201) {
+                        Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
+                        object : CountDownTimer(2000, 1000) {
+                            override fun onFinish() {
+                                val intent = Intent(ctx, MenuActivity::class.java)
+                                startActivity(intent)
                             }
-                        }
 
-                        override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
-                            Log.i("Error", "Error")
-                            Log.d("Error", t.message!!)
-                        }
-                    })
-                }else{
-                    Toast.makeText(applicationContext, getString(R.string.aviso_radio), Toast.LENGTH_SHORT).show()
+                            override fun onTick(millisUntilFinished: Long) {
+                            }
+                        }.start()
+                    } else if (response.code() == 404) {
+                        Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+                    }
                 }
 
-            }else{
-                Toast.makeText(applicationContext, getString(R.string.aviso_campos), Toast.LENGTH_SHORT).show()
-            }
+                override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
+                    Log.i("Error", "Error")
+                    Log.d("Error", t.message!!)
+                }
+            })
+        }else{
+            Toast.makeText(applicationContext, getString(R.string.aviso_radio), Toast.LENGTH_SHORT).show()
+        }
+
+
 
         })
 
