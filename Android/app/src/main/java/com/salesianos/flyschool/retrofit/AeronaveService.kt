@@ -1,6 +1,7 @@
 package com.salesianos.flyschool.retrofit
 
 import com.salesianos.flyschool.poko.*
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.util.*
@@ -12,7 +13,7 @@ interface AeronaveService {
 
     @Multipart
     @POST("aeronave/{id}")
-    fun addFoto(@Header("Authorization") token: String, @Body file: Multipart,
+    fun addFoto(@Header("Authorization") token: String, @Part file: MultipartBody.Part,
                 @Path("id") id : UUID): Call<DtoAeronaveResp>
 
     @DELETE("aeronave/{id}/{hash}")

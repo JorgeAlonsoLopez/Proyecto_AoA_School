@@ -57,4 +57,8 @@ class ListaAeronavesViewModel(application : Application) : AndroidViewModel(appl
             }
         })
     }
+
+    fun reloadAeronaves() {
+        getAeronaves()
+    }
 }

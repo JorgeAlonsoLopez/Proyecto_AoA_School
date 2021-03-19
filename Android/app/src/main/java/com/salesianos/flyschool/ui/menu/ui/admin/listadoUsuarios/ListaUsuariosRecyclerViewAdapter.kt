@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
@@ -32,8 +33,10 @@ class ListaUsuariosRecyclerViewAdapter(
         holder.tipo.text = item.tipo
         if(item.alta){
             holder.baja.visibility = INVISIBLE
+            holder.alta.visibility = VISIBLE
         }else{
             holder.alta.visibility = INVISIBLE
+            holder.baja.visibility = VISIBLE
         }
 
         holder.nombre.setOnClickListener(View.OnClickListener {

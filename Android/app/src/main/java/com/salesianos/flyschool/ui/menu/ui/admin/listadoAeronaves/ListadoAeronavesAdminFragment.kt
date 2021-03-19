@@ -50,11 +50,12 @@ class ListadoAeronavesAdminFragment : Fragment() {
                 listaNueva -> list = listaNueva
             adapterAeronaves.setData(listaNueva)
         })
-
-
-
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.reloadAeronaves()
     }
 
 }

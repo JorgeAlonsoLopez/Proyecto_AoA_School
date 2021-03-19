@@ -130,20 +130,12 @@ class EditarUsuarioActivity : AppCompatActivity() {
                         ) {
                             if (response.code() == 200) {
                                 Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
-                                object : CountDownTimer(2000, 1000) {
-                                    override fun onFinish() {
-                                        nombre.text.clear()
-                                        telef.text.clear()
-                                        fecha.text.clear()
-                                        email.text.clear()
-                                        tarjeta.text.clear()
-                                        val intent = Intent(ctx, MenuActivity::class.java)
-                                        startActivity(intent)
-                                    }
-
-                                    override fun onTick(millisUntilFinished: Long) {
-                                    }
-                                }.start()
+                                nombre.text.clear()
+                                telef.text.clear()
+                                fecha.text.clear()
+                                email.text.clear()
+                                tarjeta.text.clear()
+                                (ctx as EditarUsuarioActivity).finish()
                             } else {
                                 Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
                             }

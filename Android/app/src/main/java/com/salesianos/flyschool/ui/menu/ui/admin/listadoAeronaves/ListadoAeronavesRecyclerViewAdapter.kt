@@ -43,8 +43,10 @@ class ListadoAeronavesRecyclerViewAdapter(
 
         if(item.mantenimiento){
             holder.operativo.visibility = View.INVISIBLE
+            holder.mantenimiento.visibility = View.VISIBLE
         }else{
             holder.mantenimiento.visibility = View.INVISIBLE
+            holder.operativo.visibility = View.VISIBLE
         }
 
         holder.imagen.setOnClickListener(View.OnClickListener {

@@ -54,4 +54,9 @@ class ListaUsuariosFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.reloadUsuarios()
+    }
+
 }
