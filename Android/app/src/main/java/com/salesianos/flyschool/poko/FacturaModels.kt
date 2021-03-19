@@ -14,7 +14,7 @@ data class DtoFacturaCliente(
 
 data class DtoFacturaAdmin(
 
-        val id: UUID,
+        val id: String,
         var precioTotal : Double,
         var fecha : LocalDateTime,
         var producto: DtoProductoEspecf,

@@ -31,6 +31,7 @@
     <string name="menu_password">Cambiar la contraseña</string>
     <string name="menu_new_user">Registrar usuario</string>
     <string name="menu_listado_aeronaves">Listado de aeronaves</string>
+    <string name="menu_listado_productos">Listado de productos</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
@@ -115,7 +116,7 @@
     <string name="text_nombre_usuario">Nombre de usuario</string>
     <string name="text_tarjeta">Tarjeta de credito</string>
     <string name="text_tarjeta_con">Tarjeta de crédito : </string>
-
+    <string name="text_mas_opt">Más información</string>
 
 
     <string name="aviso_exito">La operación se ha procesado con éxito</string>
@@ -123,7 +124,6 @@
     <string name="aviso_radio">No se olvide de seleecionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
     <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
-
 
 
 </resources>

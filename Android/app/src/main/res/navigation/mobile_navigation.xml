@@ -31,4 +31,9 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesMainFragment"
         android:label="ListadoAeronavesMainFragment"
         tools:layout="@layout/fragment_listado_aeronaves_main"/>
+    <fragment
+        android:id="@+id/listaProductosMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosMainFragment"
+        android:label="ListaProductosMainFragment"
+        tools:layout="@layout/fragment_lista_productos_main"/>
 </navigation>

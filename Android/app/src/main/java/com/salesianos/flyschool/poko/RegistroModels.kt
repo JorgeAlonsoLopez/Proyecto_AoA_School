@@ -10,7 +10,7 @@ data class DtoRegistroForm(
 )
 
 data class DtoRegistro(
-        val id: UUID,
+        val id: String,
         var fecha : LocalDate,
         var horaInicio : LocalTime,
         var horaFin : LocalTime,

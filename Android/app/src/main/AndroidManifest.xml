@@ -3,7 +3,9 @@
     package="com.salesianos.flyschool">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-feature android:name="android.hardware.type.watch" />
+
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,16 +17,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FlySchool">
-        <activity android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity"
-            android:windowSoftInputMode="adjustPan|adjustResize"/>
+        <activity android:name=".ui.detalle.admin.detalleProducto.DetalleProductoActivity"></activity>
+        <activity
+            android:name=".ui.detalle.admin.registroAeronave.RegistroAeronaveActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize" />
         <activity android:name=".ui.detalle.admin.registroProducto.RegistroProductoActivity" />
         <activity android:name=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity" />
         <activity android:name=".ui.detalle.admin.registroUsuario.RegistroUsuariosActivity" />
         <activity android:name=".ui.detalle.piloto.registroVuelo.RegistroVueloActivity" />
-
-
-
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,7 +36,6 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
 
         <activity android:name=".ui.detalle.admin.detallePiloto.DetallePilotoActivity" />
         <activity android:name=".ui.detalle.admin.detalleAeronave.DetalleAeronaveActivity" />

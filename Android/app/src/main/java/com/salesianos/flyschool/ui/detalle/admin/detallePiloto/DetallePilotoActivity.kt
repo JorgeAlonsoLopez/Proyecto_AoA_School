@@ -44,6 +44,7 @@ class DetallePilotoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_piloto)
+        supportActionBar!!.hide()
 
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -61,7 +62,7 @@ class DetallePilotoActivity : AppCompatActivity() {
 
         nombre = findViewById(R.id.text_detalle_admin_piloto_nombre)
         user = findViewById(R.id.text_detalle_admin_piloto_nombreUsuario)
-        fecha = findViewById(R.id.textView21text_detalle_admin_piloto_fecha)
+        fecha = findViewById(R.id.text_detalle_admin_piloto_fecha)
         telef = findViewById(R.id.text_detalle_admin_piloto_telefono)
         email = findViewById(R.id.text_detalle_admin_piloto_email)
         licenc = findViewById(R.id.text_detalle_admin_piloto_licencia)
@@ -121,9 +122,10 @@ class DetallePilotoActivity : AppCompatActivity() {
             override fun onResponse(call: Call<DtoPilot>, response: Response<DtoPilot>
             ) {
                 if (response.code() == 200) {
+                    val fechaN = response.body()?.fechaNacimiento?.split("-")?.get(2)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(1)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(0)
                     nombre.text = response.body()?.nombreCompleto
                     user.text = response.body()?.username
-                    fecha.text = response.body()?.fechaNacimiento
+                    fecha.text = fechaN
                     telef.text = response.body()?.telefono
                     email.text = response.body()?.email
                     tarj.text = response.body()?.tarjeta
