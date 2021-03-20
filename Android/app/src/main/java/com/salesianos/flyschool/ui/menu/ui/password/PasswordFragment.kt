@@ -65,8 +65,8 @@ class PasswordFragment : Fragment() {
 
             var dtoPassword = DtoPassword(pass1.text.toString(), pass2.text.toString())
 
-            service.contrasenya("Bearer "+token, dtoPassword).enqueue(object : Callback<Any> {
-                override fun onResponse(call: Call<Any>, response: Response<Any>
+            service.contrasenya("Bearer "+token, dtoPassword).enqueue(object : Callback<Unit> {
+                override fun onResponse(call: Call<Unit>, response: Response<Unit>
                 ) {
                     if (response.code() == 200) {
                         Toast.makeText(activity?.applicationContext,"El cambio ha ocurrido de forma satisfactoria.", Toast.LENGTH_SHORT).show()
@@ -74,7 +74,7 @@ class PasswordFragment : Fragment() {
                         Toast.makeText(activity?.applicationContext,"Las dos contraseña no son idénticas.", Toast.LENGTH_SHORT).show()
                     }
                 }
-                override fun onFailure(call: Call<Any>, t: Throwable) {
+                override fun onFailure(call: Call<Unit>, t: Throwable) {
                     Log.i("Error", "Error")
                     Log.d("Error", t.message!!)
                 }

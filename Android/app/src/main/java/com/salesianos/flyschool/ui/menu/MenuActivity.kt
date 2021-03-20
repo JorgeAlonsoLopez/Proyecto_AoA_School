@@ -57,6 +57,7 @@ class MenuActivity : AppCompatActivity() {
         val facturasAdmin = navView.menu.findItem(R.id.listaFacturasFragment)
         val registrosAdmin = navView.menu.findItem(R.id.listaRegistrosFragment)
         val aeronavesPiloto = navView.menu.findItem(R.id.pilotoAeronavesFragment)
+        val compra = navView.menu.findItem(R.id.comprasFragment)
 
         usuarios.isVisible = true
         productosAdmin.isVisible = true
@@ -64,7 +65,7 @@ class MenuActivity : AppCompatActivity() {
         facturasAdmin.isVisible = true
         registrosAdmin.isVisible = true
         aeronavesPiloto.isVisible = true
-
+        compra.isVisible = true
 
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -84,6 +85,7 @@ class MenuActivity : AppCompatActivity() {
                     nombreCompleto.text = response.body()?.nombreCompleto
                     if(response.body()?.rol!! == "ADMIN"){
                         aeronavesPiloto.isVisible = false
+                        compra.isVisible = false
 
                     }else{
                         aeronavesAdmin.isVisible = false
@@ -104,7 +106,7 @@ class MenuActivity : AppCompatActivity() {
             setOf(
             R.id.tiempoFragment, R.id.detalleUsuarioFragment, R.id.listadoUsuariosMainFragment3, R.id.passwordFragment,
                 R.id.listadoAeronavesMainFragment, R.id.listaProductosMainFragment, R.id.listaFacturasFragment, R.id.listaRegistrosFragment,
-                    R.id.pilotoAeronavesFragment
+                    R.id.pilotoAeronavesFragment, R.id.comprasFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
