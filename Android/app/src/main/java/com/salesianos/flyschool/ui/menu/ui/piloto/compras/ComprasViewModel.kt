@@ -71,6 +71,17 @@ class ComprasViewModel(application : Application) : AndroidViewModel(application
                             ) {
                                 if (response.code() == 200) {
                                     licencia = response.body()?.licencia!!
+                                    service.listadoAlta("Bearer "+token, licencia).enqueue(object: Callback<List<DtoProductoEspecf>> {
+                                        override fun onResponse(call: Call<List<DtoProductoEspecf>>, response: Response<List<DtoProductoEspecf>>) {
+                                            if(response.code() == 200) {
+                                                _productos.value = response.body()
+                                            }
+                                        }
+                                        override fun onFailure(call: Call<List<DtoProductoEspecf>>, t: Throwable) {
+                                            Log.i("Error","ha entrado en onFailure")
+                                            Log.d("Error",t.message!!)
+                                        }
+                                    })
                                 }
                             }
                             override fun onFailure(call: Call<DtoPilot>, t: Throwable) {
@@ -84,18 +95,6 @@ class ComprasViewModel(application : Application) : AndroidViewModel(application
             override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
                 Log.i("Error", "Error")
                 Log.d("Error", t.message!!)
-            }
-        })
-
-        service.listadoAlta("Bearer "+token, licencia).enqueue(object: Callback<List<DtoProductoEspecf>> {
-            override fun onResponse(call: Call<List<DtoProductoEspecf>>, response: Response<List<DtoProductoEspecf>>) {
-                if(response.code() == 200) {
-                    _productos.value = response.body()
-                }
-            }
-            override fun onFailure(call: Call<List<DtoProductoEspecf>>, t: Throwable) {
-                Log.i("Error","ha entrado en onFailure")
-                Log.d("Error",t.message!!)
             }
         })
     }

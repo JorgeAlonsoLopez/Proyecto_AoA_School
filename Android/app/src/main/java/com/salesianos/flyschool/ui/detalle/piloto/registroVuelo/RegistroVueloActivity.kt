@@ -30,6 +30,7 @@ class RegistroVueloActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_vuelo)
+
         btnInicio=findViewById(R.id.btn_hora_inicio);
         btnFin=findViewById(R.id.btn_hora_fin);
         txtInicio=findViewById(R.id.input_hora_inicio);

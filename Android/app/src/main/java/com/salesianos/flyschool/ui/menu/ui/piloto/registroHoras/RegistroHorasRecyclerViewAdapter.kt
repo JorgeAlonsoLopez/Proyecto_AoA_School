@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoRegistro
@@ -22,7 +23,16 @@ class RegistroHorasRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-       // holder.idView.text = item.fecha
+        var date = item.fecha.split("-")[2]+"/"+item.fecha.split("-")[1]+"/"+item.fecha.split("-")[0]
+        holder.fecha.text = date
+        holder.inicio.text = item.horaInicio.subSequence(0,5).toString()
+        holder.fin.text = item.horaFin.subSequence(0,5).toString()
+        holder.matricula.text = item.aeronave.matricula
+        if(item.tipoLibre){
+            holder.tipo.text = "Vuelo libre"
+        }else{
+            holder.tipo.text = "Vuelo de instrucción"
+        }
 
     }
 
@@ -36,7 +46,10 @@ class RegistroHorasRecyclerViewAdapter(
     }
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-       // val idView: TextView = view.findViewById(R.id.item_number)
-
+        val fecha: TextView = view.findViewById(R.id.text_fecha_lista_registro_value)
+        val tipo: TextView = view.findViewById(R.id.text_tipo_lista_registro_value)
+        val inicio: TextView = view.findViewById(R.id.text_inicio_lista_registro_value)
+        val fin: TextView = view.findViewById(R.id.text_fin_lista_registro_value)
+        val matricula: TextView = view.findViewById(R.id.Text_registro_horas_matricula_value)
     }
 }

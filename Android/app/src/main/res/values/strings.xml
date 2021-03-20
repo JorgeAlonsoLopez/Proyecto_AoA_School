@@ -35,6 +35,7 @@
     <string name="menu_listado_facturas">Facturas de clientes</string>
     <string name="menu_listado_facturas_cliente">Facturas</string>
     <string name="menu_listado_registros">Registros de clientes</string>
+    <string name="menu_registro">Registros de vuelos</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
