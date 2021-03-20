@@ -36,6 +36,7 @@ class DetalleAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_admin)
+        supportActionBar!!.hide()
 
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -76,9 +77,10 @@ class DetalleAdminActivity : AppCompatActivity() {
             override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
             ) {
                 if (response.code() == 200) {
+                    val fechaN = response.body()?.fechaNacimiento?.split("-")?.get(2)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(1)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(0)
                     nombre.text = response.body()?.nombreCompleto
                     user.text = response.body()?.username
-                    fecha.text = response.body()?.fechaNacimiento
+                    fecha.text = fechaN
                     telef.text = response.body()?.telefono
                     email.text = response.body()?.email
                 }

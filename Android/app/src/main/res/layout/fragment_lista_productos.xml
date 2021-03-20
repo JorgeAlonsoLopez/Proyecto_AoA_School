@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="360dp"
-        android:layout_height="270dp">
+        android:layout_height="220dp">
 
 
         <TextView
@@ -30,8 +30,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="16sp"
             android:text="@string/text_horas"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/text_nombre_paquete_admin_value"
             app:layout_constraintTop_toBottomOf="@+id/text_nombre_paquete_admin_value" />
 
@@ -50,10 +50,10 @@
         <TextView
             android:id="@+id/text_tipo_paquete_admin_value"
             android:layout_width="wrap_content"
-            android:textSize="16sp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="108dp"
             android:text="Tipo"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView9"
@@ -64,8 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textSize="16sp"
             android:text="@string/text_precio"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/textView9"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -74,8 +74,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:textSize="16sp"
             android:text="@string/text_euro"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/text_precio_producto_admin_value"
             app:layout_constraintStart_toEndOf="@+id/text_precio_producto_admin_value"
             app:layout_constraintTop_toTopOf="@+id/text_precio_producto_admin_value"
@@ -86,8 +86,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:textSize="16sp"
             android:text="0"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
             app:layout_constraintStart_toEndOf="@+id/textView15"
             app:layout_constraintTop_toTopOf="@+id/textView15"
@@ -106,32 +106,25 @@
         <Button
             android:id="@+id/btn_redirec_editar_producto"
             android:layout_width="117dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/text_editar"
-            app:layout_constraintBottom_toTopOf="@+id/btn_estado_producto"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btn_redirec_eliminar_producto"
-            android:layout_width="118dp"
-            android:layout_height="48dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/text_eliminar"
-            app:layout_constraintBottom_toTopOf="@+id/btn_estado_producto"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/btn_estado_producto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
-            android:text="@string/text_alta_baja"
+            android:text="@string/text_editar"
+            app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_redirec_opt_producto"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/text_mas_opt"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_redirec_editar_producto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_redirec_editar_producto" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

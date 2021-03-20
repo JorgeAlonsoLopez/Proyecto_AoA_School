@@ -31,4 +31,19 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesMainFragment"
         android:label="ListadoAeronavesMainFragment"
         tools:layout="@layout/fragment_listado_aeronaves_main"/>
+    <fragment
+        android:id="@+id/listaProductosMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosMainFragment"
+        android:label="ListaProductosMainFragment"
+        tools:layout="@layout/fragment_lista_productos_main"/>
+    <fragment
+        android:id="@+id/listaFacturasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturasFragment"
+        android:label="fragment_lista_facturas_list"
+        tools:layout="@layout/fragment_lista_facturas_list" />
+    <fragment
+        android:id="@+id/listaRegistrosFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaRegistros.ListaRegistrosFragment"
+        android:label="fragment_lista_registros_list"
+        tools:layout="@layout/fragment_lista_registros_list" />
 </navigation>

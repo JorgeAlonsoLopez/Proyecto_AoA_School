@@ -54,6 +54,7 @@ class DetalleAeronaveActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle_aeronave)
+        supportActionBar!!.hide()
 
         retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)

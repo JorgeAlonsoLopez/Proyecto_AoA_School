@@ -7,16 +7,16 @@ import java.util.*
 data class DtoFacturaCliente(
 
         var precioTotal : Double,
-        var fecha : LocalDateTime,
+        var fecha : String,
         var producto: DtoProductoEspecf,
         var tipo: Boolean
 )
 
 data class DtoFacturaAdmin(
 
-        val id: UUID,
+        val id: String,
         var precioTotal : Double,
-        var fecha : LocalDateTime,
+        var fecha : String,
         var producto: DtoProductoEspecf,
         var comprador: DtoPilot,
         var tipo: Boolean

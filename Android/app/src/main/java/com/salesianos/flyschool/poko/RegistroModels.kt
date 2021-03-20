@@ -10,10 +10,10 @@ data class DtoRegistroForm(
 )
 
 data class DtoRegistro(
-        val id: UUID,
-        var fecha : LocalDate,
-        var horaInicio : LocalTime,
-        var horaFin : LocalTime,
+        val id: String,
+        var fecha : String,
+        var horaInicio : String,
+        var horaFin : String,
         var tipoLibre : Boolean,
         var piloto: DtoPilot,
         var aeronave: DtoAeronavePeq

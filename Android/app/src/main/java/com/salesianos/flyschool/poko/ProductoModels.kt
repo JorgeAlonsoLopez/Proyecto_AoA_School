@@ -10,7 +10,7 @@ data class DtoProductoForm(
 )
 
 data class DtoProductoEspecf(
-        val id: UUID,
+        val id: String,
         var tipoLibre : Boolean,
         var nombre : String,
         var precio : Double,
