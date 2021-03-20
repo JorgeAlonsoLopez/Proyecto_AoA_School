@@ -51,6 +51,20 @@ class MenuActivity : AppCompatActivity() {
         var nombreUsuario : TextView = headerView.findViewById(R.id.text_menu_user)
         var nombreCompleto : TextView = headerView.findViewById(R.id.text_menu_nombre)
 
+        val usuarios = navView.menu.findItem(R.id.listadoUsuariosMainFragment3)
+        val aeronavesAdmin = navView.menu.findItem(R.id.listadoAeronavesMainFragment)
+        val productosAdmin = navView.menu.findItem(R.id.listaProductosMainFragment)
+        val facturasAdmin = navView.menu.findItem(R.id.listaFacturasFragment)
+        val registrosAdmin = navView.menu.findItem(R.id.listaRegistrosFragment)
+        val aeronavesPiloto = navView.menu.findItem(R.id.pilotoAeronavesFragment)
+
+        usuarios.isVisible = true
+        productosAdmin.isVisible = true
+        aeronavesAdmin.isVisible = true
+        facturasAdmin.isVisible = true
+        registrosAdmin.isVisible = true
+        aeronavesPiloto.isVisible = true
+
 
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -68,6 +82,16 @@ class MenuActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     nombreUsuario.text = response.body()?.username
                     nombreCompleto.text = response.body()?.nombreCompleto
+                    if(response.body()?.rol!! == "ADMIN"){
+                        aeronavesPiloto.isVisible = false
+
+                    }else{
+                        aeronavesAdmin.isVisible = false
+                        facturasAdmin.isVisible = false
+                        productosAdmin.isVisible = false
+                        registrosAdmin.isVisible = false
+                        usuarios.isVisible = false
+                    }
                 }
             }
             override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
@@ -76,13 +100,11 @@ class MenuActivity : AppCompatActivity() {
             }
         })
 
-
-
-
         appBarConfiguration = AppBarConfiguration(
             setOf(
             R.id.tiempoFragment, R.id.detalleUsuarioFragment, R.id.listadoUsuariosMainFragment3, R.id.passwordFragment,
-                R.id.listadoAeronavesMainFragment, R.id.listaProductosMainFragment, R.id.listaFacturasFragment, R.id.listaRegistrosFragment
+                R.id.listadoAeronavesMainFragment, R.id.listaProductosMainFragment, R.id.listaFacturasFragment, R.id.listaRegistrosFragment,
+                    R.id.pilotoAeronavesFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

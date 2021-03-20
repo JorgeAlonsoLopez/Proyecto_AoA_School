@@ -1,34 +1,64 @@
 package com.salesianos.flyschool.ui.menu.ui.piloto.pilotoAeronaves
 
+import android.app.Application
+import android.content.Context
+import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.salesianos.flyschool.R
+import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoRegistro
+import com.salesianos.flyschool.retrofit.AeronaveService
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class PilotoAeronavesViewModel : ViewModel() {
+class PilotoAeronavesViewModel(application : Application) : AndroidViewModel(application) {
 
-    var baseUrl = "https://api.themoviedb.org/3/"
+    val baseUrl = "https://aoa-school.herokuapp.com/"
     var retrofit: Retrofit
- //   var filmService: FilmService
+    var service: AeronaveService
+    var token:String = ""
+    private var _aeronaves = MutableLiveData<List<DtoAeronaveResp>>()
+    private val context = getApplication<Application>().applicationContext
 
-    private var _registros = MutableLiveData<List<DtoRegistro>>()
-
-    val actores: LiveData<List<DtoRegistro>>
-        get() = _registros
+    val aeronaves: LiveData<List<DtoAeronaveResp>>
+        get() = _aeronaves
 
     init {
-        _registros.value = listOf()
+        val sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_name), Context.MODE_PRIVATE)
+        if (sharedPref != null) {
+            token = sharedPref.getString("TOKEN", "")!!
+        }
+
+        _aeronaves.value = listOf()
         retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-      //  filmService = retrofit.create(FilmService::class.java)
-        getRegistros()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        service = retrofit.create(AeronaveService::class.java)
+        getAeronaves()
     }
 
-    private fun getRegistros() {
+    private fun getAeronaves() {
+        service.listadoAlta("Bearer "+token).enqueue(object: Callback<List<DtoAeronaveResp>> {
+            override fun onResponse(call: Call<List<DtoAeronaveResp>>, response: Response<List<DtoAeronaveResp>>) {
+                if(response.code() == 200) {
+                    _aeronaves.value = response.body()
+                }
+            }
+            override fun onFailure(call: Call<List<DtoAeronaveResp>>, t: Throwable) {
+                Log.i("Error","ha entrado en onFailure")
+                Log.d("Error",t.message!!)
+            }
+        })
+    }
 
+    fun reloadAeronaves() {
+        getAeronaves()
     }
 }

@@ -46,4 +46,9 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaRegistros.ListaRegistrosFragment"
         android:label="fragment_lista_registros_list"
         tools:layout="@layout/fragment_lista_registros_list" />
+    <fragment
+        android:id="@+id/pilotoAeronavesFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.pilotoAeronaves.PilotoAeronavesFragment"
+        android:label="fragment_piloto_aeronaves_list"
+        tools:layout="@layout/fragment_piloto_aeronaves_list" />
 </navigation>
