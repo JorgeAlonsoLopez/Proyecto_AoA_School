@@ -24,6 +24,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import kotlin.math.floor
+import kotlin.math.round
 
 
 class RegistroHorasMainFragment : Fragment() {
@@ -71,9 +73,13 @@ class RegistroHorasMainFragment : Fragment() {
                             override fun onResponse(call: Call<DtoPilot>, response: Response<DtoPilot>
                             ) {
                                 if (response.code() == 200) {
-                                    horas.text = response.body()?.horas!!.toString()
+                                    tiempo = response.body()?.horas!!
                                     permiso = response.body()?.alta!!
                                     if (!permiso) boton.isEnabled = false;
+                                    var hor = tiempo.toInt()
+                                    var min = (((tiempo - hor)*60).toInt())
+                                    var min2 = if (min < 10 ) "0"+min.toString() else min.toString()
+                                    horas.text = hor.toString()+":"+min2
                                 }
                             }
                             override fun onFailure(call: Call<DtoPilot>, t: Throwable) {
