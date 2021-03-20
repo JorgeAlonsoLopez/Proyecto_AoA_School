@@ -26,6 +26,16 @@
             android:title="@string/menu_listado_productos" />
 
         <item
+            android:id="@+id/listaFacturasFragment"
+            android:icon="@drawable/ic_factura"
+            android:title="@string/menu_listado_facturas" />
+
+        <item
+            android:id="@+id/listaRegistrosFragment"
+            android:icon="@drawable/ic_baseline_timer_24"
+            android:title="@string/menu_listado_registros" />
+
+        <item
             android:id="@+id/detalleUsuarioFragment"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_detalle" />

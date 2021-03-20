@@ -22,7 +22,6 @@ class ListaProductosFragment : Fragment() {
     lateinit var list: List<DtoProductoEspecf>
     lateinit var adapterProductos: ListaProductosRecyclerViewAdapter
     lateinit var viewModel: ListaProductosViewModel
-    var token: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,11 +32,6 @@ class ListaProductosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lista_productos_list, container, false)
-
-        val sharedPref = this.activity?.getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
-        if (sharedPref != null) {
-            token = sharedPref.getString("TOKEN", "")!!
-        }
 
         viewModel = ViewModelProvider(this).get(ListaProductosViewModel::class.java)
 
