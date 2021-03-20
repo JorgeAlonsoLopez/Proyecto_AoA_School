@@ -41,6 +41,11 @@
             android:title="@string/menu_listado_facturas" />
 
         <item
+            android:id="@+id/facturasFragment"
+            android:icon="@drawable/ic_factura"
+            android:title="@string/menu_listado_facturas_cliente" />
+
+        <item
             android:id="@+id/listaRegistrosFragment"
             android:icon="@drawable/ic_baseline_timer_24"
             android:title="@string/menu_listado_registros" />

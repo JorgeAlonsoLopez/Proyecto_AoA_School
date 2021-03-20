@@ -6,8 +6,6 @@
     android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.LisatFacturasFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.menu.ui.admin.listaFactura.ListaFacturasFragment"
     tools:listitem="@layout/fragment_lista_facturas" />

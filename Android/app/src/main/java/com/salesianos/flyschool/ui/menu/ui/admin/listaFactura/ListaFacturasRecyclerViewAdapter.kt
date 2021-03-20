@@ -25,7 +25,7 @@ class ListaFacturasRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        var fechaNac =item.fecha.split("-")?.get(2)+"/"+item.fecha.split("-")?.get(1)+"/"+item.fecha.split("-")?.get(0)
+        var fechaNac =item.fecha.subSequence(8,10).toString()+"/"+item.fecha.subSequence(5,7).toString()+"/"+item.fecha.subSequence(0,4).toString()+" "+item.fecha.subSequence(11,16).toString()
         holder.nombre.text = item.producto.nombre
         holder.precio.text = item.producto.precio.toString()
         holder.comprador.text = item.comprador.nombreCompleto
@@ -53,7 +53,5 @@ class ListaFacturasRecyclerViewAdapter(
         val fecha: TextView = view.findViewById(R.id.date_compra_factura_value)
         val tipo: TextView = view.findViewById(R.id.text_tipo_factura_value)
         val precio: TextView = view.findViewById(R.id.text_precio_factura_value)
-
-
     }
 }

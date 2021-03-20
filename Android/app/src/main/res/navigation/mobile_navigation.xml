@@ -56,4 +56,9 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.piloto.compras.ComprasFragment"
         android:label="fragment_compras_list"
         tools:layout="@layout/fragment_compras_list" />
+    <fragment
+        android:id="@+id/facturasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.facturas.FacturasFragment"
+        android:label="fragment_facturas_list"
+        tools:layout="@layout/fragment_facturas_list" />
 </navigation>
