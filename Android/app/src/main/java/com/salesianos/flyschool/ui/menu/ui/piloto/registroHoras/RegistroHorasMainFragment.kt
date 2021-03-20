@@ -107,9 +107,5 @@ class RegistroHorasMainFragment : Fragment() {
 
     }
 
-    private fun cargar(t : String, v : TextView){
-        v.text = t
-    }
-
 
 }

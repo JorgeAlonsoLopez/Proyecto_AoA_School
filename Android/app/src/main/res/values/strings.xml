@@ -128,6 +128,8 @@
     <string name="aviso_radio">No se olvide de seleecionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
     <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
+    <string name="texto_hora_inicio">Seleccione la hora de despege</string>
+    <string name="texto_hora_aterrizaje">Seleccione la hora de aterrizaje</string>
 
 
 </resources>
