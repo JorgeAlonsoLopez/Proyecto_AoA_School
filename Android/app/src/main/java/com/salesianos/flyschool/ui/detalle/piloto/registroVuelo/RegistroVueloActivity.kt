@@ -90,30 +90,34 @@ class RegistroVueloActivity : AppCompatActivity() {
         })
 
         btn.setOnClickListener(View.OnClickListener {
-
-            val dto = DtoRegistroForm(txtInicio.text.toString(), txtFin.text.toString())
-            if(time(txtInicio.text.toString(), txtFin.text.toString(), tiempo)){
-                if(difference(txtInicio.text.toString(), txtFin.text.toString())){
-                    id = UUID.fromString(lista.filter{select == it.matricula}[0].id)
-                    serviceRegistro.crear("Bearer "+token, dto, id).enqueue(object : Callback<DtoRegistro> {
-                        override fun onResponse(call: Call<DtoRegistro>, response: Response<DtoRegistro>
-                        ) {
-                            if (response.code() == 201) {
-                                Toast.makeText(ctx,"El registro se ha creado con exito", Toast.LENGTH_SHORT).show()
-                                finish()
+            if(txtInicio.text.isNotBlank() && txtFin.text.isNotBlank()){
+                val dto = DtoRegistroForm(txtInicio.text.toString(), txtFin.text.toString())
+                if(time(txtInicio.text.toString(), txtFin.text.toString(), tiempo)){
+                    if(difference(txtInicio.text.toString(), txtFin.text.toString())){
+                        id = UUID.fromString(lista.filter{select == it.matricula}[0].id)
+                        serviceRegistro.crear("Bearer "+token, dto, id).enqueue(object : Callback<DtoRegistro> {
+                            override fun onResponse(call: Call<DtoRegistro>, response: Response<DtoRegistro>
+                            ) {
+                                if (response.code() == 201) {
+                                    Toast.makeText(ctx,getString(R.string.regisrto_ok), Toast.LENGTH_SHORT).show()
+                                    finish()
+                                }
                             }
-                        }
-                        override fun onFailure(call: Call<DtoRegistro>, t: Throwable) {
-                            Log.i("Error", "Error")
-                            Log.d("Error", t.message!!)
-                        }
-                    })
+                            override fun onFailure(call: Call<DtoRegistro>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                    }else{
+                        Toast.makeText(ctx,getString(R.string.orden_horas), Toast.LENGTH_LONG).show()
+                    }
                 }else{
-                    Toast.makeText(ctx,"La hora de despege tiene que ser menor a la de aterrizaje", Toast.LENGTH_LONG).show()
+                    Toast.makeText(ctx, getString(R.string.insuficiencia_horas), Toast.LENGTH_LONG).show()
                 }
             }else{
-                Toast.makeText(ctx,"No tiene horas suficientes para registrar dicho vuelo. Compre más antes de poder registrarlo.", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
             }
+
         })
 
 
@@ -169,14 +173,5 @@ class RegistroVueloActivity : AppCompatActivity() {
         }
         return result
     }
-/*
-    override fun onNothingSelected(parent: AdapterView<*>?) {
-    }
-
-    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        select = parent?.getItemAtPosition(position) as String
-        Toast.makeText(applicationContext,select, Toast.LENGTH_SHORT).show()
-    }
-*/
 
 }

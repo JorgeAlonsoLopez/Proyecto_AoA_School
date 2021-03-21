@@ -1,5 +1,6 @@
 package com.salesianos.flyschool.ui.detalle.admin.detalleProducto
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -72,33 +73,63 @@ class DetalleProductoActivity : AppCompatActivity() {
         cargarDatos()
 
         eliminar.setOnClickListener(View.OnClickListener {
-            service.eliminar("Bearer "+token, id).enqueue(object : Callback<Unit> {
-                override fun onResponse(call: Call<Unit>, response: Response<Unit>
-                ) {
-                    if (response.code() == 204) {
-                        (ctx as DetalleProductoActivity).finish()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.delete_prodc))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<Unit>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.eliminar)) { view, _ ->
+                        service.eliminar("Bearer "+token, id).enqueue(object : Callback<Unit> {
+                            override fun onResponse(call: Call<Unit>, response: Response<Unit>
+                            ) {
+                                if (response.code() == 204) {
+                                    (ctx as DetalleProductoActivity).finish()
+                                }else if (response.code() == 400){
+                                    Toast.makeText(applicationContext, getString(R.string.delete_product), Toast.LENGTH_LONG).show()
+                                }
+                            }
+                            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
         })
 
         alta_baja.setOnClickListener(View.OnClickListener {
-            service.cambiarEstado("Bearer "+token, id).enqueue(object : Callback<DtoProductoEspecf> {
-                override fun onResponse(call: Call<DtoProductoEspecf>, response: Response<DtoProductoEspecf>
-                ) {
-                    if (response.code() == 200) {
-                        (ctx as DetalleProductoActivity).recreate()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.cambiar_estado_prod))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<DtoProductoEspecf>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.cambiar)) { view, _ ->
+                        service.cambiarEstado("Bearer "+token, id).enqueue(object : Callback<DtoProductoEspecf> {
+                            override fun onResponse(call: Call<DtoProductoEspecf>, response: Response<DtoProductoEspecf>
+                            ) {
+                                if (response.code() == 200) {
+                                    (ctx as DetalleProductoActivity).recreate()
+                                }
+                            }
+                            override fun onFailure(call: Call<DtoProductoEspecf>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
         })
 
 
@@ -112,8 +143,8 @@ class DetalleProductoActivity : AppCompatActivity() {
                     nombre.text = response.body()?.nombre
                     precio.text = response.body()?.precio.toString()
                     horas.text = response.body()?.horasVuelo.toString()
-                    if(response.body()?.tipoLibre!!) tipo.text = "Vuelo libre" else tipo.text = "Instrucción"
-                    if(response.body()?.alta!!) estado.text = "Dado de alta" else estado.text = "Dado de baja"
+                    if(response.body()?.tipoLibre!!) tipo.text = getString(R.string.text_vuelo_libre) else tipo.text = getString(R.string.text_instrucc)
+                    if(response.body()?.alta!!) estado.text = getString(R.string.dado_de_alta) else estado.text = getString(R.string.dado_de_baja)
                     if(response.body()?.alta!!) alta_baja.text = getString(R.string.dar_de_baja) else alta_baja.text = getString(R.string.dar_de_alta)
                 }
             }

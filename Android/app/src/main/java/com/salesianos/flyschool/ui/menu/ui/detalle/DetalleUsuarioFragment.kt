@@ -55,7 +55,7 @@ class DetalleUsuarioFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_detalle_usuario, container, false)
 
-        (activity as MenuActivity?)!!.supportActionBar!!.title = "Detalle del usuario"
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_detalle)
 
         val nombre: TextView = root.findViewById(R.id.text_detalle_usuario_nombre)
         val user: TextView = root.findViewById(R.id.text_detalle_usuario_nombreUsuario)
@@ -69,9 +69,10 @@ class DetalleUsuarioFragment : Fragment() {
             override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
             ) {
                 if (response.code() == 200) {
+                    val fechaN = response.body()?.fechaNacimiento?.split("-")?.get(2)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(1)+"/"+response.body()?.fechaNacimiento?.split("-")?.get(0)
                     user.text = response.body()?.username
                     nombre.text = response.body()?.nombreCompleto
-                    fecha.text = response.body()?.fechaNacimiento
+                    fecha.text = fechaN
                     email.text = response.body()?.email
                     telefono.text = response.body()?.telefono
                     id = UUID.fromString(response.body()?.id)

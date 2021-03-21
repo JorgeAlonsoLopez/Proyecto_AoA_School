@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoRegistro
+import com.salesianos.flyschool.ui.menu.MenuActivity
 import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturaViewModel
 import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturasRecyclerViewAdapter
 
@@ -30,6 +31,7 @@ class ListaRegistrosFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lista_registros_list, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_listado_registros)
 
         viewModel = ViewModelProvider(this).get(ListaRegistrosViewModel::class.java)
 

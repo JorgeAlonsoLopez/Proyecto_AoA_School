@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoRegistro
+import com.salesianos.flyschool.ui.menu.MenuActivity
 import com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListaAeronavesViewModel
 import com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesRecyclerViewAdapter
 import com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras.RegistroHorasRecyclerViewAdapter
@@ -36,6 +37,7 @@ class PilotoAeronavesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_piloto_aeronaves_list, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_listado_aeronaves)
 
         val sharedPref = this.activity?.getSharedPreferences(getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         if (sharedPref != null) {

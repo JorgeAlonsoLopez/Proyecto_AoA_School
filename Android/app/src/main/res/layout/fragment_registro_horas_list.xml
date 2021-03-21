@@ -5,7 +5,7 @@
     android:id="@+id/list"
     android:name="com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras.RegistroHorasFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="435dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.menu.ui.piloto.registroHoras.RegistroHorasFragment"
     tools:listitem="@layout/fragment_registro_horas" />

@@ -5,7 +5,7 @@
     android:id="@+id/list"
     android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesAdminFragment"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="505dp"
     android:background="#CCCCCC"
     android:paddingStart="16dp"
     android:paddingRight="16dp"

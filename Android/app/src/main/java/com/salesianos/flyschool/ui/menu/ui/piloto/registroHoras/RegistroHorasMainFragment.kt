@@ -18,6 +18,7 @@ import com.salesianos.flyschool.retrofit.FacturaService
 import com.salesianos.flyschool.retrofit.UsuarioService
 import com.salesianos.flyschool.ui.detalle.admin.registroProducto.RegistroProductoActivity
 import com.salesianos.flyschool.ui.detalle.piloto.registroVuelo.RegistroVueloActivity
+import com.salesianos.flyschool.ui.menu.MenuActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +43,7 @@ class RegistroHorasMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var root = inflater.inflate(R.layout.fragment_registro_horas_main, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_registro)
 
         val horas: TextView = root.findViewById(R.id.text_horas_disponibles_value)
         val boton: Button = root.findViewById(R.id.btn_direc_registro_vuelo)

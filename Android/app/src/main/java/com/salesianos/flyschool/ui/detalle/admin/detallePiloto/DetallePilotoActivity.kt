@@ -1,5 +1,6 @@
 package com.salesianos.flyschool.ui.detalle.admin.detallePiloto
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -83,35 +84,62 @@ class DetallePilotoActivity : AppCompatActivity() {
         })
 
         licencia.setOnClickListener(View.OnClickListener {
-            if(!licenciaPilot){
-                service.habilitarLicencia("Bearer "+token, id).enqueue(object : Callback<Any> {
-                    override fun onResponse(call: Call<Any>, response: Response<Any>
-                    ) {
-                        if (response.code() == 200) {
-                            (ctx as DetallePilotoActivity).recreate()
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.licencia))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
+                    }
+                    .setPositiveButton(getString(R.string.habili_lic)) { view, _ ->
+                        if(!licenciaPilot){
+                            service.habilitarLicencia("Bearer "+token, id).enqueue(object : Callback<Any> {
+                                override fun onResponse(call: Call<Any>, response: Response<Any>
+                                ) {
+                                    if (response.code() == 200) {
+                                        (ctx as DetallePilotoActivity).recreate()
+                                    }
+                                }
+                                override fun onFailure(call: Call<Any>, t: Throwable) {
+                                    Log.i("Error", "Error")
+                                    Log.d("Error", t.message!!)
+                                }
+                            })
                         }
+                        view.dismiss()
                     }
-                    override fun onFailure(call: Call<Any>, t: Throwable) {
-                        Log.i("Error", "Error")
-                        Log.d("Error", t.message!!)
-                    }
-                })
-            }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
         })
 
         alta_baja.setOnClickListener(View.OnClickListener {
-            service.estado("Bearer "+token, id).enqueue(object : Callback<DtoUserInfoSpeci> {
-                override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
-                ) {
-                    if (response.code() == 200) {
-                        (ctx as DetallePilotoActivity).recreate()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.cambiar_estado_pilot))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.cambiar)) { view, _ ->
+                        service.estado("Bearer "+token, id).enqueue(object : Callback<DtoUserInfoSpeci> {
+                            override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
+                            ) {
+                                if (response.code() == 200) {
+                                    (ctx as DetallePilotoActivity).recreate()
+                                }
+                            }
+                            override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
         })
 
 

@@ -117,6 +117,8 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
                         if (response.code() == 201) {
                             (ctx as RegistroAeronaveActivity).finish()
+                        }else{
+                            Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                         }
                     }
 
@@ -130,6 +132,8 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
                         if (response.code() == 200) {
                             (ctx as RegistroAeronaveActivity).finish()
+                        }else{
+                            Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                         }
                     }
 

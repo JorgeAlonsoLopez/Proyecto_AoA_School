@@ -54,7 +54,7 @@ class PasswordFragment : Fragment() {
         // Inflate the layout for this fragment
         var root = inflater.inflate(R.layout.fragment_password, container, false)
 
-        (activity as MenuActivity?)!!.supportActionBar!!.title = "Cambio de contraseña"
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_password)
 
         val pass1: EditText = root.findViewById(R.id.intup_new_passw)
         val pass2: EditText = root.findViewById(R.id.input_repetir_passw)
@@ -69,9 +69,9 @@ class PasswordFragment : Fragment() {
                 override fun onResponse(call: Call<Unit>, response: Response<Unit>
                 ) {
                     if (response.code() == 200) {
-                        Toast.makeText(activity?.applicationContext,"El cambio ha ocurrido de forma satisfactoria.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity?.applicationContext,getString(R.string.password_ok), Toast.LENGTH_SHORT).show()
                     }else if (response.code() == 400){
-                        Toast.makeText(activity?.applicationContext,"Las dos contraseña no son idénticas.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity?.applicationContext,getString(R.string.password_fail), Toast.LENGTH_SHORT).show()
                     }
                 }
                 override fun onFailure(call: Call<Unit>, t: Throwable) {
