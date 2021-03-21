@@ -31,7 +31,7 @@ class RegistroHorasRecyclerViewAdapter(
         if(item.tipoLibre){
             holder.tipo.text = "Vuelo libre"
         }else{
-            holder.tipo.text = "Vuelo de instrucción"
+            holder.tipo.text = "Enseñanza"
         }
 
     }

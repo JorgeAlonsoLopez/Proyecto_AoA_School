@@ -98,7 +98,7 @@ class RegistroHorasMainFragment : Fragment() {
 
         boton.setOnClickListener(View.OnClickListener {
                 val intent = Intent(activity, RegistroVueloActivity::class.java).apply {
-                    putExtra("id", id.toString())
+                    putExtra("tiempo", horas.text.toString())
                 }
                 startActivity(intent)
         })
