@@ -36,6 +36,7 @@ class RegistroVueloActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_vuelo)
+        supportActionBar!!.hide()
 
         var txtInicio : EditText = findViewById(R.id.input_hora_inicio);
         var txtFin : EditText = findViewById(R.id.input_hora_fin);
@@ -128,7 +129,13 @@ class RegistroVueloActivity : AppCompatActivity() {
         timePicker.show(supportFragmentManager, "timePicker")
     }
     private fun onTimeSelected(time: String, v:EditText) {
-        v.setText("$time")
+        var hor = time.split(":")[0].toInt()
+        var min = time.split(":")[1].toInt()
+        var h = ""
+        var m = ""
+        if(hor < 10) h = "0$hor" else h = hor.toString()
+        if(min < 10) m = "0$min" else m = min.toString()
+        v.setText(h+":"+m)
     }
 
     fun time(start: String, end: String, time :String): Boolean {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#8C8C8C"
+    android:background="#D8D8D8"
     android:orientation="horizontal"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
@@ -13,7 +13,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:cardCornerRadius="30dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="360dp"
@@ -80,7 +83,7 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="2dp"
                 android:text="@string/text_euro"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/text_precio_producto_admin_value"
@@ -92,7 +95,7 @@
                 android:id="@+id/text_precio_producto_admin_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="4dp"
                 android:text="0"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView15"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     tools:context=".ui.detalle.admin.editarUsuario.EditarUsuarioActivity">
 
     <TextView
@@ -132,8 +133,8 @@
         android:id="@+id/input_editar_usuario_fecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:clickable="false"
+        android:ems="10"
         android:focusable="false"
         app:layout_constraintEnd_toEndOf="@+id/textView26"
         app:layout_constraintHorizontal_bias="0.513"

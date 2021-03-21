@@ -5,7 +5,7 @@
     android:id="@+id/const_aero"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CCCCCC"
+    android:background="#D8D8D8"
     android:orientation="horizontal"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
@@ -13,6 +13,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        app:cardCornerRadius="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

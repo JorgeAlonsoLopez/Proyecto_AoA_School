@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     tools:context=".ui.detalle.admin.detallePiloto.DetallePilotoActivity">
 
 
@@ -11,12 +12,12 @@
             android:id="@+id/text_detalle_admin_piloto_nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="36dp"
             android:text="Nombre completo"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/testUsuario"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/text_detalle_admin_piloto_nombre"
             app:layout_constraintTop_toBottomOf="@+id/text_detalle_admin_piloto_nombre" />
@@ -35,9 +36,9 @@
             android:id="@+id/text_detalle_admin_piloto_nombreUsuario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="6dp"
             android:text="user"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -49,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/text_fechaNaci"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -58,9 +59,9 @@
             android:id="@+id/text_detalle_admin_piloto_fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="6dp"
             android:text="x/x/x"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView20"
             app:layout_constraintStart_toEndOf="@+id/textView20"
@@ -73,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/text_correo"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView20"
             app:layout_constraintTop_toBottomOf="@+id/textView20" />
@@ -84,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/test_telefono"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/text_detalle_admin_piloto_email"
             app:layout_constraintTop_toBottomOf="@+id/text_detalle_admin_piloto_email" />
@@ -95,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="x@y"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
@@ -104,14 +105,13 @@
             android:id="@+id/text_detalle_admin_piloto_telefono"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="6dp"
             android:text="123"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView23"
             app:layout_constraintStart_toEndOf="@+id/textView23"
-            app:layout_constraintTop_toTopOf="@+id/textView23"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="@+id/textView23" />
 
         <Button
             android:id="@+id/btn_editar_piloto"
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Licencia"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/text_detalle_admin_piloto_tarjeta" />
@@ -172,7 +172,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="@string/text_tarjeta_con"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView23"
             app:layout_constraintTop_toBottomOf="@+id/textView23" />
@@ -183,7 +183,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="0000 0000 0000 0000"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/textView35" />

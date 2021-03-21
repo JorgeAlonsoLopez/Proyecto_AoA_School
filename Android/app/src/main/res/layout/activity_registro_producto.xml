@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     tools:context=".ui.detalle.admin.registroProducto.RegistroProductoActivity">
 
     <TextView
@@ -32,13 +33,15 @@
             android:id="@+id/radio_new_product_ensen"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="@string/text_ensenyanza" />
+            android:text="@string/text_ensenyanza"
+            android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/radio_new_product_libre"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:text="@string/text_vuelo_libre" />
+            android:text="@string/text_vuelo_libre"
+            android:textSize="16sp" />
     </RadioGroup>
 
     <TextView

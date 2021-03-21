@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#A1A1A1"
+    android:background="#D8D8D8"
     android:orientation="horizontal"
     android:paddingStart="20dp"
     android:paddingTop="10dp"
@@ -14,6 +14,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardCornerRadius="30dp"
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="10dp">
 
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Tipo"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/text_nombre_paquete_value"
                 app:layout_constraintStart_toStartOf="@+id/text_nombre_paquete_value"
                 app:layout_constraintTop_toBottomOf="@+id/text_nombre_paquete_value" />
@@ -61,7 +62,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:text="@string/text_euro"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -74,7 +75,7 @@
                 android:id="@+id/text_precio_paquete_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="6dp"
                 android:text="0"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
