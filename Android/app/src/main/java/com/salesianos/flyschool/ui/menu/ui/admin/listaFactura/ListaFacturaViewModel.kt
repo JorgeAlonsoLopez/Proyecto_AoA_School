@@ -59,10 +59,5 @@ class ListaFacturaViewModel(application : Application) : AndroidViewModel(applic
         })
     }
 
-    fun reload() {
-        getFacturas()
-    }
-
-
 
 }

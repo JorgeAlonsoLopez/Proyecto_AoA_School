@@ -33,7 +33,9 @@
     <string name="menu_listado_aeronaves">Listado de aeronaves</string>
     <string name="menu_listado_productos">Listado de productos</string>
     <string name="menu_listado_facturas">Facturas de clientes</string>
+    <string name="menu_listado_facturas_cliente">Facturas</string>
     <string name="menu_listado_registros">Registros de clientes</string>
+    <string name="menu_registro">Registros de vuelos</string>
 
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
@@ -71,11 +73,11 @@
     <string name="text_editar">editar</string>
     <string name="text_piloto">Piloto : </string>
     <string name="text_registrar_aeronave">Registrar aeronave</string>
-    <string name="textEstado">Estado : </string>
-    <string name="testUsuario">Usuario : </string>
-    <string name="text_fechaNaci">Fecha de nacimiento : </string>
-    <string name="text_correo">Correo : </string>
-    <string name="test_telefono">Telefono : </string>
+    <string name="textEstado">Estado: </string>
+    <string name="testUsuario">Usuario: </string>
+    <string name="text_fechaNaci">Fecha de nacimiento: </string>
+    <string name="text_correo">Correo: </string>
+    <string name="test_telefono">Telefono: </string>
     <string name="text_confirm">Confirmar</string>
     <string name="text_nueva_passw">Nueva contraseña</string>
     <string name="text_reprt_pass">Repetir contraseña</string>
@@ -126,6 +128,8 @@
     <string name="aviso_radio">No se olvide de seleecionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
     <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
+    <string name="texto_hora_inicio">Seleccione la hora de despege</string>
+    <string name="texto_hora_aterrizaje">Seleccione la hora de aterrizaje</string>
 
 
 </resources>

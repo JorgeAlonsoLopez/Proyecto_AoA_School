@@ -17,7 +17,7 @@
         android:label="fragment_detalle_usuario"
         tools:layout="@layout/fragment_detalle_usuario" />
     <fragment
-        android:id="@+id/listadoUsuariosMainFragment3"
+        android:id="@+id/listadoUsuariosMainFragment"
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoUsuarios.ListadoUsuariosMainFragment"
         android:label="ListadoUsuariosMainFragment"
         tools:layout="@layout/fragment_listado_usuarios_main"/>
@@ -46,4 +46,25 @@
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaRegistros.ListaRegistrosFragment"
         android:label="fragment_lista_registros_list"
         tools:layout="@layout/fragment_lista_registros_list" />
+    <fragment
+        android:id="@+id/pilotoAeronavesFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.pilotoAeronaves.PilotoAeronavesFragment"
+        android:label="fragment_piloto_aeronaves_list"
+        tools:layout="@layout/fragment_piloto_aeronaves_list" />
+    <fragment
+        android:id="@+id/comprasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.compras.ComprasFragment"
+        android:label="fragment_compras_list"
+        tools:layout="@layout/fragment_compras_list" />
+    <fragment
+        android:id="@+id/facturasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.facturas.FacturasFragment"
+        android:label="fragment_facturas_list"
+        tools:layout="@layout/fragment_facturas_list" />
+    <fragment
+        android:id="@+id/registroHorasFragmentMain"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras.RegistroHorasMainFragment"
+        android:label="fragment_registro_horas_main"
+        tools:layout="@layout/fragment_registro_horas_main" />
+
 </navigation>

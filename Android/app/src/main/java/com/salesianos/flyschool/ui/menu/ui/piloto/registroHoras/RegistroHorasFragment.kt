@@ -12,11 +12,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoRegistro
+import com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosRecyclerViewAdapter
+import com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosViewModel
 
 class RegistroHorasFragment : Fragment() {
 
     lateinit var list: List<DtoRegistro>
-    lateinit var adapter: RegistroHorasRecyclerViewAdapter
+    lateinit var adapterRegistro: RegistroHorasRecyclerViewAdapter
     lateinit var viewModel: RegistroHorasViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,22 +35,24 @@ class RegistroHorasFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(RegistroHorasViewModel::class.java)
 
         list = listOf()
-        adapter = RegistroHorasRecyclerViewAdapter(activity as Context, list)
-
+        adapterRegistro = RegistroHorasRecyclerViewAdapter(activity as Context, list)
 
         with(view as RecyclerView) {
             layoutManager =  LinearLayoutManager(context)
-            adapter = adapter
+            adapter = adapterRegistro
         }
 
-        viewModel.actores.observe(viewLifecycleOwner, Observer {
-                listaNueva -> list = listaNueva
-            adapter.setData(listaNueva)
+        viewModel.registros.observe(viewLifecycleOwner, Observer {
+            listaNueva -> list = listaNueva
+            adapterRegistro.setData(listaNueva)
         })
 
-
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.reload()
     }
 
 

@@ -11,12 +11,22 @@
             android:title="@string/menu_tiempo" />
 
         <item
-            android:id="@+id/listadoUsuariosMainFragment3"
+            android:id="@+id/listadoUsuariosMainFragment"
             android:icon="@drawable/ic_baseline_supervised_user_circle_24"
             android:title="@string/menu_listado_usuarios" />
 
         <item
+            android:id="@+id/registroHorasFragmentMain"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="@string/menu_registro" />
+
+        <item
             android:id="@+id/listadoAeronavesMainFragment"
+            android:icon="@drawable/ic_baseline_airplanemode_active_24"
+            android:title="@string/menu_listado_aeronaves" />
+
+        <item
+            android:id="@+id/pilotoAeronavesFragment"
             android:icon="@drawable/ic_baseline_airplanemode_active_24"
             android:title="@string/menu_listado_aeronaves" />
 
@@ -26,9 +36,19 @@
             android:title="@string/menu_listado_productos" />
 
         <item
+            android:id="@+id/comprasFragment"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="@string/menu_listado_productos" />
+
+        <item
             android:id="@+id/listaFacturasFragment"
             android:icon="@drawable/ic_factura"
             android:title="@string/menu_listado_facturas" />
+
+        <item
+            android:id="@+id/facturasFragment"
+            android:icon="@drawable/ic_factura"
+            android:title="@string/menu_listado_facturas_cliente" />
 
         <item
             android:id="@+id/listaRegistrosFragment"

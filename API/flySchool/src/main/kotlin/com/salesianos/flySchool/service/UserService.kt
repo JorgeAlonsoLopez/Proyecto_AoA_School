@@ -128,13 +128,7 @@ class UsuarioService(
         }
     }
 
-    fun me(user: Usuario): Any {
-        if(user.roles.first()=="PILOT"){
-            return PilotoServ.findById(user.id!!).get().toGetDtoUserInfoSpeciPilot()
-        }else{
-            return user.toGetDtoUserInfoSpeci()
-        }
-    }
+    fun me(user: Usuario) = user.toGetDtoUserInfoSpeci()
 
     fun nuevoUsuario(newUser: DtoUserForm): Optional<DtoUserInfoSpeci>? {
 

@@ -67,7 +67,7 @@ class UserController(
     }
 
     @GetMapping("usuario/me")
-    fun me(@AuthenticationPrincipal user: Usuario): ResponseEntity<Any> {
+    fun me(@AuthenticationPrincipal user: Usuario): ResponseEntity<DtoUserInfoSpeci> {
         return ResponseEntity.ok().body(service.me(user))
     }
 

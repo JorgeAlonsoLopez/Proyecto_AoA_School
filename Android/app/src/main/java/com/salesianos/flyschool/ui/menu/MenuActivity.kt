@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -20,14 +19,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.salesianos.flyschool.MainActivity
 import com.salesianos.flyschool.R
+import com.salesianos.flyschool.poko.DtoPilot
 import com.salesianos.flyschool.poko.DtoUserInfoSpeci
-import com.salesianos.flyschool.poko.LoginResponse
 import com.salesianos.flyschool.retrofit.UsuarioService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 class MenuActivity : AppCompatActivity() {
 
@@ -51,6 +51,25 @@ class MenuActivity : AppCompatActivity() {
         var nombreUsuario : TextView = headerView.findViewById(R.id.text_menu_user)
         var nombreCompleto : TextView = headerView.findViewById(R.id.text_menu_nombre)
 
+        val usuarios = navView.menu.findItem(R.id.listadoUsuariosMainFragment)
+        val aeronavesAdmin = navView.menu.findItem(R.id.listadoAeronavesMainFragment)
+        val productosAdmin = navView.menu.findItem(R.id.listaProductosMainFragment)
+        val facturasAdmin = navView.menu.findItem(R.id.listaFacturasFragment)
+        val registrosAdmin = navView.menu.findItem(R.id.listaRegistrosFragment)
+        val aeronavesPiloto = navView.menu.findItem(R.id.pilotoAeronavesFragment)
+        val compra = navView.menu.findItem(R.id.comprasFragment)
+        val facturas = navView.menu.findItem(R.id.facturasFragment)
+        val horas = navView.menu.findItem(R.id.registroHorasFragmentMain)
+
+        usuarios.isVisible = true
+        productosAdmin.isVisible = true
+        aeronavesAdmin.isVisible = true
+        facturasAdmin.isVisible = true
+        registrosAdmin.isVisible = true
+        aeronavesPiloto.isVisible = true
+        compra.isVisible = true
+        facturas.isVisible = true
+        horas.isVisible = true
 
         retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -68,6 +87,31 @@ class MenuActivity : AppCompatActivity() {
                 if (response.code() == 200) {
                     nombreUsuario.text = response.body()?.username
                     nombreCompleto.text = response.body()?.nombreCompleto
+                    if(response.body()?.rol!! == "ADMIN"){
+                        aeronavesPiloto.isVisible = false
+                        compra.isVisible = false
+                        facturas.isVisible = false
+                        horas.isVisible = false
+                    }else{
+                        var id = response.body()?.id
+                        service.detallePiloto("Bearer "+token, UUID.fromString(id)).enqueue(object : Callback<DtoPilot> {
+                            override fun onResponse(call: Call<DtoPilot>, response: Response<DtoPilot>
+                            ) {
+                                if (response.code() == 200) {
+                                    if (!response.body()?.alta!!) compra.isVisible = false
+                                }
+                            }
+                            override fun onFailure(call: Call<DtoPilot>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        aeronavesAdmin.isVisible = false
+                        facturasAdmin.isVisible = false
+                        productosAdmin.isVisible = false
+                        registrosAdmin.isVisible = false
+                        usuarios.isVisible = false
+                    }
                 }
             }
             override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {
@@ -76,13 +120,11 @@ class MenuActivity : AppCompatActivity() {
             }
         })
 
-
-
-
         appBarConfiguration = AppBarConfiguration(
             setOf(
-            R.id.tiempoFragment, R.id.detalleUsuarioFragment, R.id.listadoUsuariosMainFragment3, R.id.passwordFragment,
-                R.id.listadoAeronavesMainFragment, R.id.listaProductosMainFragment, R.id.listaFacturasFragment, R.id.listaRegistrosFragment
+            R.id.tiempoFragment, R.id.detalleUsuarioFragment, R.id.listadoUsuariosMainFragment, R.id.passwordFragment,
+                R.id.listadoAeronavesMainFragment, R.id.listaProductosMainFragment, R.id.listaFacturasFragment, R.id.listaRegistrosFragment,
+                    R.id.pilotoAeronavesFragment, R.id.comprasFragment, R.id.facturasFragment, R.id.registroHorasFragmentMain
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
