@@ -21,7 +21,7 @@ data class ProductoSearchNotFoundException(
 
 data class ListaProductoNotFoundException(
     val javaClass: Class<out Any>
-) : EntityNotFoundException("Para la operación que desa llevar a cabo, no se pudo encontrar ninguno de los productos en la base de datos")
+) : EntityNotFoundException("Para la operación que desea llevar a cabo, no se pudo encontrar ninguno de los productos en la base de datos")
 
 data class AeronaveModifNotFoundException(
     val id: String
@@ -33,7 +33,7 @@ data class AeronaveSearchNotFoundException(
 
 data class ListaAeronaveNotFoundException(
     val javaClass: Class<out Any>
-) : EntityNotFoundException("Para la operación que desa llevar a cabo, no se pudo encontrar ninguna de las aeronaves en la base de datos")
+) : EntityNotFoundException("Para la operación que desea llevar a cabo, no se pudo encontrar ninguna de las aeronaves en la base de datos")
 
 data class ListaFacturasNotFoundException(
     val javaClass: Class<out Any>

@@ -1,6 +1,8 @@
 package com.salesianos.flyschool.ui.detalle.admin.registroAeronave
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +14,7 @@ import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoAeronaveSinFoto
 import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.AeronaveService
+import com.salesianos.flyschool.ui.detalle.admin.URIPathHelper
 import com.salesianos.flyschool.ui.detalle.admin.editarUsuario.EditarUsuarioActivity
 import okhttp3.MediaType
 import okhttp3.MultipartBody
@@ -22,11 +25,12 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.net.URI
 import java.util.*
 
 
 class RegistroAeronaveActivity : AppCompatActivity() {
-
+    val REQUEST_CODE = 200
     lateinit var retrofit: Retrofit
     lateinit var service: AeronaveService
     val baseUrl = "https://aoa-school.herokuapp.com/"
@@ -34,6 +38,9 @@ class RegistroAeronaveActivity : AppCompatActivity() {
     lateinit var token: String
     lateinit var id : UUID
     var edit : Boolean = false
+    lateinit var foto : ImageView
+    val uriPathHelper = URIPathHelper()
+    lateinit var filePath : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,9 +67,13 @@ class RegistroAeronaveActivity : AppCompatActivity() {
 
 
         var textoFoto : TextView = findViewById(R.id.textView31)
-        var foto : ImageView = findViewById(R.id.img_form_aeronave)
-        textoFoto.visibility = View.INVISIBLE
-        foto.visibility = View.INVISIBLE
+        foto = findViewById(R.id.img_form_aeronave)
+       // textoFoto.visibility = View.INVISIBLE
+       // foto.visibility = View.INVISIBLE
+
+        textoFoto.setOnClickListener {
+            openGalleryForImage()
+        }
 
 
         var marca : EditText = findViewById(R.id.inpt_new_aeron_marca)
@@ -152,4 +163,24 @@ class RegistroAeronaveActivity : AppCompatActivity() {
 
 
     }
+
+    private fun openGalleryForImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, 200)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        println("qq")
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
+            foto.setImageURI(data?.data) // handle chosen image
+            filePath = uriPathHelper.getPath(this, data?.data!!).toString()
+            Toast.makeText(applicationContext, filePath, Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+
+
 }

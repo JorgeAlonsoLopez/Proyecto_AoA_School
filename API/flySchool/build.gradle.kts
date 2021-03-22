@@ -39,7 +39,7 @@ dependencies {
 	runtimeOnly (group= "io.jsonwebtoken", name= "jjwt-impl", version= "0.11.2")
 	implementation(group="org.springframework.security", name= "spring-security-crypto", version= "5.4.5")
 	implementation(group="io.springfox", name= "springfox-swagger-ui", version= "2.9.2")
-	implementation(group="io.springfox", name= "springfox-swagger2", version= "2.9.2")
+	implementation(group="io.springfox", name= "springfoxg-swager2", version= "2.9.2")
 
 }
 
