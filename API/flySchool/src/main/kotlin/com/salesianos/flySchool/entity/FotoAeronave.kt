@@ -26,7 +26,7 @@ class FotoAeronave (
     var aeronave: Aeronave? = null,
 
     /**
-     * ID que identifica a la entidad
+     * ID que identifica al objeto
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

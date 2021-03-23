@@ -1,26 +1,21 @@
 package com.salesianos.flySchool.controller
 
 import com.salesianos.flySchool.dto.*
-import com.salesianos.flySchool.entity.Aeronave
-import com.salesianos.flySchool.entity.FotoAeronave
-import com.salesianos.flySchool.error.*
 import com.salesianos.flySchool.service.AeronaveService
 import com.salesianos.flySchool.service.FotoAeronaveServicio
 import com.salesianos.flySchool.service.RegistroService
-import com.salesianos.flySchool.upload.ImgurBadRequest
 import com.salesianos.flySchool.upload.ImgurStorageService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
-import org.springframework.web.server.ResponseStatusException
 import java.util.*
 import javax.validation.Valid
 
 
 @RestController
 @RequestMapping("/aeronave")
-class ImagenController(
+class AeronaveController(
     private val service: AeronaveService,
     private val servicioFoto: FotoAeronaveServicio,
     private val imgurStorageService: ImgurStorageService,

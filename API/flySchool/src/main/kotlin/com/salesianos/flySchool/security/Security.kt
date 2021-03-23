@@ -20,6 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
+/**
+ * Clase que define el mecanismo que se va a utilizar a la hora de cifrar la contraseña
+ */
+
 @Configuration
 class ConfigurePasswordEncoder() {
 
@@ -28,7 +32,9 @@ class ConfigurePasswordEncoder() {
 
 }
 
-
+/**
+ * Clase encargada de configurar las peticiones permitidas por el mecanismo CORS
+ */
 @Configuration
 class ConfigureCors() {
 
@@ -46,6 +52,9 @@ class ConfigureCors() {
 
 }
 
+/**
+ * Clase encargada de gestionar la seguridad.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -56,10 +65,16 @@ class WebSecurityConfiguration(
     private val passwordEncoder: PasswordEncoder
 ) : WebSecurityConfigurerAdapter() {
 
+    /**
+     * Función que define el esquema de autentificación
+     */
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder)
     }
 
+    /**
+     * Función que define la autorización y a que endpoints va a poder acceder cada tipo de usuario
+     */
     override fun configure(http: HttpSecurity) {
         // @formatter:off
         http
@@ -91,6 +106,9 @@ class WebSecurityConfiguration(
         // @formatter:on
     }
 
+    /**
+     * Función que expone el esquema de autentificación
+     */
     @Bean
     override fun authenticationManagerBean(): AuthenticationManager {
         return super.authenticationManagerBean()

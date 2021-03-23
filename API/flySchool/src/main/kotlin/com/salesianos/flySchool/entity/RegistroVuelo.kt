@@ -52,7 +52,7 @@ class RegistroVuelo (
     var tipoLibre : Boolean,
 
     /**
-     * Propiedad que hace referencia al ID de la entidad
+     * Propiedad que hace referencia al ID del objeto
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

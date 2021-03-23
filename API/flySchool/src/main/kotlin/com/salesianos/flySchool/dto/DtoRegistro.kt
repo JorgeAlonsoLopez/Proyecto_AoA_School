@@ -23,7 +23,7 @@ data class DtoRegistroForm(
  */
 data class DtoRegistro(
 
-        @ApiModelProperty(value = "ID que identifica la entidad")
+        @ApiModelProperty(value = "ID que identifica al objeto")
         val id: UUID,
 
         @ApiModelProperty(value = "Día en el que se realizó el vuelo")

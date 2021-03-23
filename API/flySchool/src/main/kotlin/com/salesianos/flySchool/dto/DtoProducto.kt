@@ -7,7 +7,7 @@ import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 
 /**
- * Clase que guarda la información proveniente del correspondinete formulario para la creación de la entidad
+ * Clase que guarda la información proveniente del correspondinete formulario para la creación del objeto
  */
 data class DtoProductoForm(
 

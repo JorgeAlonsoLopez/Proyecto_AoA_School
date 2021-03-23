@@ -4,12 +4,18 @@ package com.salesianos.flySchool.security.jwt
 import com.salesianos.flySchool.dto.DtoUserInfo
 import com.salesianos.flySchool.dto.toGetDtoUserInfo
 import com.salesianos.flySchool.entity.Usuario
+import com.salesianos.flySchool.error.ApiError
 import com.salesianos.flySchool.service.UsuarioService
+import io.swagger.annotations.ApiModelProperty
+import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiResponse
+import io.swagger.annotations.ApiResponses
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.AuthenticationException
 import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.UsernameNotFoundException
@@ -18,12 +24,13 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.server.ResponseStatusException
-import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 import javax.validation.constraints.NotBlank
 
-
+/**
+ * Controlador encargado del login y la validación del token de refresco
+ */
 @RestController
 class AuthenticationController(
     private val authenticationManager: AuthenticationManager,
@@ -32,7 +39,17 @@ class AuthenticationController(
    private val userService: UsuarioService
 ) {
 
-
+    @ApiOperation(
+        value = "Realizar el inicio de sesión de un usuario",
+        notes = "En el caso de que los datos aportados sean correctos, se llevará a cabo el login y se obtendrá " +
+                "como resultado el token."
+    )
+    @ApiResponses(
+        value = [
+            ApiResponse(code = 200, message = "OK", response = JwtUserResponse::class),
+            ApiResponse(code = 401, message = "Unauthorized", response = AuthenticationException::class)
+        ]
+    )
     @PostMapping("/auth/login")
     fun login(@Valid @RequestBody loginRequest : LoginRequest) : ResponseEntity<JwtUserResponse> {
         val authentication = authenticationManager.authenticate(
@@ -87,13 +104,26 @@ class AuthenticationController(
 
 }
 
-
+/**
+ * Data class encargada de guardar la informción necesaria para el login
+ */
 data class LoginRequest(
+
+    @ApiModelProperty(value = "Nombre del usuario a logear")
     @NotBlank val username : String,
+
+    @ApiModelProperty(value = "Contraseña del usuario a logear")
     @NotBlank val password: String
 )
 
+/**
+ * Data class engargada de guardar la respuesta obtenida al realizar un login correcto
+ */
 data class JwtUserResponse(
+
+    @ApiModelProperty(value = "Token obtenido")
     val token: String,
+
+    @ApiModelProperty(value = "Datos básicos del usuario logeado")
     val user : DtoUserInfo
 )

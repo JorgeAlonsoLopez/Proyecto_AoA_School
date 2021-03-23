@@ -54,7 +54,7 @@ class Usuario (
     val roles: MutableSet<String> = mutableSetOf(),
 
     /**
-     * Propiedad que hace referencia al ID de la entidad
+     * Propiedad que hace referencia al ID del objeto
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
