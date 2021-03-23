@@ -13,8 +13,8 @@ interface AeronaveService {
 
     @Multipart
     @POST("aeronave/{id}")
-    fun addFoto(@Header("Authorization") token: String, @Part file: MultipartBody.Part,
-                @Path("id") id : UUID): Call<DtoAeronaveResp>
+    fun addFoto(@Header("Authorization") token: String, @Path("id") id : UUID ,
+                @Part file: MultipartBody.Part): Call<DtoAeronaveResp>
 
     @DELETE("aeronave/foto/{id}/{hash}")
     fun deletePhoto(@Header("Authorization") token: String, @Path("id") id : UUID,

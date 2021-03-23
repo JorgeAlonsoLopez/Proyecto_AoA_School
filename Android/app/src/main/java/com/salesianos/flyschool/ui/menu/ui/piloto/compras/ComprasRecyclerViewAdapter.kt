@@ -2,24 +2,15 @@ package com.salesianos.flyschool.ui.menu.ui.piloto.compras
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoProductoEspecf
-import com.salesianos.flyschool.ui.detalle.admin.detalleAdmin.DetalleAdminActivity
-import com.salesianos.flyschool.ui.detalle.admin.detalleProducto.DetalleProductoActivity
-import com.salesianos.flyschool.ui.detalle.admin.registroProducto.RegistroProductoActivity
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
 
 
 class ComprasRecyclerViewAdapter(
@@ -47,12 +38,12 @@ class ComprasRecyclerViewAdapter(
 
         holder.shop.setOnClickListener(View.OnClickListener {
             val dialog = AlertDialog.Builder(ctx)
-                    .setTitle("Comprar")
-                    .setMessage("¿Desea adquirir el número de horas seleccionadas?")
-                    .setNegativeButton("Cancelar") { view, _ ->
+                    .setTitle(ctx.getString(R.string.compra_titulo)+item.nombre)
+                    .setMessage(ctx.getString(R.string.compra_cuerpo))
+                    .setNegativeButton(ctx.getString(R.string.cancelar)) { view, _ ->
                         view.dismiss()
                     }
-                    .setPositiveButton("Comprar") { view, _ ->
+                    .setPositiveButton(ctx.getString(R.string.compra_confirm)) { view, _ ->
                         viewModel.comprar(item.id)
                         view.dismiss()
                     }

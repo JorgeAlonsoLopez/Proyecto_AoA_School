@@ -1,5 +1,6 @@
 package com.salesianos.flyschool.ui.detalle.admin.detalleAeronave
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import coil.load
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveResp
@@ -100,48 +102,95 @@ class DetalleAeronaveActivity : AppCompatActivity() {
         })
 
         btnEliminar.setOnClickListener(View.OnClickListener {
-            service.delete("Bearer "+token, id, hash).enqueue(object : Callback<Any> {
-                override fun onResponse(call: Call<Any>, response: Response<Any>
-                ) {
-                    if (response.code() == 204) {
-                        (ctx as DetalleAeronaveActivity).finish()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.delete_aero))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<Any>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.eliminar)) { view, _ ->
+                        service.delete("Bearer "+token, id, hash).enqueue(object : Callback<Any> {
+                            override fun onResponse(call: Call<Any>, response: Response<Any>
+                            ) {
+                                if (response.code() == 204) {
+                                    (ctx as DetalleAeronaveActivity).finish()
+                                }else if (response.code() == 400){
+                                    Toast.makeText(applicationContext, getString(R.string.delete_aeronv), Toast.LENGTH_LONG).show()
+                                }
+                            }
+                            override fun onFailure(call: Call<Any>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
+
         })
 
         btnAlta.setOnClickListener(View.OnClickListener {
-            service.estado("Bearer "+token, id,0).enqueue(object : Callback<DtoAeronaveSinFoto> {
-                override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
-                ) {
-                    if (response.code() == 200) {
-                        (ctx as DetalleAeronaveActivity).recreate()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.cambiar_estado_aero))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.cambiar)) { view, _ ->
+                        service.estado("Bearer "+token, id,0).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                            override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
+                            ) {
+                                if (response.code() == 200) {
+                                    (ctx as DetalleAeronaveActivity).recreate()
+                                }
+                            }
+                            override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
         })
 
         btnMantenimiento.setOnClickListener(View.OnClickListener {
-            service.estado("Bearer "+token, id,1).enqueue(object : Callback<DtoAeronaveSinFoto> {
-                override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
-                ) {
-                    if (response.code() == 200) {
-                        (ctx as DetalleAeronaveActivity).recreate()
+
+            val dialog = AlertDialog.Builder(ctx)
+                    .setTitle("")
+                    .setMessage(getString(R.string.mantenim_aero))
+                    .setNegativeButton(getString(R.string.cancelar)) { view, _ ->
+                        view.dismiss()
                     }
-                }
-                override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
-                    Log.i("Error", "Error")
-                    Log.d("Error", t.message!!)
-                }
-            })
+                    .setPositiveButton(getString(R.string.cambiar)) { view, _ ->
+                        service.estado("Bearer "+token, id,1).enqueue(object : Callback<DtoAeronaveSinFoto> {
+                            override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>
+                            ) {
+                                if (response.code() == 200) {
+                                    (ctx as DetalleAeronaveActivity).recreate()
+                                }
+                            }
+                            override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
+                                Log.i("Error", "Error")
+                                Log.d("Error", t.message!!)
+                            }
+                        })
+                        view.dismiss()
+                    }
+                    .setCancelable(false)
+                    .create()
+
+            dialog.show()
+
+
         })
     }
 
@@ -162,18 +211,18 @@ class DetalleAeronaveActivity : AppCompatActivity() {
                     foto.load(response.body()?.fotoURL!!.url)
                     hash= response.body()?.fotoURL!!.hash
                     if(response.body()?.mantenimiento!!){
-                        operatividad.text = "En mantenimiento"
-                        btnMantenimiento.text = "Finalizar mantenimiento"
+                        operatividad.text = getString(R.string.manten)
+                        btnMantenimiento.text = getString(R.string.finaliz_manten)
                     }else{
-                        operatividad.text = "Operativo"
-                        btnMantenimiento.text = "Llevar a mantenimiento"
+                        operatividad.text = getString(R.string.operativo)
+                        btnMantenimiento.text = getString(R.string.llevar_a_manten)
                     }
                     if(response.body()?.alta!!){
-                        estado.text = "Dado de alta"
-                        btnAlta.text = "Dar de baja"
+                        estado.text = getString(R.string.dado_de_alta)
+                        btnAlta.text = getString(R.string.dar_de_baja)
                     }else{
-                        estado.text = "Dado de baja"
-                        btnAlta.text = "Dar de alta"
+                        estado.text = getString(R.string.dado_de_baja)
+                        btnAlta.text = getString(R.string.dar_de_alta)
                     }
                 }
             }

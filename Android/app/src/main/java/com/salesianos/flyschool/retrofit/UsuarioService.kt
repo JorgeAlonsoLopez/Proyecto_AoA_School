@@ -16,6 +16,9 @@ interface UsuarioService {
     @GET("usuario/")
     fun getListaUsuarios(@Header("Authorization") token: String): Call<List<DtoUserInfo>>
 
+    @GET("usuario/filtro")
+    fun getListaFiltrada(@Header("Authorization") token: String, @Query("name") name: String): Call<List<DtoUserInfo>>
+
     @GET("usuario/{id}")
     fun detalle(@Header("Authorization") token: String, @Path("id") id : UUID): Call<DtoUserInfoSpeci>
 

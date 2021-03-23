@@ -6,6 +6,7 @@ import io.jsonwebtoken.security.Keys
 import io.jsonwebtoken.security.SignatureException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Component
 import java.lang.Exception
@@ -15,18 +16,17 @@ import java.time.temporal.ChronoUnit
 import java.util.*
 
 @Component
-class JwtTokenProvider {
+class JwtTokenProvider(
+        @Value("\${jwtSecreto}") private var jwtSecreto : String,
+        @Value("\${jwtDuracionToken}") private var jwtDuracionToken : Long,
+        @Value("\${jwtDuracionRefreshToken}") private var jwtDuracionRefreshToken : Long
+){
 
     companion object {
         const val TOKEN_HEADER = "Authorization"
         const val TOKEN_PREFIX = "Bearer "
         const val TOKEN_TYPE = "JWT"
     }
-
-    private val jwtSecreto : String = "mJI.w|g!kCv(5bLr0A@\"wTC,N9mNM]Dd^19h0[?!KB1~I~kfA(,;T<S][_Pm_v(asdfghasdfg"
-    // Lo expresamos en días
-    private val jwtDuracionToken : Long = 3
-    private val jwtDuracionRefreshToken : Long = 10
 
     private val parser = Jwts.parserBuilder().setSigningKey(Keys.hmacShaKeyFor(jwtSecreto.toByteArray())).build()
 

@@ -6,6 +6,7 @@
     android:name="com.salesianos.flyschool.ui.menu.ui.piloto.pilotoAeronaves.PilotoAeronavesFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.menu.ui.piloto.pilotoAeronaves.PilotoAeronavesFragment"
     tools:listitem="@layout/fragment_piloto_aeronaves_item" />

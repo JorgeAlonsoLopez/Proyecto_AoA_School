@@ -37,7 +37,7 @@ class TiempoFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         val root = inflater.inflate(R.layout.fragment_tiempo, container, false)
-        (activity as MenuActivity?)!!.supportActionBar!!.title = "Tiempo"
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_tiempo)
 
         val temperatura: TextView = root.findViewById(R.id.text_tiempo_actual)
         val estado: TextView = root.findViewById(R.id.text_tiempo_calidad)

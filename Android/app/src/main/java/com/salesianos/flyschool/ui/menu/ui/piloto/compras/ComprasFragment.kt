@@ -3,7 +3,6 @@ package com.salesianos.flyschool.ui.menu.ui.piloto.compras
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,12 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoProductoEspecf
-import com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosRecyclerViewAdapter
-import com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosViewModel
+import com.salesianos.flyschool.ui.menu.MenuActivity
 
-/**
- * A fragment representing a list of Items.
- */
 class ComprasFragment : Fragment() {
 
     lateinit var list: List<DtoProductoEspecf>
@@ -34,6 +29,7 @@ class ComprasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_compras_list, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_listado_productos)
 
         viewModel = ViewModelProvider(this).get(ComprasViewModel::class.java)
 

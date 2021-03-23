@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoFacturaAdmin
 import com.salesianos.flyschool.poko.DtoFacturaCliente
+import com.salesianos.flyschool.ui.menu.MenuActivity
 import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturaViewModel
 import com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturasRecyclerViewAdapter
 
@@ -33,6 +34,7 @@ class FacturasFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_facturas_list, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_listado_facturas_cliente)
 
         viewModel = ViewModelProvider(this).get(FacturasViewModel::class.java)
 

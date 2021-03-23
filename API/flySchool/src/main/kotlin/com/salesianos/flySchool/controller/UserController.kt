@@ -77,4 +77,9 @@ class UserController(
         return ResponseEntity.ok().body(service.licencia(id))
     }
 
+    @GetMapping("usuario/filtro")
+    fun filtro(@RequestParam name: String): ResponseEntity<List<DtoUserInfo>> {
+        return ResponseEntity.ok().body(service.listadoFiltroNombre(name))
+    }
+
 }

@@ -58,8 +58,26 @@ class ListaUsuariosViewModel(application : Application) : AndroidViewModel(appli
         })
     }
 
+    private fun filtroUsuarios(name: String){
+        service.getListaFiltrada("Bearer "+token, name).enqueue(object: Callback<List<DtoUserInfo>> {
+            override fun onResponse(call: Call<List<DtoUserInfo>>, response: Response<List<DtoUserInfo>>) {
+                if(response.code() == 200) {
+                    _usuarios.value = response.body()
+                }
+            }
+            override fun onFailure(call: Call<List<DtoUserInfo>>, t: Throwable) {
+                Log.i("Error","ha entrado en onFailure")
+                Log.d("Error",t.message!!)
+            }
+        })
+    }
+
     fun reloadUsuarios() {
         getUsuarios()
+    }
+
+    fun filtro(name : String) {
+        filtroUsuarios(name)
     }
 
 

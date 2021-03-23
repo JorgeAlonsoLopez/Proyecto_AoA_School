@@ -77,7 +77,7 @@ class WebSecurityConfiguration(
             .antMatchers(DELETE, "/aeronave/**", "/producto/**").hasRole("ADMIN")
             .antMatchers(PUT, "/aeronave/**", "/producto/**", "/usuario/{id}/", "/usuario/{id}/est", "usuario/licencia/{id}").hasRole("ADMIN")
             .antMatchers(GET, "/aeronave/", "/factura/", "/producto/",
-                "/producto/{id}", "/registro/", "/usuario/", "/usuario/{id}").hasRole("ADMIN")
+                "/producto/{id}", "/registro/", "/usuario/", "/usuario/{id}", "usuario/filtro").hasRole("ADMIN")
 
             .antMatchers(GET, "/aeronave/alta", "/factura/user", "/producto/alta/{licencia}",
                 "/registro/user").hasRole("PILOT")

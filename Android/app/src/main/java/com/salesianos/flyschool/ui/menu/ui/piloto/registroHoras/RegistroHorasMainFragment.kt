@@ -17,7 +17,9 @@ import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.FacturaService
 import com.salesianos.flyschool.retrofit.UsuarioService
 import com.salesianos.flyschool.ui.detalle.admin.registroProducto.RegistroProductoActivity
+import com.salesianos.flyschool.ui.detalle.piloto.gps.MapsActivity
 import com.salesianos.flyschool.ui.detalle.piloto.registroVuelo.RegistroVueloActivity
+import com.salesianos.flyschool.ui.menu.MenuActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,6 +34,14 @@ class RegistroHorasMainFragment : Fragment() {
 
     var tiempo : Double = 0.0
     var permiso : Boolean = true
+    val baseUrl = "https://aoa-school.herokuapp.com/"
+    lateinit var retrofit: Retrofit
+    lateinit var service: UsuarioService
+    var token:String = ""
+    var id : String = ""
+    lateinit var horas: TextView
+    lateinit var boton: Button
+    lateinit var gps: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,15 +52,11 @@ class RegistroHorasMainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         var root = inflater.inflate(R.layout.fragment_registro_horas_main, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_registro)
 
-        val horas: TextView = root.findViewById(R.id.text_horas_disponibles_value)
-        val boton: Button = root.findViewById(R.id.btn_direc_registro_vuelo)
-
-        val baseUrl = "https://aoa-school.herokuapp.com/"
-        var retrofit: Retrofit
-        var service: UsuarioService
-        var token:String = ""
-        var id : String = ""
+        horas = root.findViewById(R.id.text_horas_disponibles_value)
+        boton = root.findViewById(R.id.btn_direc_registro_vuelo)
+      //  gps = root.findViewById(R.id.btn_gps)
 
         val sharedPref = context?.getSharedPreferences(requireContext().getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         if (sharedPref != null) {
@@ -62,6 +68,25 @@ class RegistroHorasMainFragment : Fragment() {
                 .build()
         service = retrofit.create(UsuarioService::class.java)
 
+        detalle()
+
+        boton.setOnClickListener(View.OnClickListener {
+                val intent = Intent(activity, RegistroVueloActivity::class.java).apply {
+                    putExtra("tiempo", horas.text.toString())
+                }
+                startActivity(intent)
+        })
+
+      //  gps.setOnClickListener(View.OnClickListener {
+       //     val intent = Intent(activity, MapsActivity::class.java)
+       //     startActivity(intent)
+      //  })
+
+        return root
+
+    }
+
+    fun detalle(){
         service.me("Bearer "+token).enqueue(object : Callback<DtoUserInfoSpeci> {
             override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
             ) {
@@ -95,16 +120,11 @@ class RegistroHorasMainFragment : Fragment() {
                 Log.d("Error", t.message!!)
             }
         })
+    }
 
-        boton.setOnClickListener(View.OnClickListener {
-                val intent = Intent(activity, RegistroVueloActivity::class.java).apply {
-                    putExtra("tiempo", horas.text.toString())
-                }
-                startActivity(intent)
-        })
-
-        return root
-
+    override fun onResume() {
+        super.onResume()
+        detalle()
     }
 
 

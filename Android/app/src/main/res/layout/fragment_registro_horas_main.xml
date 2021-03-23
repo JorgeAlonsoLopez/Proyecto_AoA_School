@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     tools:context=".ui.menu.ui.piloto.registroHoras.RegistroHorasMainFragment">
 
 
@@ -15,15 +16,14 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_direc_registro_vuelo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_direc_registro_vuelo"
         android:layout_width="0dp"
         android:layout_height="53dp"
-        android:layout_marginStart="93dp"
-        android:layout_marginEnd="93dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         android:layout_marginBottom="16dp"
         android:text="@string/registro_vuelo"
         android:textSize="18sp"
@@ -31,7 +31,6 @@
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -59,4 +58,5 @@
         app:layout_constraintStart_toEndOf="@+id/text_horas"
         app:layout_constraintTop_toTopOf="@+id/text_horas"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

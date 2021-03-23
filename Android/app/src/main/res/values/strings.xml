@@ -7,24 +7,15 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="login">Iniciar sesión</string>
     <string name="textUser">Nombre de usuario</string>
     <string name="textPassw">Contraseña</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_main">MainActivity</string>
-
     <string name="preference_file_name">PREFERENCES_FILE</string>
-
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-
     <string name="menu_detalle">Detalle de usuario</string>
     <string name="menu_tiempo">Tiempo</string>
     <string name="menu_listado_usuarios">Listado de usuarios</string>
@@ -36,48 +27,68 @@
     <string name="menu_listado_facturas_cliente">Facturas</string>
     <string name="menu_listado_registros">Registros de clientes</string>
     <string name="menu_registro">Registros de vuelos</string>
-
+    <string name="menu_gps">GPS</string>
     <string name="con_licencia">Posee la licencia de vuelo</string>
     <string name="sin_licencia">No posee la licencia de vuelo</string>
     <string name="dar_de_alta">Dar de alta</string>
     <string name="dar_de_baja">Dar de baja</string>
+    <string name="dado_de_alta">Dado de alta</string>
+    <string name="dado_de_baja">Dado de baja</string>
+    <string name="operativo">Operativo</string>
+    <string name="llevar_a_manten">LLevar a mantenimiento</string>
+    <string name="manten">En mantenimiento</string>
+    <string name="finaliz_manten">Finalizar mantenimiento</string>
+    <string name="compra_titulo">Compra de: </string>
+    <string name="compra_cuerpo">¿Desea adquirir el paquete de horas seleccionado?</string>
+    <string name="compra_confirm">Comprar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cambiar">Cambiar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="habili_lic">Habilitar la licencia</string>
+    <string name="cambiar_estado_aero">¿Desea cambiar el estado (alta-baja) de la aeronave?</string>
+    <string name="cambiar_estado_prod">¿Desea cambiar el estado (alta-baja) del producto?</string>
+    <string name="cambiar_estado_pilot">¿Desea cambiar el estado (alta-baja) del piloto?</string>
+    <string name="delete_aero">¿Desea eliminar la aeronave?</string>
+    <string name="delete_prodc">¿Desea eliminar el producto?</string>
+    <string name="mantenim_aero">¿Desea cambiar la disponibilidad de la aeronave?</string>
+    <string name="licencia">¿Desea habilitar la licencia de piloto para este usuario?</string>
 
 
     <string name="hello_world">Hello Square World!</string>
     <string name="registro_vuelo">Registrar vuelo</string>
-    <string name="texto_horas">Horas restantes : </string>
-    <string name="text_fecha">Fecha : </string>
-    <string name="text_tipo">Tipo : </string>
-    <string name="text_hora_inicio">Hora de inicio : </string>
-    <string name="text_horaFin">Hora de fin : </string>
-    <string name="text_aeronave">Aeronave : </string>
+    <string name="texto_horas">Horas restantes: </string>
+    <string name="text_fecha">Fecha: </string>
+    <string name="text_tipo">Tipo: </string>
+    <string name="text_hora_inicio">Hora de inicio: </string>
+    <string name="text_horaFin">Hora de fin: </string>
+    <string name="text_aeronave">Aeronave: </string>
     <string name="text_euro">€</string>
-    <string name="text_precio">Precio : </string>
-    <string name="text_importe">Importe : </string>
-    <string name="text_matricula">Matrícula : </string>
+    <string name="text_precio">Precio: </string>
+    <string name="text_importe">Importe: </string>
+    <string name="text_matricula">Matrícula: </string>
     <string name="hp">(HP)</string>
-    <string name="autonomia">Autonomía (Km) : </string>
-    <string name="VelMax">Velocidad máxima (Km/h) : </string>
-    <string name="VelMin">Velocidad mínima (Km/h) : </string>
-    <string name="VelCruc">Velocidad de crucero (Km/h) : </string>
+    <string name="autonomia">Autonomía (Km): </string>
+    <string name="VelMax">Velocidad máxima (Km/h): </string>
+    <string name="VelMin">Velocidad mínima (Km/h): </string>
+    <string name="VelCruc">Velocidad de crucero (Km/h): </string>
     <string name="btn_hora_inicio">Seleccione la hora del despege</string>
     <string name="btn_hora_fin">Seleccione la hora del aterrizaje</string>
     <string name="btn_envio_registro_horas">Crear registro de vuelo</string>
     <string name="text_aeronave_sin">Aeronave</string>
     <string name="text_registrar_usuario">Registrar usuario</string>
     <string name="text_registrar_producto">Registrar producto</string>
-    <string name="text_horas">Horas : </string>
+    <string name="text_horas">Horas: </string>
     <string name="text_eliminar">Eliminar</string>
     <string name="text_alta_baja">Dar de alta/baja</string>
     <string name="text_mantenimiento">Cambiar operatividad</string>
-    <string name="text_editar">editar</string>
-    <string name="text_piloto">Piloto : </string>
+    <string name="text_editar">Editar</string>
+    <string name="text_piloto">Piloto: </string>
     <string name="text_registrar_aeronave">Registrar aeronave</string>
     <string name="textEstado">Estado: </string>
     <string name="testUsuario">Usuario: </string>
     <string name="text_fechaNaci">Fecha de nacimiento: </string>
     <string name="text_correo">Correo: </string>
-    <string name="test_telefono">Telefono: </string>
+    <string name="test_telefono">Teléfono: </string>
     <string name="text_confirm">Confirmar</string>
     <string name="text_nueva_passw">Nueva contraseña</string>
     <string name="text_reprt_pass">Repetir contraseña</string>
@@ -92,6 +103,7 @@
     <string name="text_piloto_sin">Piloto</string>
     <string name="text_ensenyanza">Enseñanza</string>
     <string name="text_vuelo_libre">Vuelo libre</string>
+    <string name="text_instrucc">Instrucción</string>
     <string name="text_nombre">Nombre</string>
     <string name="text_precio_sin">Precio (€)</string>
     <string name="text_horas_sin">Horas</string>
@@ -119,17 +131,25 @@
     <string name="text_m">m</string>
     <string name="text_nombre_usuario">Nombre de usuario</string>
     <string name="text_tarjeta">Tarjeta de credito</string>
-    <string name="text_tarjeta_con">Tarjeta de crédito : </string>
+    <string name="text_tarjeta_con">Tarjeta de crédito: </string>
     <string name="text_mas_opt">Más información</string>
-
-
+    <string name="regisrto_ok">El registro se ha creado con exito</string>
+    <string name="orden_horas">La hora de despege tiene que ser menor a la de aterrizaje</string>
+    <string name="insuficiencia_horas">No tiene horas suficientes para registrar dicho vuelo. Compre más antes de poder registrarlo</string>
+    <string name="password_ok">El cambio ha ocurrido de forma satisfactoria</string>
+    <string name="password_fail">Las dos contraseña no son idénticas</string>
     <string name="aviso_exito">La operación se ha procesado con éxito</string>
     <string name="aviso_repetipo">No se puede registrar a un usuario con un nombre de usuario repatido</string>
     <string name="aviso_radio">No se olvide de seleecionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
-    <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos y si el error prosige, póngase en contacto con el servicio técnico</string>
+    <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos</string>
+    <string name="aviso_error_general">Ha ocurrido un error</string>
     <string name="texto_hora_inicio">Seleccione la hora de despege</string>
     <string name="texto_hora_aterrizaje">Seleccione la hora de aterrizaje</string>
-
-
+    <string name="delete_product">No se puede eliminar un producto que ya ha sido comprado. Si quiere que deje de estar disponible, delo de baja</string>
+    <string name="delete_aeronv">No se puede eliminar una aeronave que ha sido registrada el algún historial de vuelo. Si quiere que deje de estar disponible, dela de baja</string>
+    <string name="text_buscar">Buscar</string>
+    <string name="text_input_search">Inserte el nombre</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="gps">GPS</string>
 </resources>

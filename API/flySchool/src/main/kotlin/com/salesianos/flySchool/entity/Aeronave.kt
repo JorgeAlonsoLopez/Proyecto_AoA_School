@@ -1,5 +1,6 @@
 package com.salesianos.flySchool.entity
 
+import io.swagger.annotations.ApiModelProperty
 import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.Min
@@ -7,6 +8,10 @@ import javax.validation.constraints.NotBlank
 
 @Entity
 class Aeronave (
+    /**
+     * Atributo que almacena la matrícula de la aeronave
+     */
+    @ApiModelProperty(value = "Matrícula de la aeronave", dataType = "java.lang.String")
     @Column(nullable = false, unique = true)
     var matricula : String,
 
@@ -34,6 +39,10 @@ class Aeronave (
     @JoinColumn(name = "foto_id", referencedColumnName = "id")
     var foto : FotoAeronave? = null,
 
+    /**
+     * Atributo que almacena el ID de la aeronave
+     */
+    @ApiModelProperty(value = "El ID de la aeronave", dataType = "java.util.UUID")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null

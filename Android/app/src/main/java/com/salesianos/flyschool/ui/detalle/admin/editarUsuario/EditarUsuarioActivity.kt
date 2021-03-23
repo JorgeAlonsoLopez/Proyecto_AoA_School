@@ -128,10 +128,10 @@ class EditarUsuarioActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<DtoUserInfoSpeci>, response: Response<DtoUserInfoSpeci>
                 ) {
                     if (response.code() == 200) {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.aviso_exito), Toast.LENGTH_LONG).show()
                         (ctx as EditarUsuarioActivity).finish()
                     } else {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                     }
                 }
                 override fun onFailure(call: Call<DtoUserInfoSpeci>, t: Throwable) {

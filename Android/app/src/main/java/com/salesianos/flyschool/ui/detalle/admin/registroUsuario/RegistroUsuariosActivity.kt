@@ -104,9 +104,9 @@ class RegistroUsuariosActivity : AppCompatActivity() {
                             }
                         }.start()
                     } else if (response.code() == 404) {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.aviso_repetipo), Toast.LENGTH_LONG).show()
                     } else {
-                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                     }
                 }
 

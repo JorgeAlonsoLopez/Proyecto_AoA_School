@@ -10,6 +10,7 @@ import android.widget.Button
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.ui.detalle.admin.registroAeronave.RegistroAeronaveActivity
 import com.salesianos.flyschool.ui.detalle.admin.registroProducto.RegistroProductoActivity
+import com.salesianos.flyschool.ui.menu.MenuActivity
 
 
 class ListaProductosMainFragment : Fragment() {
@@ -26,6 +27,7 @@ class ListaProductosMainFragment : Fragment() {
     ): View? {
 
         var root = inflater.inflate(R.layout.fragment_lista_productos_main, container, false)
+        (activity as MenuActivity?)!!.supportActionBar!!.title = getString(R.string.menu_listado_productos)
 
         val boton: Button = root.findViewById(R.id.btn_direc_nuevo_producto)
 

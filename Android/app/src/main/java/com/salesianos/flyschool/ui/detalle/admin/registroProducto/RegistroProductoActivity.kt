@@ -105,6 +105,8 @@ class RegistroProductoActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<DtoProductoEspecf>, response: Response<DtoProductoEspecf>) {
                             if (response.code() == 201) {
                                 (ctx as RegistroProductoActivity).finish()
+                            }else{
+                                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                             }
                         }
 
@@ -119,6 +121,8 @@ class RegistroProductoActivity : AppCompatActivity() {
                         override fun onResponse(call: Call<DtoProductoEspecf>, response: Response<DtoProductoEspecf>) {
                             if (response.code() == 200) {
                                 (ctx as RegistroProductoActivity).finish()
+                            }else{
+                                Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                             }
                         }
                         override fun onFailure(call: Call<DtoProductoEspecf>, t: Throwable) {

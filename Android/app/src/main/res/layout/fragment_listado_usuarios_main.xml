@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B4D8D8D8"
     tools:context=".ui.menu.ui.piloto.registroHoras.RegistroHorasMainFragment">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/btn_direc_registro_usuario"
         android:layout_width="285dp"
         android:layout_height="54dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/text_registrar_usuario"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -20,16 +21,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragment2"
-        app:layout_constraintVertical_bias="0.725" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <fragment
         android:id="@+id/fragment2"
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoUsuarios.ListaUsuariosFragment"
-        android:layout_width="403dp"
-        android:layout_height="565dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="0dp"
+        android:layout_height="605dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

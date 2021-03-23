@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D8D8D8"
     tools:context=".ui.menu.ui.piloto.registroHoras.RegistroHorasMainFragment">
 
 
@@ -11,7 +12,7 @@
         android:id="@+id/btn_direc_nueva_aeronave"
         android:layout_width="285dp"
         android:layout_height="54dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="36dp"
         android:text="@string/text_registrar_aeronave"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -25,9 +26,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment4"
         android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesAdminFragment"
-        android:layout_width="403dp"
+        android:layout_width="0dp"
         android:layout_height="569dp"
-        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
