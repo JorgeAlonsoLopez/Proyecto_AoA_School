@@ -148,4 +148,6 @@
     <string name="texto_hora_aterrizaje">Seleccione la hora de aterrizaje</string>
     <string name="delete_product">No se puede eliminar un producto que ya ha sido comprado. Si quiere que deje de estar disponible, delo de baja</string>
     <string name="delete_aeronv">No se puede eliminar una aeronave que ha sido registrada el algún historial de vuelo. Si quiere que deje de estar disponible, dela de baja</string>
+    <string name="text_buscar">Buscar</string>
+    <string name="text_input_search">Inserte el nombre</string>
 </resources>
