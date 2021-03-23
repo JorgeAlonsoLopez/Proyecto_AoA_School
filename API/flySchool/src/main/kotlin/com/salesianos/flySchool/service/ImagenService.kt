@@ -44,7 +44,7 @@ class FotoAeronaveServicio(
             imageAttribute = imageStorageService.store(file)
         }
         if (imageAttribute!=null){
-            e.dataId = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
+            e.url = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
             e.deleteHash=imageAttribute.get().deletehash!!
 
         }

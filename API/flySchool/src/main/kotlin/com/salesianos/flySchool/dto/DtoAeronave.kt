@@ -7,62 +7,86 @@ import javax.validation.constraints.Min
 import javax.validation.constraints.NotBlank
 
 /**
- * Data class que sirve para guardar la información de una aeronaque que se va a guardar o de una ya existente que se va a editar.
+ * Data class que sirve para tratar la información de una aeronave.
  */
 data class DtoAeronaveForm(
 
+    @ApiModelProperty(value = "Matrícula de la aeronave")
     @get:NotBlank(message="{aeronave.matricula.blank}")
     var matricula : String,
 
+    @ApiModelProperty(value = "Marca del modelo de la aeronave")
     @get:NotBlank(message="{aeronave.marca.blank}")
     var marca : String,
 
+    @ApiModelProperty(value = "Modelo de aeronave")
     @get:NotBlank(message="{aeronave.modelo.blank}")
     var modelo : String,
 
+    @ApiModelProperty(value = "Nombre del motor de la aeronave")
     @get:NotBlank(message="{aeronave.motor.blank}")
     var motor : String,
 
+    @ApiModelProperty(value = "Potencia del motor de la aeronave")
     @get:Min(value=60,message="{aeronave.potencia.min}")
     var potencia : Double,
 
+    @ApiModelProperty(value = "Autonomía (km) de la aeronave")
     @get:Min(value=50,message="{aeronave.autonomia.min}")
     var autonomia : Double,
 
+    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave")
     @get:Min(value=55,message="{aeronave.velMax.min}")
     var velMax : Double,
 
+    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave")
     @get:Min(value=20,message="{aeronave.velMin.min}")
     var velMin : Double,
 
+    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave")
     @get:Min(value=40,message="{aeronave.velCru.min}")
     var velCru : Double
 )
 
+/**
+ * Data class que sirve para tratar la información de la respuesta del servidor  para una aeronave.
+ */
 data class DtoAeronaveResp(
 
+    @ApiModelProperty(value = "ID de la eronave")
     val id:UUID,
 
+    @ApiModelProperty(value = "Matrícula de la aeronave")
     var matricula : String,
 
+    @ApiModelProperty(value = "Marca del modelo de la aeronave")
     var marca : String,
 
+    @ApiModelProperty(value = "Modelo de aeronave")
     var modelo : String,
 
+    @ApiModelProperty(value = "Nombre del motor de la aeronave")
     var motor : String,
 
+    @ApiModelProperty(value = "Potencia del motor de la aeronave")
     var potencia : Double,
 
+    @ApiModelProperty(value = "Autonomía (km) de la aeronave")
     var autonomia : Double,
 
+    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave")
     var velMax : Double,
 
+    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave")
     var velMin : Double,
 
+    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave")
     var velCru : Double,
 
+    @ApiModelProperty(value = "Estado de la aeronave referente al mantenimiento")
     var mantenimiento : Boolean,
 
+    @ApiModelProperty(value = "Estado de la aeronave referente a la disponibilidad")
     var alta: Boolean,
 
     var fotoURL:DTOFotoUrl
@@ -78,70 +102,45 @@ fun Aeronave.toGetDtoAeronaveResp():DtoAeronaveResp{
 
 }
 
+/**
+ * Data class que sirve para tratar la información de la respuesta del servidor  para una aeronave, sin necesitar la foto.
+ */
 data class DtoAeronaveSinFoto(
 
+    @ApiModelProperty(value = "ID de la eronave")
     val id:UUID,
 
+    @ApiModelProperty(value = "Matrícula de la aeronave")
     var matricula : String,
 
-    /**
-     * Atributo que almacena la marca de la aeronave
-     */
-    @ApiModelProperty(value = "Marca del modelo de la aeronave", dataType = "java.lang.String")
+    @ApiModelProperty(value = "Marca del modelo de la aeronave")
     var marca : String,
 
-    /**
-     * Atributo que almacena el modelode la aeronave
-     */
-    @ApiModelProperty(value = "Modelo de aeronave", dataType = "java.lang.String")
+    @ApiModelProperty(value = "Modelo de aeronave")
     var modelo : String,
 
-    /**
-     * Atributo que almacena el nombre del motor de la aeronave
-     */
-    @ApiModelProperty(value = "Nombre del motor de la aeronave", dataType = "java.lang.String")
+    @ApiModelProperty(value = "Nombre del motor de la aeronave")
     var motor : String,
 
-    /**
-     * Atributo que almacena la portencia del motor
-     */
-    @ApiModelProperty(value = "Potencia del motor de la aeronave", dataType = "Double")
+    @ApiModelProperty(value = "Potencia del motor de la aeronave")
     var potencia : Double,
 
-    /**
-     * Atributo que almacena la autonomía de la aeronave
-     */
-    @ApiModelProperty(value = "Autonomía (km) de la aeronave", dataType = "Double")
+    @ApiModelProperty(value = "Autonomía (km) de la aeronave")
     var autonomia : Double,
 
-    /**
-     * Atributo que almacena la velocidad máxima de la aeronave
-     */
-    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave", dataType = "Double")
+    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave")
     var velMax : Double,
 
-    /**
-     * Atributo que almacena la velocidad mínima de la aeronave
-     */
-    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave", dataType = "Double")
+    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave")
     var velMin : Double,
 
-    /**
-     * Atributo que almacena la velocidad de crucero de la aeronave
-     */
-    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave", dataType = "Double")
+    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave")
     var velCru : Double,
 
-    /**
-     * Atributo que almacena
-     */
-    @ApiModelProperty(value = "", dataType = "java.lang.String")
+    @ApiModelProperty(value = "Estado de la aeronave referente al mantenimiento")
     var mantenimiento : Boolean,
 
-    /**
-     * Atributo que almacena
-     */
-    @ApiModelProperty(value = "", dataType = "java.lang.String")
+    @ApiModelProperty(value = "Estado de la aeronave referente a la disponibilidad")
     var alta: Boolean
 )
 
@@ -150,18 +149,27 @@ fun Aeronave.toGetDtoAeronaveSinFoto():DtoAeronaveSinFoto{
 
 }
 
+/**
+ * Data class que sirve para tratar la información de la respuesta del servidor  para una aeronave.
+ */
 data class DtoAeronavePeq(
 
+    @ApiModelProperty(value = "ID de la eronave")
     val id:UUID,
 
+    @ApiModelProperty(value = "Matrícula de la aeronave")
     var matricula : String,
 
+    @ApiModelProperty(value = "Marca del modelo de la aeronave")
     var marca : String,
 
+    @ApiModelProperty(value = "Modelo de aeronave")
     var modelo : String,
 
+    @ApiModelProperty(value = "Estado de la aeronave referente al mantenimiento")
     var mantenimiento : Boolean,
 
+    @ApiModelProperty(value = "Estado de la aeronave referente a la disponibilidad")
     var alta: Boolean
 )
 
