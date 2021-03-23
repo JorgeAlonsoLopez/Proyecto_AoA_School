@@ -150,5 +150,12 @@ class UsuarioService(
 
     }
 
+    fun filtroNombre(name: String) = super.repository.findByFullName(name)
+
+    fun listadoFiltroNombre(name: String) : List<DtoUserInfo> {
+        return this.filtroNombre(name)?.map{it.toGetDtoUserInfo(it)}
+                .takeIf { it!!.isNotEmpty() } ?: throw ListaUsuariosNotFoundException(Usuario::class.java)
+    }
+
 
 }
