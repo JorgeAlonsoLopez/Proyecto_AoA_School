@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-
+/**
+ * Clase que indica el comienzo del esquema de autenticación
+ */
 @Component
 class JwtAuthenticationEntryPoint(
     val mapper : ObjectMapper

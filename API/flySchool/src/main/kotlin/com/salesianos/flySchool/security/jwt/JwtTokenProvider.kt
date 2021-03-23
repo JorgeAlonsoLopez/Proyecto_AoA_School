@@ -15,6 +15,9 @@ import java.time.Instant
 import java.time.temporal.ChronoUnit
 import java.util.*
 
+/**
+ * Clase encargada de la generación del token y su validación
+ */
 @Component
 class JwtTokenProvider(
         @Value("\${jwtSecreto}") private var jwtSecreto : String,
@@ -32,13 +35,22 @@ class JwtTokenProvider(
 
     private val logger : Logger = LoggerFactory.getLogger(JwtTokenProvider::class.java)
 
+    /**
+     * Método que se encarga de generar el token para el usuario autenticado
+     */
     fun generateToken(authentication : Authentication) : String {
         val user : Usuario = authentication.principal as Usuario
         return generateTokens(user, false)
     }
 
+    /**
+     * Método que genera el token para un usuario particular
+     */
     fun generateToken(user : Usuario) = generateTokens(user, false)
 
+    /**
+     * Se genera el token de refresco
+     */
     fun generateRefreshToken(authentication: Authentication) : String {
         val user : Usuario = authentication.principal as Usuario
         return generateTokens(user, true)
@@ -46,6 +58,9 @@ class JwtTokenProvider(
 
     fun generateRefreshToken(user : Usuario) = generateTokens(user, true)
 
+    /**
+     * Genera el token para un uaurio, haciendo uso del token de refresco
+     */
     private fun generateTokens(user : Usuario, isRefreshToken : Boolean) : String {
         val tokenExpirationDate =
             Date.from(Instant.now().plus(if (isRefreshToken) jwtDuracionRefreshToken else jwtDuracionToken, ChronoUnit.DAYS))
@@ -66,12 +81,25 @@ class JwtTokenProvider(
         return builder.compact()
     }
 
+    /**
+     * Método encargado de proporcionar un usuario a partir de un token
+     */
     fun getUserIdFromJWT(token: String): UUID = UUID.fromString(parser.parseClaimsJws(token).body.subject)
 
+    /**
+     * Método encargado de validar un token de refresco
+     */
     fun validateRefreshToken(token : String) = validateToken(token, true)
 
+    /**
+     * Método cuya función es la de validar un token de autenticación
+     */
     fun validateAuthToken(token : String) = validateToken(token, false)
 
+    /**
+     * Valida un token, comprobando la firma del mismo y lanzando la excepción oportuna en el casp
+     * de que no se produzca la validación de dicho token
+     */
     private fun validateToken(token : String, isRefreshToken: Boolean) : Boolean {
         try {
             val claims = parser.parseClaimsJws(token)

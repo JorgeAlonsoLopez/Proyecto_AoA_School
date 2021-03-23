@@ -5,7 +5,9 @@ import javax.persistence.Converter
 
 data class ImgurImageAttribute(var id: String?, var deletehash : String?)
 
-
+/**
+ * Clase encargada de la conversión entre atributos de la base de datos de imgur y String
+ */
 @Converter(autoApply = true)
 class ImgurImageAttributeToStringConverter() : AttributeConverter<ImgurImageAttribute, String?> {
 

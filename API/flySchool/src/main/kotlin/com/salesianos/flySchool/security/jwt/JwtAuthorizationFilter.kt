@@ -1,6 +1,5 @@
 package com.salesianos.flySchool.security.jwt
 
-
 import com.salesianos.flySchool.entity.Usuario
 import com.salesianos.flySchool.service.UsuarioService
 import org.slf4j.Logger
@@ -19,6 +18,10 @@ import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
+/**
+ * Clase encargada de extrer el ID del usuario logeado a partir del token proporcionado y el tratamiento de las excepciones pertinentes
+ * en el caso de que el token no exista, no sea válido o no se encuentre el usuario en la base de datos
+ */
 @Component
 class JwtAuthorizationFilter(
     private val jwtTokenProvider: JwtTokenProvider,
@@ -54,6 +57,9 @@ class JwtAuthorizationFilter(
 
 }
 
+/**
+ * Clase cuya función es la de extraer el token del encabezado de la petición
+ */
 @Service
 class BearerTokenExtractor {
 
