@@ -17,6 +17,7 @@ import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.FacturaService
 import com.salesianos.flyschool.retrofit.UsuarioService
 import com.salesianos.flyschool.ui.detalle.admin.registroProducto.RegistroProductoActivity
+import com.salesianos.flyschool.ui.detalle.piloto.gps.MapsActivity
 import com.salesianos.flyschool.ui.detalle.piloto.registroVuelo.RegistroVueloActivity
 import com.salesianos.flyschool.ui.menu.MenuActivity
 import retrofit2.Call
@@ -40,6 +41,7 @@ class RegistroHorasMainFragment : Fragment() {
     var id : String = ""
     lateinit var horas: TextView
     lateinit var boton: Button
+    lateinit var gps: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,7 @@ class RegistroHorasMainFragment : Fragment() {
 
         horas = root.findViewById(R.id.text_horas_disponibles_value)
         boton = root.findViewById(R.id.btn_direc_registro_vuelo)
+      //  gps = root.findViewById(R.id.btn_gps)
 
         val sharedPref = context?.getSharedPreferences(requireContext().getString(R.string.preference_file_name), Context.MODE_PRIVATE)
         if (sharedPref != null) {
@@ -73,6 +76,11 @@ class RegistroHorasMainFragment : Fragment() {
                 }
                 startActivity(intent)
         })
+
+      //  gps.setOnClickListener(View.OnClickListener {
+       //     val intent = Intent(activity, MapsActivity::class.java)
+       //     startActivity(intent)
+      //  })
 
         return root
 

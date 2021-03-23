@@ -54,7 +54,6 @@
     <string name="licencia">¿Desea habilitar la licencia de piloto para este usuario?</string>
 
 
-
     <string name="hello_world">Hello Square World!</string>
     <string name="registro_vuelo">Registrar vuelo</string>
     <string name="texto_horas">Horas restantes: </string>
@@ -151,4 +150,6 @@
     <string name="delete_aeronv">No se puede eliminar una aeronave que ha sido registrada el algún historial de vuelo. Si quiere que deje de estar disponible, dela de baja</string>
     <string name="text_buscar">Buscar</string>
     <string name="text_input_search">Inserte el nombre</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="gps">GPS</string>
 </resources>
