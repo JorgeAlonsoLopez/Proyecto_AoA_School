@@ -20,14 +20,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView31"
+            <Button
+                android:id="@+id/btn_foto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
                 android:text="@string/text_adjuntar_foto"
-                android:textAlignment="center"
-                android:textColor="@color/black"
                 android:textSize="30sp" />
 
             <ImageView

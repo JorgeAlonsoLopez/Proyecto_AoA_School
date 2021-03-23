@@ -8,14 +8,13 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import coil.load
 import com.salesianos.flyschool.R
 import com.salesianos.flyschool.poko.DtoAeronaveForm
 import com.salesianos.flyschool.poko.DtoAeronaveResp
 import com.salesianos.flyschool.poko.DtoAeronaveSinFoto
-import com.salesianos.flyschool.poko.DtoUserInfoSpeci
 import com.salesianos.flyschool.retrofit.AeronaveService
 import com.salesianos.flyschool.ui.detalle.admin.URIPathHelper
-import com.salesianos.flyschool.ui.detalle.admin.editarUsuario.EditarUsuarioActivity
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -25,7 +24,6 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.net.URI
 import java.util.*
 
 
@@ -41,11 +39,12 @@ class RegistroAeronaveActivity : AppCompatActivity() {
     lateinit var foto : ImageView
     val uriPathHelper = URIPathHelper()
     lateinit var filePath : String
+    lateinit var hash : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro_aeronave)
-
+        filePath = ""
         supportActionBar!!.hide()
 
         retrofit = Retrofit.Builder()
@@ -66,12 +65,25 @@ class RegistroAeronaveActivity : AppCompatActivity() {
         edit = intent.extras?.getBoolean("edit")!!
 
 
-        var textoFoto : TextView = findViewById(R.id.textView31)
+        var btnFoto : Button = findViewById(R.id.btn_foto)
         foto = findViewById(R.id.img_form_aeronave)
-       // textoFoto.visibility = View.INVISIBLE
-       // foto.visibility = View.INVISIBLE
 
-        textoFoto.setOnClickListener {
+
+        btnFoto.setOnClickListener {
+            if(edit){
+                service.deletePhoto("Bearer " + token, id, hash).enqueue(object : Callback<Unit> {
+                    override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                        if (response.code() == 200) {
+                        }else{
+                            Toast.makeText(applicationContext, getString(R.string.aviso_error_general), Toast.LENGTH_LONG).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        Log.i("Error", "Error eliminar imagen")
+                        Log.d("Error", t.message!!)
+                    }
+                })
+            }
             openGalleryForImage()
         }
 
@@ -104,6 +116,8 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                         max.setText(response.body()?.velMax.toString())
                         min.setText(response.body()?.velMin.toString())
                         crucero.setText(response.body()?.velCru.toString())
+                        foto.load(response.body()?.fotoURL!!.url)
+                        hash = response.body()?.fotoURL!!.hash
                     }
                 }
                 override fun onFailure(call: Call<DtoAeronaveResp>, t: Throwable) {
@@ -127,12 +141,12 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                 service.crear("Bearer " + token, form).enqueue(object : Callback<DtoAeronaveSinFoto> {
                     override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
                         if (response.code() == 201) {
-                            (ctx as RegistroAeronaveActivity).finish()
+                            id = UUID.fromString(response.body()?.id)
+                            if(filePath != "") cargarImagen(id, filePath)
                         }else{
                             Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                         }
                     }
-
                     override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
                         Log.i("Error", "Error")
                         Log.d("Error", t.message!!)
@@ -143,20 +157,17 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                     override fun onResponse(call: Call<DtoAeronaveSinFoto>, response: Response<DtoAeronaveSinFoto>) {
                         if (response.code() == 200) {
                             (ctx as RegistroAeronaveActivity).finish()
+                            if(filePath != "") cargarImagen(id, filePath)
                         }else{
                             Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
                         }
                     }
-
                     override fun onFailure(call: Call<DtoAeronaveSinFoto>, t: Throwable) {
                         Log.i("Error", "Error")
                         Log.d("Error", t.message!!)
                     }
                 })
             }
-
-
-
         })
 
         btnCancel.setOnClickListener(View.OnClickListener { (ctx as RegistroAeronaveActivity).finish() })
@@ -167,17 +178,39 @@ class RegistroAeronaveActivity : AppCompatActivity() {
     private fun openGalleryForImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, 200)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        println("qq")
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
             foto.setImageURI(data?.data) // handle chosen image
             filePath = uriPathHelper.getPath(this, data?.data!!).toString()
-            Toast.makeText(applicationContext, filePath, Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun cargarImagen(id: UUID, filePath: String){
+
+        val file : File = File(filePath)
+
+        val reqFile = RequestBody.create(MediaType.parse("image/*"), file)
+        val body = MultipartBody.Part.createFormData("file", file.name, reqFile)
+
+
+        service.addFoto("Bearer " + token, id ,body).enqueue(object : Callback<DtoAeronaveResp> {
+            override fun onResponse(call: Call<DtoAeronaveResp>, response: Response<DtoAeronaveResp>) {
+                if (response.code() == 201) {
+                    (ctx as RegistroAeronaveActivity).finish()
+                }else{
+                    Toast.makeText(applicationContext, getString(R.string.aviso_error), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<DtoAeronaveResp>, t: Throwable) {
+                Log.i("Error", "Error")
+                Log.d("Error", t.message!!)
+            }
+        })
     }
 
 
