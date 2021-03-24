@@ -11,10 +11,10 @@ import java.util.*
  */
 data class DtoRegistroForm(
 
-    @ApiModelProperty(value = "Hora y minutos en el que la aeronave despegó")
+    @ApiModelProperty(value = "Hora y minutos en el que la aeronave despegó", required = true)
     var horaInicio : String,
 
-    @ApiModelProperty(value = "Hora y minutos en el que la aeronave aterrizó")
+    @ApiModelProperty(value = "Hora y minutos en el que la aeronave aterrizó", required = true)
     var horaFin : String,
 )
 

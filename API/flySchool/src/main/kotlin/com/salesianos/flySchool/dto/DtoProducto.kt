@@ -11,19 +11,19 @@ import javax.validation.constraints.NotBlank
  */
 data class DtoProductoForm(
 
-    @ApiModelProperty(value = "Tipo del producto, haciendo referencia a que tipo de piloto va dirigido")
+    @ApiModelProperty(value = "Tipo del producto, haciendo referencia a que tipo de piloto va dirigido", required = true)
     var tipoLibre : Boolean,
 
-    @ApiModelProperty(value = "Nombre del producto")
+    @ApiModelProperty(value = "Nombre del producto", required = true)
     @get:NotBlank(message="{producto.nombre.blank}")
     var nombre : String,
 
-    @ApiModelProperty(value = "Precio del producto")
+    @ApiModelProperty(value = "Precio del producto (valor mínimo 1)", required = true)
     @get:Min(value=1,message="{producto.precio.min}")
     var precio : Double,
 
-    @ApiModelProperty(value = "Horas de vuelo asociadas al producto")
-    @get:Min(value=0,message="{producto.horasVuelo.min}")
+    @ApiModelProperty(value = "Horas de vuelo asociadas al producto (valor mínimo 1)", required = true)
+    @get:Min(value=1,message="{producto.horasVuelo.min}")
     var horasVuelo : Int
 )
 

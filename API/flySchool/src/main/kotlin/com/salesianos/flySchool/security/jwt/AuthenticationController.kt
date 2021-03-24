@@ -6,10 +6,7 @@ import com.salesianos.flySchool.dto.toGetDtoUserInfo
 import com.salesianos.flySchool.entity.Usuario
 import com.salesianos.flySchool.error.ApiError
 import com.salesianos.flySchool.service.UsuarioService
-import io.swagger.annotations.ApiModelProperty
-import io.swagger.annotations.ApiOperation
-import io.swagger.annotations.ApiResponse
-import io.swagger.annotations.ApiResponses
+import io.swagger.annotations.*
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.prepost.PreAuthorize
@@ -45,13 +42,16 @@ class AuthenticationController(
                 "como resultado el token."
     )
     @ApiResponses(
+
         value = [
             ApiResponse(code = 200, message = "OK", response = JwtUserResponse::class),
-            ApiResponse(code = 401, message = "Unauthorized", response = AuthenticationException::class)
+            ApiResponse(code = 401, message = "Unauthorized", response = MensajeError::class)
         ]
     )
     @PostMapping("/auth/login")
-    fun login(@Valid @RequestBody loginRequest : LoginRequest) : ResponseEntity<JwtUserResponse> {
+    fun login(@Valid @RequestBody
+              @ApiParam(value = "Los datos del login: usuario y contraseña", required = true)
+              loginRequest : LoginRequest) : ResponseEntity<JwtUserResponse> {
         val authentication = authenticationManager.authenticate(
             UsernamePasswordAuthenticationToken(
                 loginRequest.username, loginRequest.password

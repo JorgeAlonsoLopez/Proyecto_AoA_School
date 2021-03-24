@@ -11,39 +11,39 @@ import javax.validation.constraints.NotBlank
  */
 data class DtoAeronaveForm(
 
-    @ApiModelProperty(value = "Matrícula de la aeronave")
+    @ApiModelProperty(value = "Matrícula de la aeronave", required = true)
     @get:NotBlank(message="{aeronave.matricula.blank}")
     var matricula : String,
 
-    @ApiModelProperty(value = "Marca del modelo de la aeronave")
+    @ApiModelProperty(value = "Marca del modelo de la aeronave", required = true)
     @get:NotBlank(message="{aeronave.marca.blank}")
     var marca : String,
 
-    @ApiModelProperty(value = "Modelo de aeronave")
+    @ApiModelProperty(value = "Modelo de aeronave", required = true)
     @get:NotBlank(message="{aeronave.modelo.blank}")
     var modelo : String,
 
-    @ApiModelProperty(value = "Nombre del motor de la aeronave")
+    @ApiModelProperty(value = "Nombre del motor de la aeronave", required = true)
     @get:NotBlank(message="{aeronave.motor.blank}")
     var motor : String,
 
-    @ApiModelProperty(value = "Potencia del motor de la aeronave")
+    @ApiModelProperty(value = "Potencia del motor de la aeronave (valor mínimo de 60)", required = true)
     @get:Min(value=60,message="{aeronave.potencia.min}")
     var potencia : Double,
 
-    @ApiModelProperty(value = "Autonomía (km) de la aeronave")
+    @ApiModelProperty(value = "Autonomía (km) de la aeronave (valor mínimo de 50)", required = true)
     @get:Min(value=50,message="{aeronave.autonomia.min}")
     var autonomia : Double,
 
-    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave")
+    @ApiModelProperty(value = "Velocidad máxima (km/h) de la aeronave (valor mínimo de 55)", required = true)
     @get:Min(value=55,message="{aeronave.velMax.min}")
     var velMax : Double,
 
-    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave")
+    @ApiModelProperty(value = "Velocidad mínima (km/h) de la aeronave (valor mínimo de 20)", required = true)
     @get:Min(value=20,message="{aeronave.velMin.min}")
     var velMin : Double,
 
-    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave")
+    @ApiModelProperty(value = "Velocidad de crucero (km/h) de la aeronave (valor mínimo de 40)", required = true)
     @get:Min(value=40,message="{aeronave.velCru.min}")
     var velCru : Double
 )

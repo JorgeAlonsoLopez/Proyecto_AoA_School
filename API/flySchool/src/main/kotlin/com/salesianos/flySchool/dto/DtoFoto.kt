@@ -21,7 +21,7 @@ data class DTOFoto(
 
 
 fun FotoAeronave.toGetDTOFoto():DTOFoto{
-    return DTOFoto( url!!, deleteHash!! ,id!!)
+    return DTOFoto( dataI!!, deleteHash!! ,id!!)
 
 }
 /**
@@ -38,6 +38,6 @@ data class DTOFotoUrl(
 
 
 fun FotoAeronave.toGetDTOFotoUrl():DTOFotoUrl{
-    return DTOFotoUrl(url!!, deleteHash!!)
+    return DTOFotoUrl(dataI!!, deleteHash!!)
 
 }

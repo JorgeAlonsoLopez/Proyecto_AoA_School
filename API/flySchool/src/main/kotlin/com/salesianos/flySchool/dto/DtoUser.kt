@@ -190,3 +190,27 @@ data class DtoUserEdit(
     var tarjeta : String
 )
 
+/**
+ * Data class encargada de guardar la informción necesaria para el login
+ */
+data class LoginRequest(
+
+    @ApiModelProperty(value = "Nombre del usuario a logear")
+    @NotBlank val username : String,
+
+    @ApiModelProperty(value = "Contraseña del usuario a logear")
+    @NotBlank val password: String
+)
+
+/**
+ * Data class engargada de guardar la respuesta obtenida al realizar un login correcto
+ */
+data class JwtUserResponse(
+
+    @ApiModelProperty(value = "Token obtenido")
+    val token: String,
+
+    @ApiModelProperty(value = "Datos básicos del usuario logeado")
+    val user : DtoUserInfo
+)
+

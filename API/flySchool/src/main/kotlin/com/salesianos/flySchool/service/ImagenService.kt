@@ -1,6 +1,5 @@
 package com.salesianos.flySchool.service
 
-import com.salesianos.flySchool.entity.Factura
 import com.salesianos.flySchool.entity.FotoAeronave
 import com.salesianos.flySchool.repository.FotoRepository
 import com.salesianos.flySchool.upload.ImgurImageAttribute
@@ -52,7 +51,7 @@ class FotoAeronaveServicio(
             imageAttribute = imageStorageService.store(file)
         }
         if (imageAttribute!=null){
-            e.url = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
+            e.dataI = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
             e.deleteHash=imageAttribute.get().deletehash!!
 
         }

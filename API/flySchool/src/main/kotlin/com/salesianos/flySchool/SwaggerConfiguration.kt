@@ -37,9 +37,10 @@ class SwaggerConfiguration {
         .apiInfo(apiInfo())
         .securityContexts(Arrays.asList(securityContext()))
         .securitySchemes(Arrays.asList(apiKey()))
+        .useDefaultResponseMessages(false)
         .ignoredParameterTypes(AuthenticationPrincipal::class.java)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.salesianos.flySchool"))
+        .apis(RequestHandlerSelectors.basePackage("com.salesianos.flySchool.controller"))
         .paths(PathSelectors.any())
         .build()
 

@@ -76,7 +76,9 @@ class ImgurService(
 
     }
 
-
+    /**
+     * Eliminación de la imagen
+     */
     fun delete(hash: String): Unit {
         logger.debug("Realizando la petición DELETE para eliminar la imagen $hash")
 

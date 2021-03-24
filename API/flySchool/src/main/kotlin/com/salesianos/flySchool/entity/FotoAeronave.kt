@@ -12,7 +12,7 @@ class FotoAeronave (
     /**
      * Atributo que almacena la url de la imagen
      */
-    var url : String? = null,
+    var dataI : String? = null,
 
     /**
      * Atributo que guarda el hash para poder eliminar dicha foto sel servicio de almacenamiento externo

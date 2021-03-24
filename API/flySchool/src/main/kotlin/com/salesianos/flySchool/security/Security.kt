@@ -84,14 +84,14 @@ class WebSecurityConfiguration(
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers( "/h2-console/**").permitAll()
+            .antMatchers( "/h2-console/**", "/swagger-ui").permitAll()
             .antMatchers(POST, "/auth/login", "/auth/token").permitAll()
             .antMatchers(PUT, "/usuario/password").hasAnyRole("PILOT","ADMIN")
-            .antMatchers(GET,  "/usuario/me", "/aeronave/{id}", "usuario/piloto/{id}").hasAnyRole("PILOT","ADMIN")
+            .antMatchers(GET,  "/usuario/me", "/aeronave/{id}").hasAnyRole("PILOT","ADMIN")
             .antMatchers(POST, "/user/", "/aeronave/**", "/producto/**", "/auth/register").hasRole("ADMIN")
             .antMatchers(DELETE, "/aeronave/**", "/producto/**").hasRole("ADMIN")
             .antMatchers(PUT, "/aeronave/**", "/producto/**", "/usuario/{id}/", "/usuario/{id}/est", "usuario/licencia/{id}").hasRole("ADMIN")
-            .antMatchers(GET, "/aeronave/", "/factura/", "/producto/",
+            .antMatchers(GET, "/aeronave/", "/factura/", "/producto/", "usuario/piloto/{id}",
                 "/producto/{id}", "/registro/", "/usuario/", "/usuario/{id}", "usuario/filtro").hasRole("ADMIN")
 
             .antMatchers(GET, "/aeronave/alta", "/factura/user", "/producto/alta/{licencia}",
