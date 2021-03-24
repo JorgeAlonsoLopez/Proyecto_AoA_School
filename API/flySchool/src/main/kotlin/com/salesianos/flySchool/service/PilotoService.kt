@@ -1,12 +1,14 @@
 package com.salesianos.flySchool.service
 
-import com.salesianos.flySchool.entity.Aeronave
 import com.salesianos.flySchool.entity.Piloto
-import com.salesianos.flySchool.repository.AeronaveRepository
 import com.salesianos.flySchool.repository.PilotoRepository
 import org.springframework.stereotype.Service
 import java.util.*
 
+/**
+ * Servicio perteneciente a la clase Piloto
+ * @see Piloto
+ */
 @Service
 class PilotoService (
 ): BaseService<Piloto, UUID, PilotoRepository>()

@@ -104,3 +104,10 @@ data class NewUserException(
     val name: String
 ) : EntityNotFoundException("El usuario que intenta registrar con el nombre de usuario ${name} ya existe, inténtelo con otro")
 
+/**
+ * Excepción ocurrida cuando se intenta registrar una aeronave con una matrícula ya registrada
+ */
+data class NewAeronaveException(
+    val name: String
+) : EntityNotFoundException("La aeronave que intenta registrar con la matrícula ${name} ya existe")
+
