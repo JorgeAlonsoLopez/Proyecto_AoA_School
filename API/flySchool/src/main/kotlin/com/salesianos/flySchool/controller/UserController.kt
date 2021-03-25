@@ -26,8 +26,7 @@ import javax.validation.Valid
 @Controller
 @RequestMapping("/")
 class UserController(
-    private val service: UsuarioService,
-    private val pilotoService: PilotoService
+    private val service: UsuarioService
         ) {
 
     @ApiOperation(
@@ -130,7 +129,7 @@ class UserController(
     fun cambiarEstado(@PathVariable
                       @ApiParam(value = "ID del piloto a cambiar", required = true)
                       id: UUID): ResponseEntity<DtoUserInfoSpeci> {
-        return ResponseEntity.status(HttpStatus.OK).body(service.cambiarEstado(id, pilotoService))
+        return ResponseEntity.status(HttpStatus.OK).body(service.cambiarEstado(id))
     }
 
     @ApiOperation(

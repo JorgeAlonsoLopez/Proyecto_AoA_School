@@ -152,4 +152,5 @@
     <string name="text_input_search">Inserte el nombre</string>
     <string name="title_activity_maps">Map</string>
     <string name="gps">GPS</string>
+    <string name="error_matricula">No se puede registrar una aeronave con una matrícula ya existente</string>
 </resources>

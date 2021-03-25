@@ -33,16 +33,21 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
 
     /**
      * Cuenta el número de facturas que están relacionadas con un producto
+     * @property producto Producto con el que se va a filtrar
+     * @return número de facturas asociadas a un producto
      */
     fun countByProducto(producto: Producto) = repository.countByProducto(producto)
 
     /**
      * Obtienen las facturas pertenecientes a un piloto
+     * @property piloto Piloto con el que se va a filtrar
+     * @return listado de facturas por usuario
      */
     fun findByComprador(piloto: Piloto) = repository.findByComprador(piloto)
 
     /**
      * Función que obtiene un listado de todas las facturas, lanzando la excepción correspondiente en el caso de que no se encuntre ninguna
+     * @return listado de Dto de todas las facturas
      */
     fun litado(): List<DtoFacturaAdmin> {
         return this.findAll().map{it.toGetDtoFacturaAdmin()}
@@ -52,6 +57,8 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
     /**
      * Función que obtiene un listado de todas las facturas pertenecientes a un piloto,
      * lanzando la excepción correspondiente en el caso de que no se encuntre ninguna
+     * @property user Usuario al que le pertenecen las facturas
+     * @return lisado de Dto de facturas por usuario
      */
     fun listadoUsuario(user: Usuario): List<DtoFacturaCliente> {
         return this.findByComprador(user as Piloto).map{it.toGetDtoFacturaCliente()}
@@ -60,6 +67,11 @@ class FacturaService(): BaseService<Factura, UUID, FacturaRepository>() {
 
     /**
      * Función que crea y guarda una factura
+     * @property id Id del producto comprado
+     * @property user Usuario que ha llevado a cabo la operación
+     * @property productoService Servicio de la entidad Producto
+     * @property usuarioService Servicio de la entidad Usuario
+     * @return Dto de la factura creada
      */
     fun crear(id: UUID,  user: Usuario, productoService: ProductoService, usuarioService: UsuarioService): DtoFacturaAdmin {
         val producto = productoService.findById(id).orElseThrow{ ProductoSearchNotFoundException(id.toString()) }
