@@ -74,8 +74,6 @@ class RegistroAeronaveActivity : AppCompatActivity() {
                 service.deletePhoto("Bearer " + token, id, hash).enqueue(object : Callback<Unit> {
                     override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                         if (response.code() == 200) {
-                        }else if(response.code() == 500){
-                            Toast.makeText(applicationContext, getString(R.string.error_matricula), Toast.LENGTH_LONG).show()
                         }else{
                             Toast.makeText(applicationContext, getString(R.string.aviso_error_general), Toast.LENGTH_LONG).show()
                         }

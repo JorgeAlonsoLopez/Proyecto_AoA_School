@@ -52,6 +52,14 @@ tasks.withType<KotlinCompile> {
 	}
 }
 
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+	dokkaSourceSets{
+		named("main"){
+			includes.from("Module.md")
+		}
+	}
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }

@@ -35,7 +35,7 @@ class AeronaveService(
 
     /**
      * Método que cuanta el número de objetos de tipo Aeronave que poseen una detarminada matrícula
-     * @property matrícula matrícula de la aeronave a contar
+     * @param matrícula matrícula de la aeronave a contar
      * @return número de aeronaves que coincidan
      */
     fun countByMatricula(matricula : String) = repository.countByMatricula(matricula)
@@ -51,7 +51,7 @@ class AeronaveService(
     /**
      * Método encargado de la creación del objeto de tipo Aeronave y su posterior guardado a partir del Dto proporcionado,
      * devolviendo otro con al información específica del objeto
-     * @property nueva Dto con los datos del formulario de creación
+     * @param nueva Dto con los datos del formulario de creación
      * @return Dto de la nueva aeronave creada
      */
     fun create (nueva: DtoAeronaveForm): DtoAeronaveSinFoto {
@@ -71,9 +71,9 @@ class AeronaveService(
      * Método encargado de crear el objeto de tipo FotoAeronave, haciendo uso del servicio de FotoAeronaveServicio,
      * que a su vez usa los de imgur. Una vez creada, se relacionan entre si los objetos de tipo FotoAeronaveServicio y
      * Aeronave y se guardan en la base de datos. En caso de que ocurra algún problema, saltará una excepción
-     * @property id Id de la aeronave a la que se le establece la foto
-     * @property file Foto de la aeronave
-     * @property servicioFoto Servicio de la entidad FotoAeronave
+     * @param id Id de la aeronave a la que se le establece la foto
+     * @param file Foto de la aeronave
+     * @param servicioFoto Servicio de la entidad FotoAeronave
      * @return Dto de la aeronave actualizada
      */
     fun addFoto(id: UUID, file: MultipartFile, servicioFoto:FotoAeronaveServicio): DtoAeronaveResp {
@@ -92,9 +92,9 @@ class AeronaveService(
 
     /**
      * Método encargado del borrado de la aeronave y la imagen asocida a esta, en el caso de que tenga una.
-     * @property hash Cadena de confirmación de borrado
-     * @property id id de la aeronave a la que se le va a borrar la foto
-     * @property imgurStorageService Servicio de imgur
+     * @param hash Cadena de confirmación de borrado
+     * @param id id de la aeronave a la que se le va a borrar la foto
+     * @param imgurStorageService Servicio de imgur
      * @return confirmación o no del exito de la operación
      */
     fun delete(hash: String, id: UUID, imgurStorageService: ImgurStorageService,
@@ -120,9 +120,9 @@ class AeronaveService(
 
     /**
      * Método encargado unicamente de la eliminación de la foto en imgur, sin eliminar la aeronave.
-     * @property hash Cadena de confirmación de borrado
-     * @property id id de la aeronave a la que se le va a borrar la foto
-     * @property imgurStorageService Servicio de imgur
+     * @param hash Cadena de confirmación de borrado
+     * @param id id de la aeronave a la que se le va a borrar la foto
+     * @param imgurStorageService Servicio de imgur
      * @return Unit
      */
     fun deleteFoto(hash: String, id: UUID, imgurStorageService: ImgurStorageService,
@@ -163,7 +163,7 @@ class AeronaveService(
     /**
      * Método encargado de buscar una aeronave por su ID, devolviendola en un Dto y
      * lanzando la excepción pertinente en el caso de no encontrarla
-     * @property id Id de la aeronve
+     * @param id Id de la aeronve
      * @return Dto de aeronave con el id
      */
     fun aeronaveId(id: UUID): DtoAeronaveResp? {
@@ -174,8 +174,8 @@ class AeronaveService(
     /**
      * Método encargado de editar una aeronave , buscándola por ID, establecinedo los nuevos datos a partir del Dto correspondiente y
      * devolviendola como Dto. Se lanza la excepción pertinente en el caso de no encontrala
-     * @property editada Dto con los datos del formulario
-     * @property id Id de la aeronave
+     * @param editada Dto con los datos del formulario
+     * @param id Id de la aeronave
      * @return Dto de la aeronave modificada
      */
     fun editar(editada:DtoAeronaveForm, id: UUID): DtoAeronaveSinFoto? {
@@ -197,8 +197,8 @@ class AeronaveService(
     /**
      * Método que busca una aeronave por su ID y cambia su estado, ya sea referente a si está dada de alta o baja o
      * si está en mantenimiento o no. Se lanza la excepción pertinente en el caso de no encontrala
-     * @property id Id de la aeronave
-     * @property opt Número que determina la propiedad a cambiar
+     * @param id Id de la aeronave
+     * @param opt Número que determina la propiedad a cambiar
      * @return Dto de la aeronave modificada
      */
     fun cambiarEstado(id: UUID, opt:Int): DtoAeronaveSinFoto? {

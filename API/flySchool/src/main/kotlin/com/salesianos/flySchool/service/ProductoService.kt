@@ -26,7 +26,7 @@ class ProductoService(
 
     /**
      * Busca todas las entidades que estén dadas de alta y sean o no (dependiendo de la ocasión) de tipo libre o eseñanza
-     * @property opt Valor de la propiedad alta
+     * @param opt Valor de la propiedad alta
      * @return listado de todos los productos dados de alta
      */
     fun findAllAlta(opt : Boolean) = repository.findByAltaAndTipoLibre(true, opt)
@@ -41,7 +41,7 @@ class ProductoService(
 
     /**
      * Función donde a partir de un Dto crea una entidad de tipo producto y la guarda en la base de datos
-     * @property nueva Dto con los datos del formulario
+     * @param nueva Dto con los datos del formulario
      * @return Dto de la entidad creada
      */
     fun crear(nueva: DtoProductoForm): DtoProductoEspecf {
@@ -53,8 +53,8 @@ class ProductoService(
     /**
      * Función donde a partir de un Dto edita una entidad de tipo producto y la guarda en la base de datos.
      * En caso de no encontrarla, lanza la excepción correspondiente
-     * @property editada Dto con los datos del formulario
-     * @property id Id del producto a modificar
+     * @param editada Dto con los datos del formulario
+     * @param id Id del producto a modificar
      * @return Dto de la entidad modificada
      */
     fun editar(editada: DtoProductoForm, id: UUID): DtoProductoEspecf? {
@@ -71,7 +71,7 @@ class ProductoService(
     /**
      * Función donde a partir de un Dto edita una entidad de tipo producto y la guarda en la base de datos.
      * En caso de no encontrarla, lanza la excepción correspondiente
-     * @property id Id del producto a modificar
+     * @param id Id del producto a modificar
      * @return Dto de la entidad modificada
      */
     fun cambiarEstado(id : UUID): DtoProductoEspecf {
@@ -85,8 +85,8 @@ class ProductoService(
     /**
      * Función que elimina una entidad de tipo producto, borrándola de la base de datos.
      * En caso de no encontrarla, lanza la excepción correspondiente
-     * @property id Id del producto a eliminar
-     * @property facturaService Servicio de la entidad Factura
+     * @param id Id del producto a eliminar
+     * @param facturaService Servicio de la entidad Factura
      * @return Int en fucón de si se ha borrado o no
      */
     fun eliminar(id : UUID,  facturaService: FacturaService): Int {
@@ -112,7 +112,7 @@ class ProductoService(
     /**
      * Función donde se listan todas las entidades dadas de alta y con la propiedad licencia según corresponda.
      * En caso de no encontrar nada, lanza la excepción correspondiente
-     * @property licencia Valor de la propiedad licencia que determina el filtro de búsqueda
+     * @param licencia Valor de la propiedad licencia que determina el filtro de búsqueda
      * @return listado de Dto de los productos dados de alta
      */
     fun listadoAlta(licencia: Boolean): List<DtoProductoEspecf> {
@@ -123,7 +123,7 @@ class ProductoService(
     /**
      * Función donde busca una entidad por su ID.
      * En caso de no encontrarla, lanza la excepción correspondiente
-     * @property id Id del producto a buscar
+     * @param id Id del producto a buscar
      * @return Dto del producto buscado por id
      */
     fun productoId(id : UUID): DtoProductoEspecf? {

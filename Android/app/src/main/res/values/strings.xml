@@ -139,7 +139,7 @@
     <string name="password_ok">El cambio ha ocurrido de forma satisfactoria</string>
     <string name="password_fail">Las dos contraseña no son idénticas</string>
     <string name="aviso_exito">La operación se ha procesado con éxito</string>
-    <string name="aviso_repetipo">No se puede registrar a un usuario con un nombre de usuario repatido</string>
+    <string name="aviso_repetipo">No se puede registrar a un usuario con un nombre de usuario repetido</string>
     <string name="aviso_radio">No se olvide de seleccionar administrador o piloto</string>
     <string name="aviso_campos">Todos los campos son obligatorios</string>
     <string name="aviso_error">Ha ocurrido un error, revise que ha aportado todos los datos</string>
