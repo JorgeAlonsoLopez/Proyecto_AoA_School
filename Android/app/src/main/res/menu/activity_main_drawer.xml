@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/tiempoFragment"
+            android:icon="@drawable/ic_baseline_wb_sunny_24"
+            android:title="@string/menu_tiempo" />
+
+        <item
+            android:id="@+id/listadoUsuariosMainFragment"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+            android:title="@string/menu_listado_usuarios" />
+
+        <item
+            android:id="@+id/registroHorasFragmentMain"
+            android:icon="@drawable/ic_baseline_calendar_today_24"
+            android:title="@string/menu_registro" />
+
+        <item
+            android:id="@+id/listadoAeronavesMainFragment"
+            android:icon="@drawable/ic_baseline_airplanemode_active_24"
+            android:title="@string/menu_listado_aeronaves" />
+
+        <item
+            android:id="@+id/pilotoAeronavesFragment"
+            android:icon="@drawable/ic_baseline_airplanemode_active_24"
+            android:title="@string/menu_listado_aeronaves" />
+
+        <item
+            android:id="@+id/listaProductosMainFragment"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="@string/menu_listado_productos" />
+
+        <item
+            android:id="@+id/comprasFragment"
+            android:icon="@drawable/ic_baseline_shopping_cart_24"
+            android:title="@string/menu_listado_productos" />
+
+        <item
+            android:id="@+id/listaFacturasFragment"
+            android:icon="@drawable/ic_factura"
+            android:title="@string/menu_listado_facturas" />
+
+        <item
+            android:id="@+id/facturasFragment"
+            android:icon="@drawable/ic_factura"
+            android:title="@string/menu_listado_facturas_cliente" />
+
+        <item
+            android:id="@+id/listaRegistrosFragment"
+            android:icon="@drawable/ic_baseline_timer_24"
+            android:title="@string/menu_listado_registros" />
+
+        <item
+            android:id="@+id/detalleUsuarioFragment"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/menu_detalle" />
+
+        <item
+            android:id="@+id/passwordFragment"
+            android:icon="@drawable/ic_baseline_vpn_key_24"
+            android:title="@string/menu_password" />
+        
+    </group>
+</menu>

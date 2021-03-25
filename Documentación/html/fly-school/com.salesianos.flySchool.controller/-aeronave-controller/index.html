@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>AeronaveController</title>
+<link href="../../../../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script><script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" async="async"></script>  </head>
+  <body>
+    <div id="container">
+      <div id="leftColumn"><a href="../../../index.html">
+          <div id="logo"></div>
+        </a>
+        <div id="paneSearch"></div>
+        <div id="sideMenu"></div>
+      </div>
+      <div id="main">
+        <div id="leftToggler"><span class="icon-toggler"></span></div>
+<script type="text/javascript" src="../../../scripts/main.js"></script>        <div class="main-content" id="content" pageIds="flySchool::com.salesianos.flySchool.controller/AeronaveController///PointingToDeclaration//-1191540768">
+          <div class="navigation-wrapper" id="navigation-wrapper">
+            <div class="breadcrumbs"><a href="../../../index.html">flySchool</a>/<a href="../index.html">com.salesianos.flySchool.controller</a>/<a href="index.html">AeronaveController</a></div>
+            <div class="pull-right d-flex">
+              <div id="searchBar"></div>
+            </div>
+          </div>
+          <div class="cover ">
+            <h1 class="cover"><span>Aeronave</span><wbr></wbr><span>Controller</span></h1>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/RestController///PointingToDeclaration/">RestController</span>()</div><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/RequestMapping///PointingToDeclaration/">RequestMapping</span>(<span>value = [<span><span class="breakable-word">/aeronave</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>class <a href="index.html">AeronaveController</a>(service: <a href="../../com.salesianos.flySchool.service/-aeronave-service/index.html">AeronaveService</a>, servicioFoto: <a href="../../com.salesianos.flySchool.service/-foto-aeronave-servicio/index.html">FotoAeronaveServicio</a>, imgurStorageService: <a href="../../com.salesianos.flySchool.upload/-imgur-storage-service/index.html">ImgurStorageService</a>, registroService: <a href="../../com.salesianos.flySchool.service/-registro-service/index.html">RegistroService</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+          </div>
+          <div class="tabbedcontent">
+            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Functions">Functions</button></div>
+            <div class="tabs-section-body">
+              <h2 class="">Functions</h2>
+              <div class="table" data-togglable="Functions"><a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaddFoto%2F%23java.util.UUID%23org.springframework.web.multipart.MultipartFile%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="addFoto" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaddFoto%2F%23java.util.UUID%23org.springframework.web.multipart.MultipartFile%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="add-foto.html">addFoto</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaddFoto%2F%23java.util.UUID%23org.springframework.web.multipart.MultipartFile%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/PostMapping///PointingToDeclaration/">PostMapping</span>(<span>value = [<span><span class="breakable-word">/{id}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="add-foto.html">addFoto</a>(<span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>, <span>@<span data-unresolved-link="org.springframework.web.bind.annotation/RequestPart///PointingToDeclaration/">RequestPart</span>(<span>value = <span class="breakable-word">file</span></span><wbr></wbr>) </span>file: <span data-unresolved-link="org.springframework.web.multipart/MultipartFile///PointingToDeclaration/">MultipartFile</span>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-resp/index.html">DtoAeronaveResp</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaeronaveId%2F%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="aeronaveId" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaeronaveId%2F%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="aeronave-id.html">aeronaveId</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FaeronaveId%2F%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/GetMapping///PointingToDeclaration/">GetMapping</span>(<span>value = [<span><span class="breakable-word">/{id}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="aeronave-id.html">aeronaveId</a>(<span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-resp/index.html">DtoAeronaveResp</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FcambiarEstado%2F%23java.util.UUID%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="cambiarEstado" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FcambiarEstado%2F%23java.util.UUID%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="cambiar-estado.html">cambiarEstado</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FcambiarEstado%2F%23java.util.UUID%23kotlin.Int%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/PutMapping///PointingToDeclaration/">PutMapping</span>(<span>value = [<span><span class="breakable-word">/{id}/{opt}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="cambiar-estado.html">cambiarEstado</a>(<span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>, <span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>opt: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-sin-foto/index.html">DtoAeronaveSinFoto</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fcrear%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="crear" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fcrear%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="crear.html">crear</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fcrear%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/PostMapping///PointingToDeclaration/">PostMapping</span>(<span>value = [<span><span class="breakable-word">/</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="crear.html">crear</a>(<span>@<span data-unresolved-link="javax.validation/Valid///PointingToDeclaration/">Valid</span>() @<span data-unresolved-link="org.springframework.web.bind.annotation/RequestBody///PointingToDeclaration/">RequestBody</span>() </span>nueva: <a href="../../com.salesianos.flySchool.dto/-dto-aeronave-form/index.html">DtoAeronaveForm</a>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-sin-foto/index.html">DtoAeronaveSinFoto</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fdelete%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="delete" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fdelete%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="delete.html">delete</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Fdelete%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/DeleteMapping///PointingToDeclaration/">DeleteMapping</span>(<span>value = [<span><span class="breakable-word">/{id}/{hash}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="delete.html">delete</a>(<span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>hash: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, <span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FdeleteFoto%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="deleteFoto" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FdeleteFoto%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="delete-foto.html">deleteFoto</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FdeleteFoto%2F%23kotlin.String%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/DeleteMapping///PointingToDeclaration/">DeleteMapping</span>(<span>value = [<span><span class="breakable-word">/foto/{id}/{hash}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="delete-foto.html">deleteFoto</a>(<span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>hash: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>, <span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>)<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Feditar%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="editar" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Feditar%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="editar.html">editar</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Feditar%2F%23com.salesianos.flySchool.dto.DtoAeronaveForm%23java.util.UUID%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/PutMapping///PointingToDeclaration/">PutMapping</span>(<span>value = [<span><span class="breakable-word">/{id}</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="editar.html">editar</a>(<span>@<span data-unresolved-link="javax.validation/Valid///PointingToDeclaration/">Valid</span>() @<span data-unresolved-link="org.springframework.web.bind.annotation/RequestBody///PointingToDeclaration/">RequestBody</span>() </span>editada: <a href="../../com.salesianos.flySchool.dto/-dto-aeronave-form/index.html">DtoAeronaveForm</a>, <span>@<span data-unresolved-link="org.springframework.web.bind.annotation/PathVariable///PointingToDeclaration/">PathVariable</span>() </span>id: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html">UUID</a>): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-sin-foto/index.html">DtoAeronaveSinFoto</a>&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Flistado%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="listado" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Flistado%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="listado.html">listado</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2Flistado%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/GetMapping///PointingToDeclaration/">GetMapping</span>(<span>value = [<span><span class="breakable-word">/</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="listado.html">listado</a>(): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-resp/index.html">DtoAeronaveResp</a>&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+<a data-name="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FlistadoAlta%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" anchor-label="listadoAlta" id="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FlistadoAlta%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768" data-filterable-set=":dokkaHtml/main"></a>
+                <div class="table-row" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main">
+                  <div class="main-subrow keyValue ">
+                    <div class=""><span class="inline-flex"><a href="listado-alta.html">listadoAlta</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="%5Bcom.salesianos.flySchool.controller%2FAeronaveController%2FlistadoAlta%2F%23%2FPointingToDeclaration%2F%5D%2FFunctions%2F-1191540768"></span>
+                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                        </span></span></div>
+                    <div>
+                      <div class="title"><div class="divergent-group" data-filterable-current=":dokkaHtml/main" data-filterable-set=":dokkaHtml/main"><div class="with-platform-tags"><span class="pull-right"></span></div>
+
+  <div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":dokkaHtml/main"><div class="symbol monospace"><div class="block"><div class="block">@<span data-unresolved-link="org.springframework.web.bind.annotation/GetMapping///PointingToDeclaration/">GetMapping</span>(<span>value = [<span><span class="breakable-word">/alta</span></span><wbr></wbr>]</span><wbr></wbr>)</div></div>fun <a href="listado-alta.html">listadoAlta</a>(): <span data-unresolved-link="org.springframework.http/ResponseEntity///PointingToDeclaration/">ResponseEntity</span>&lt;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>&lt;<a href="../../com.salesianos.flySchool.dto/-dto-aeronave-resp/index.html">DtoAeronaveResp</a>&gt;&gt;<span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+</div>
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content"></a></span><span>© 2021 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+    </div>
+  </body>
+</html>
+

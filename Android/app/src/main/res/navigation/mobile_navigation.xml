@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/tiempoFragment">
+
+
+    <fragment
+        android:id="@+id/tiempoFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.tiempo.TiempoFragment"
+        android:label="fragment_tiempo"
+        tools:layout="@layout/fragment_tiempo" />
+    <fragment
+        android:id="@+id/detalleUsuarioFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.detalle.DetalleUsuarioFragment"
+        android:label="fragment_detalle_usuario"
+        tools:layout="@layout/fragment_detalle_usuario" />
+    <fragment
+        android:id="@+id/listadoUsuariosMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoUsuarios.ListadoUsuariosMainFragment"
+        android:label="ListadoUsuariosMainFragment"
+        tools:layout="@layout/fragment_listado_usuarios_main"/>
+    <fragment
+        android:id="@+id/passwordFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.password.PasswordFragment"
+        android:label="fragment_password"
+        tools:layout="@layout/fragment_password" />
+    <fragment
+        android:id="@+id/listadoAeronavesMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listadoAeronaves.ListadoAeronavesMainFragment"
+        android:label="ListadoAeronavesMainFragment"
+        tools:layout="@layout/fragment_listado_aeronaves_main"/>
+    <fragment
+        android:id="@+id/listaProductosMainFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaProductos.ListaProductosMainFragment"
+        android:label="ListaProductosMainFragment"
+        tools:layout="@layout/fragment_lista_productos_main"/>
+    <fragment
+        android:id="@+id/listaFacturasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaFactura.ListaFacturasFragment"
+        android:label="fragment_lista_facturas_list"
+        tools:layout="@layout/fragment_lista_facturas_list" />
+    <fragment
+        android:id="@+id/listaRegistrosFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.admin.listaRegistros.ListaRegistrosFragment"
+        android:label="fragment_lista_registros_list"
+        tools:layout="@layout/fragment_lista_registros_list" />
+    <fragment
+        android:id="@+id/pilotoAeronavesFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.pilotoAeronaves.PilotoAeronavesFragment"
+        android:label="fragment_piloto_aeronaves_list"
+        tools:layout="@layout/fragment_piloto_aeronaves_list" />
+    <fragment
+        android:id="@+id/comprasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.compras.ComprasFragment"
+        android:label="fragment_compras_list"
+        tools:layout="@layout/fragment_compras_list" />
+    <fragment
+        android:id="@+id/facturasFragment"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.facturas.FacturasFragment"
+        android:label="fragment_facturas_list"
+        tools:layout="@layout/fragment_facturas_list" />
+    <fragment
+        android:id="@+id/registroHorasFragmentMain"
+        android:name="com.salesianos.flyschool.ui.menu.ui.piloto.registroHoras.RegistroHorasMainFragment"
+        android:label="fragment_registro_horas_main"
+        tools:layout="@layout/fragment_registro_horas_main" />
+
+</navigation>
