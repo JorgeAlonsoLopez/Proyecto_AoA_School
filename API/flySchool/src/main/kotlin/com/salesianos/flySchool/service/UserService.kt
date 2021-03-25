@@ -15,8 +15,8 @@ import java.util.*
 
 /**
  * Servicio perteneciente a la entidad Usuario, heredando de BaseService
- * @property encoder cifrador
- * @property PilotoServ Servicio de la entidad Piloto
+ * @param  encoder cifrador
+ * @param  PilotoServ Servicio de la entidad Piloto
  * @see Usuario
  */
 @Service
@@ -31,8 +31,8 @@ class UsuarioService(
 
     /**
      * Método que crear un nuevo usuario, comprobando antes que el nombre de usuario no esté repetido
-     * @property  nuevoUsuario Dto con los datos del nuevo usuario
-     * @property fecha Fecha de nacimiento
+     * @param nuevoUsuario Dto con los datos del nuevo usuario
+     * @param fecha Fecha de nacimiento
      * @return usuario creado
      */
     fun create(nuevoUsuario : DtoUserForm, fecha:LocalDate): Optional<Usuario> {
@@ -77,7 +77,7 @@ class UsuarioService(
 
     /**
      * Método cuya finalidad es la de buscar un usuario por su nombre de usuario
-     * @property username nombre de usuario usado como filtro
+     * @param username nombre de usuario usado como filtro
      * @return usuario al que pertenezca el nombre de usuario
      */
     fun findByUsername(username : String) = super.repository.findByUsername(username)
@@ -94,7 +94,7 @@ class UsuarioService(
 
     /**
      * Busca un usuario por ID, devolviendolo en forma de Dto y lanza la excepción correspondiente en caso de no encontrarlo
-     * @property id Id del usuario a buscar
+     * @param id Id del usuario a buscar
      * @return Dto del usuario específico
      */
     fun detalle( id: UUID) : DtoUserInfoSpeci {
@@ -105,7 +105,7 @@ class UsuarioService(
     /**
      * Busca un usuario de tipo Piloto por el ID, devolviendolo en forma de Dto y
      * lanza la excepción correspondiente en caso de no encontrarlo o que el usuario no sea un piloto
-     * @property id Id del piloto a buscar
+     * @param id Id del piloto a buscar
      * @return Dto del piloto específico
      */
     fun detallePiloto( id: UUID) : DtoPilot {
@@ -116,7 +116,7 @@ class UsuarioService(
     /**
      * Busca un usuario de tipo Piloto por el ID y cambia su estado (alta) y
      * lanza la excepción correspondiente en caso de no encontrarlo
-     * @property id Id del piloto a modificar
+     * @param id Id del piloto a modificar
      * @return Dto del usuario modificado
      */
     fun cambiarEstado(id: UUID): DtoUserInfoSpeci? {
@@ -132,8 +132,8 @@ class UsuarioService(
      * Edita un usuario a través de su ID y los datos aportados. En el caso de que el valor de la propiedad tarjeta esté vacía,
      * buscara un usuario de tipo administrador y le establecerá los nuevos datos. En el caso de que no esté vacía,
      * hara lo mismo con un usuario de tipo piloto. En ambos casos lanzará una excepción si no encuentra el usuario en cuestión
-     * @property user Dto con la información a modificar
-     * @property id Id del usuario a modificar
+     * @param user Dto con la información a modificar
+     * @param id Id del usuario a modificar
      * @return Dto del usuario modificado
      */
     fun editar(user: DtoUserEdit, id: UUID): DtoUserInfoSpeci? {
@@ -161,8 +161,8 @@ class UsuarioService(
 
     /**
      * Método por el se cambia la cantraseña del usuario outenticado
-     * @property passw Dto con los valores de las contraseñas
-     * @property user Usuario a modificar
+     * @param passw Dto con los valores de las contraseñas
+     * @param user Usuario a modificar
      * @return confirmación o no de cambi ode contraseña
      */
     fun editPassword(passw: DtoPassword,user: Usuario): Boolean {
@@ -178,14 +178,14 @@ class UsuarioService(
 
     /**
      * Se obtiene la información de un usuario. Se usará para obtener la información del usuario outenticado
-     * @property user Usuario del cual obtener la información
+     * @param user Usuario del cual obtener la información
      * @return Dto del usuari ologeado
      */
     fun me(user: Usuario) = user.toGetDtoUserInfoSpeci()
 
     /**
      * Crea un nuevo usuario
-     * @property newUser Dto con la información del nuevo usuario
+     * @param newUser Dto con la información del nuevo usuario
      * @return Dto del usuario creado
      */
     fun nuevoUsuario(newUser: DtoUserForm): Optional<DtoUserInfoSpeci>? {
@@ -198,7 +198,7 @@ class UsuarioService(
     /**
      * Busca un piloto por Id y en cado de tener la propiedad licencia a false, lo cambia.
      * En caso de encontrar ninguno, lanza la excepción correspondiente
-     * @property id Id del piloto a modificar
+     * @param id Id del piloto a modificar
      * @return Unit
      */
     fun licencia(id: UUID){
@@ -214,7 +214,7 @@ class UsuarioService(
 
     /**
      * Busca los usuario por parte del nombre completo
-     * @property name String a filtar
+     * @param name String a filtar
      * @return lista de usuario que pasen el filtro
      */
     fun filtroNombre(name: String) = super.repository.findByFullName(name.toLowerCase())
@@ -222,7 +222,7 @@ class UsuarioService(
     /**
      * Busca los usuario por parte del nombre completo.
      * En caso de encontrar ninguno, lanza la excepción correspondiente
-     * @property name String a filtra
+     * @param name String a filtra
      * @return lista de Dto de los usuarios filtrados
      */
     fun listadoFiltroNombre(name: String) : List<DtoUserInfo> {

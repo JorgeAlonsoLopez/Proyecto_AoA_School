@@ -33,7 +33,7 @@ class ImagenServicio(
 
 /**
  * Servicio donde se implementan los métodos relacionados con el tratamiento de imagenes de imgur
- * @property imageStorageService Servicio de imgur
+ * @param imageStorageService Servicio de imgur
  */
 @Service
 class FotoAeronaveServicio(
@@ -44,8 +44,8 @@ class FotoAeronaveServicio(
 
     /**
      * Método encargado de guardar la imagen en el servicio y establecer los valores del objeto de tipo FotoAeronave y guardarlo
-     * @property e Entidad con los datos de la foto
-     * @property file Imagen a guardar
+     * @param e Entidad con los datos de la foto
+     * @param file Imagen a guardar
      * @return entidad de la foto
      */
     fun save(e: FotoAeronave, file: MultipartFile) : FotoAeronave {
@@ -64,7 +64,7 @@ class FotoAeronaveServicio(
 
     /**
      * Elimia la imagen del servicio de almacenamiento y elimina el objeto de la base de datos
-     * @property e entidad con los datos de la foto
+     * @param e entidad con los datos de la foto
      * @return Unit
      */
     override fun delete(e : FotoAeronave) {
