@@ -18,4 +18,6 @@ Para consultar la documentación (Dokka) de la API:
 1)	puede acceder a la carpeta ```Documentación``` -> ```html``` -> abrir el archivo index.html 
 2)	desde el mismo proyecto de la API, ```root``` -> ```build``` -> ```dokka``` -> ```html``` -> abrir el archivo index.html
 
-En la carpeta ```Documentación``` de este repositorio encontrará documentación adicional, como la memoria del mismo o el sketching, entre otras.
+En la carpeta ```Documentación``` de este repositorio encontrará documentación adicional, como la memoria del mismo o el sketching, entre otras.  
+
+También se encuentra una colección de Postman donde probar las peticiones a la API, haciendo uso de la que se encuentra en Heroku (https://aoa-school.herokuapp.com) 
