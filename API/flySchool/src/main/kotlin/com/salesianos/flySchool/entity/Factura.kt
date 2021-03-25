@@ -5,20 +5,38 @@ import java.util.*
 import javax.persistence.*
 import javax.validation.constraints.Min
 
+/**
+ * Entidad que hace referencia a las facturas de compra de los productos, llevadas a cabo por los pilotos
+ */
 @Entity
 class Factura (
 
+    /**
+     * Atributo que almacena el precio total de la compra
+     */
     @get:Min(value=1,message="{factura.precio.min}")
     var precioTotal : Double,
 
+    /**
+     * Atributo que almacena la fecha en la que se ha llevado a cabo la operación
+     */
     var fecha : LocalDateTime,
 
+    /**
+     * Atributo que almacena el comprador queha llevado a cabo la operación
+     */
     @ManyToOne
     var comprador: Piloto,
 
+    /**
+     * Atributo que almacena el producto comprado
+     */
     @ManyToOne
     var producto: Producto,
 
+    /**
+     * Atributo que almacena el ID de la factura
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     val id: UUID? = null

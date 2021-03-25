@@ -8,12 +8,13 @@ import com.salesianos.flySchool.error.ListaProductoNotFoundException
 import com.salesianos.flySchool.error.ProductoModifNotFoundException
 import com.salesianos.flySchool.error.ProductoSearchNotFoundException
 import com.salesianos.flySchool.repository.ProductoRepository
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
 import java.util.*
 
+/**
+ * Servicio perteneciente a la clase Producto
+ * @see Producto
+ */
 @Service
 class ProductoService(
 ): BaseService<Producto, UUID, ProductoRepository>()
@@ -23,6 +24,11 @@ class ProductoService(
 
     override fun findAll() = super.findAll()
 
+    /**
+     * Busca todas las entidades que estén dadas de alta y sean o no (dependiendo de la ocasión) de tipo libre o eseñanza
+     * @property opt Valor de la propiedad alta
+     * @return listado de todos los productos dados de alta
+     */
     fun findAllAlta(opt : Boolean) = repository.findByAltaAndTipoLibre(true, opt)
 
     override fun findById(id : UUID) = super.findById(id)
@@ -33,12 +39,24 @@ class ProductoService(
 
     fun existById(id : UUID)= repository.existsById(id)
 
+    /**
+     * Función donde a partir de un Dto crea una entidad de tipo producto y la guarda en la base de datos
+     * @property nueva Dto con los datos del formulario
+     * @return Dto de la entidad creada
+     */
     fun crear(nueva: DtoProductoForm): DtoProductoEspecf {
         var producto = Producto(nueva.nombre, nueva.precio, nueva.horasVuelo, nueva.tipoLibre)
         this.save(producto)
         return producto.toGetDtoProductoEspecf()
     }
 
+    /**
+     * Función donde a partir de un Dto edita una entidad de tipo producto y la guarda en la base de datos.
+     * En caso de no encontrarla, lanza la excepción correspondiente
+     * @property editada Dto con los datos del formulario
+     * @property id Id del producto a modificar
+     * @return Dto de la entidad modificada
+     */
     fun editar(editada: DtoProductoForm, id: UUID): DtoProductoEspecf? {
         return this.findById(id)
             .map { fromRepo ->
@@ -50,6 +68,12 @@ class ProductoService(
             }.orElseThrow { ProductoModifNotFoundException(id.toString()) }
     }
 
+    /**
+     * Función donde a partir de un Dto edita una entidad de tipo producto y la guarda en la base de datos.
+     * En caso de no encontrarla, lanza la excepción correspondiente
+     * @property id Id del producto a modificar
+     * @return Dto de la entidad modificada
+     */
     fun cambiarEstado(id : UUID): DtoProductoEspecf {
         return this.findById(id)
             .map { prod ->
@@ -58,6 +82,13 @@ class ProductoService(
             }.orElseThrow { ProductoModifNotFoundException(id.toString()) }
     }
 
+    /**
+     * Función que elimina una entidad de tipo producto, borrándola de la base de datos.
+     * En caso de no encontrarla, lanza la excepción correspondiente
+     * @property id Id del producto a eliminar
+     * @property facturaService Servicio de la entidad Factura
+     * @return Int en fucón de si se ha borrado o no
+     */
     fun eliminar(id : UUID,  facturaService: FacturaService): Int {
         val producto = this.findById(id).orElseThrow { ProductoSearchNotFoundException(id.toString()) }
         if(facturaService.countByProducto(producto) == 0 ) {
@@ -68,16 +99,33 @@ class ProductoService(
         }
     }
 
+    /**
+     * Función donde se listan todas las entidades.
+     * En caso de no encontrar nada, lanza la excepción correspondiente
+     * @return listado de todos los productos
+     */
     fun listado(): List<DtoProductoEspecf> {
         return this.findAll().map{it.toGetDtoProductoEspecf()}
             .takeIf { it.isNotEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java)
     }
 
+    /**
+     * Función donde se listan todas las entidades dadas de alta y con la propiedad licencia según corresponda.
+     * En caso de no encontrar nada, lanza la excepción correspondiente
+     * @property licencia Valor de la propiedad licencia que determina el filtro de búsqueda
+     * @return listado de Dto de los productos dados de alta
+     */
     fun listadoAlta(licencia: Boolean): List<DtoProductoEspecf> {
         return this.findAllAlta(licencia)?.map{it.toGetDtoProductoEspecf()}
             .takeIf { !it.isNullOrEmpty() } ?: throw ListaProductoNotFoundException(Producto::class.java)
     }
 
+    /**
+     * Función donde busca una entidad por su ID.
+     * En caso de no encontrarla, lanza la excepción correspondiente
+     * @property id Id del producto a buscar
+     * @return Dto del producto buscado por id
+     */
     fun productoId(id : UUID): DtoProductoEspecf? {
         return this.findById(id).map { it.toGetDtoProductoEspecf() }
             .orElseThrow { ProductoSearchNotFoundException(id.toString()) }

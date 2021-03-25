@@ -6,19 +6,16 @@ import com.salesianos.flySchool.dto.toGetDtoRegistro
 import com.salesianos.flySchool.entity.*
 import com.salesianos.flySchool.error.AeronaveSearchNotFoundException
 import com.salesianos.flySchool.error.ListaRegistroVueloNotFoundException
-import com.salesianos.flySchool.error.ProductoSearchNotFoundException
-import com.salesianos.flySchool.repository.ProductoRepository
 import com.salesianos.flySchool.repository.RegistroRepository
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import java.time.LocalDate
 import java.time.LocalTime
 import java.util.*
 
+/**
+ * Servicio perteneciente a la clase RegistroVuelo
+ * @see RegistroVuelo
+ */
 @Service
 class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>(){
 
@@ -34,10 +31,26 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
 
     fun existById(id : UUID)= repository.existsById(id)
 
+    /**
+     * Obtiene el número de registros de vuelos que se han realizado con una determinada aeronave
+     * @property aeronave Aeronave que sirve de filtro
+     * @return número de registros asociados
+     */
     fun countByAeronave(aeronave: Aeronave) = repository.countByAeronave(aeronave)
 
+    /**
+     * Obtiene todos los registros de vuelos que ha realizado un piloto
+     * @property piloto Piloto que sirve de filtro
+     * @return número de registros asociados al piloto
+     */
     fun findByPiloto(piloto: Piloto) = repository.findByPiloto(piloto)
 
+    /**
+     * Función que obtiene la diferencia entre dos momentos de tiempo
+     * @property start Tiempo de inicio
+     * @property stop Tiempo de fin
+     * @return LocalTime de la diferencia
+     */
     fun difference(start: LocalTime, stop: LocalTime): LocalTime {
         lateinit var end : LocalTime
         var min = stop.minute - start.minute
@@ -52,16 +65,34 @@ class RegistroService (): BaseService<RegistroVuelo, UUID, RegistroRepository>()
         return end
     }
 
+    /**
+     * Obtiene el listado de todos los registros de vuelos y lanza una determinada excepción en el caso de no haber ninguno
+     * @return listado de Dto de los registros
+     */
     fun listado() : List<DtoRegistro> {
         return this.findAll().map{it.toGetDtoRegistro()}
             .takeIf { it.isNotEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java)
     }
 
+    /**
+     * Obtiene el listado de todos los registros de vuelos realizados por un piloto y lanza una determinada excepción en el caso de no haber ninguno
+     * @property user Usuario al que le pertenecen los registros
+     * @return listado de Dto de los registros por usuarios
+     */
     fun listadoUsuario(user: Usuario) : List<DtoRegistro> {
         return this.findByPiloto(user as Piloto).map{it.toGetDtoRegistro()}
             .takeIf { !it.isNullOrEmpty() } ?: throw ListaRegistroVueloNotFoundException(RegistroVuelo::class.java)
     }
 
+    /**
+     * Crea un registro nuevo aportándole el piloto, las horas de inicio y fin y la aeronave usada
+     * @property nueva Dto con los datos del registro
+     * @property id Id de la aeronave utilizada
+     * @property user Uusario que ha llevado a cabo el registro
+     * @property aeronaveService Servicio de la entidad Aeronave
+     * @property pilotoService Servicio de la entidad Piloto
+     * @return Dto del registro creado
+     */
     fun crear(nueva: DtoRegistroForm, id: UUID, user: Usuario, aeronaveService: AeronaveService, pilotoService: PilotoService) : DtoRegistro? {
         val piloto = user as Piloto
         val aeronave = aeronaveService.findById(id).orElseThrow{ AeronaveSearchNotFoundException(id.toString()) }

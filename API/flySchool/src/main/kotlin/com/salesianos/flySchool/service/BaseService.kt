@@ -1,10 +1,11 @@
 package com.salesianos.flySchool.service
 
-import com.salesianos.flySchool.entity.Aeronave
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 
+/**
+ * Clase que extiende de JPARepository, encapsulando los repositorios en los servicios
+ */
 open class BaseService<T, ID, R : JpaRepository<T, ID>>  {
 
     @Autowired

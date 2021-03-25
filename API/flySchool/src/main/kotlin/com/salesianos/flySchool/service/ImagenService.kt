@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory
 import org.springframework.web.multipart.MultipartFile
 
 
-
+/**
+ * Servicio perteneciente a la clase FotoAeronave
+ * @see FotoAeronave
+ */
 @Service
 class ImagenServicio(
     private val repo: FotoRepository
@@ -28,23 +31,30 @@ class ImagenServicio(
 
 }
 
-
+/**
+ * Servicio donde se implementan los métodos relacionados con el tratamiento de imagenes de imgur
+ * @property imageStorageService Servicio de imgur
+ */
 @Service
 class FotoAeronaveServicio(
     private val imageStorageService: ImgurStorageService
-
 ) : BaseService<FotoAeronave, UUID, FotoRepository>() {
 
     val logger: Logger = LoggerFactory.getLogger(ImagenServicio::class.java)
 
-
+    /**
+     * Método encargado de guardar la imagen en el servicio y establecer los valores del objeto de tipo FotoAeronave y guardarlo
+     * @property e Entidad con los datos de la foto
+     * @property file Imagen a guardar
+     * @return entidad de la foto
+     */
     fun save(e: FotoAeronave, file: MultipartFile) : FotoAeronave {
         var imageAttribute : Optional<ImgurImageAttribute> = Optional.empty()
         if (!file.isEmpty) {
             imageAttribute = imageStorageService.store(file)
         }
         if (imageAttribute!=null){
-            e.dataId = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
+            e.dataI = imageStorageService.loadAsResource(imageAttribute.get().id!!).get().uri.toString()
             e.deleteHash=imageAttribute.get().deletehash!!
 
         }
@@ -52,6 +62,11 @@ class FotoAeronaveServicio(
         return e
     }
 
+    /**
+     * Elimia la imagen del servicio de almacenamiento y elimina el objeto de la base de datos
+     * @property e entidad con los datos de la foto
+     * @return Unit
+     */
     override fun delete(e : FotoAeronave) {
         logger.debug("Eliminando la entidad $e")
         e?.let { it.deleteHash?.let { it1 -> imageStorageService.delete(it1) } }

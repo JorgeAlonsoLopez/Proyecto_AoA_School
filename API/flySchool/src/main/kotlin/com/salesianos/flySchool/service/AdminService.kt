@@ -5,6 +5,10 @@ import com.salesianos.flySchool.repository.AdminRepository
 import org.springframework.stereotype.Service
 import java.util.*
 
+/**
+ * Servicio perteneciente a la entidad Admin, heredando de BaseService
+ * @see Admin
+ */
 @Service
 class AdminService (
 ): BaseService<Admin, UUID, AdminRepository>()

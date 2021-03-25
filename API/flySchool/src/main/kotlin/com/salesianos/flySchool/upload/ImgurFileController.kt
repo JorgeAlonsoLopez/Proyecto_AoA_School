@@ -11,6 +11,9 @@ import org.springframework.web.server.ResponseStatusException
 import java.util.*
 import kotlin.jvm.Throws
 
+/**
+ * Controlador de la imagen encargado de la obtención de la imagen a partir de un ID
+ */
 @RestController
 class ImgurFilesController(
     private val imgurStorageService: ImgurStorageService

@@ -20,6 +20,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
+/**
+ * Clase que define el mecanismo que se va a utilizar a la hora de cifrar la contraseña
+ */
+
 @Configuration
 class ConfigurePasswordEncoder() {
 
@@ -28,7 +32,9 @@ class ConfigurePasswordEncoder() {
 
 }
 
-
+/**
+ * Clase encargada de configurar las peticiones permitidas por el mecanismo CORS
+ */
 @Configuration
 class ConfigureCors() {
 
@@ -46,6 +52,9 @@ class ConfigureCors() {
 
 }
 
+/**
+ * Clase encargada de gestionar la seguridad.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -56,10 +65,16 @@ class WebSecurityConfiguration(
     private val passwordEncoder: PasswordEncoder
 ) : WebSecurityConfigurerAdapter() {
 
+    /**
+     * Función que define el esquema de autentificación
+     */
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder)
     }
 
+    /**
+     * Función que define la autorización y a que endpoints va a poder acceder cada tipo de usuario
+     */
     override fun configure(http: HttpSecurity) {
         // @formatter:off
         http
@@ -69,14 +84,14 @@ class WebSecurityConfiguration(
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
-            .antMatchers( "/h2-console/**").permitAll()
+            .antMatchers( "/h2-console/**", "/swagger-ui").permitAll()
             .antMatchers(POST, "/auth/login", "/auth/token").permitAll()
             .antMatchers(PUT, "/usuario/password").hasAnyRole("PILOT","ADMIN")
-            .antMatchers(GET,  "/usuario/me", "/aeronave/{id}", "usuario/piloto/{id}").hasAnyRole("PILOT","ADMIN")
+            .antMatchers(GET,  "/usuario/me", "/aeronave/{id}").hasAnyRole("PILOT","ADMIN")
             .antMatchers(POST, "/user/", "/aeronave/**", "/producto/**", "/auth/register").hasRole("ADMIN")
             .antMatchers(DELETE, "/aeronave/**", "/producto/**").hasRole("ADMIN")
             .antMatchers(PUT, "/aeronave/**", "/producto/**", "/usuario/{id}/", "/usuario/{id}/est", "usuario/licencia/{id}").hasRole("ADMIN")
-            .antMatchers(GET, "/aeronave/", "/factura/", "/producto/",
+            .antMatchers(GET, "/aeronave/", "/factura/", "/producto/", "usuario/piloto/{id}",
                 "/producto/{id}", "/registro/", "/usuario/", "/usuario/{id}", "usuario/filtro").hasRole("ADMIN")
 
             .antMatchers(GET, "/aeronave/alta", "/factura/user", "/producto/alta/{licencia}",
@@ -91,6 +106,9 @@ class WebSecurityConfiguration(
         // @formatter:on
     }
 
+    /**
+     * Función que expone el esquema de autentificación
+     */
     @Bean
     override fun authenticationManagerBean(): AuthenticationManager {
         return super.authenticationManagerBean()

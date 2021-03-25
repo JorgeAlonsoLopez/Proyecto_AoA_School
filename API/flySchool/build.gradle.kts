@@ -7,6 +7,7 @@ plugins {
 	kotlin("plugin.spring") version "1.4.30"
 	kotlin("plugin.jpa") version "1.4.30"
 	kotlin("plugin.allopen") version "1.4.21"
+	id("org.jetbrains.dokka") version "1.4.30"
 }
 
 allOpen {
@@ -21,6 +22,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {

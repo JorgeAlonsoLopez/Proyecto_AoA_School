@@ -37,9 +37,10 @@ class SwaggerConfiguration {
         .apiInfo(apiInfo())
         .securityContexts(Arrays.asList(securityContext()))
         .securitySchemes(Arrays.asList(apiKey()))
+        .useDefaultResponseMessages(false)
         .ignoredParameterTypes(AuthenticationPrincipal::class.java)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.salesianos.flySchool"))
+        .apis(RequestHandlerSelectors.basePackage("com.salesianos.flySchool.controller"))
         .paths(PathSelectors.any())
         .build()
 
@@ -49,7 +50,7 @@ class SwaggerConfiguration {
                 "Some custom description of API.",
                 "1.0",
                 "Terms of service",
-                Contact("Jorge Alonso", "www.baeldung.com", "salloszraj@gmail.com"),
+                Contact("Jorge Alonso", "https://github.com/JorgeAlonsoLopez", "jorgealonsolopez77@gmail.com"),
                 "License of API",
                 "API license URL",
                 Collections.emptyList())

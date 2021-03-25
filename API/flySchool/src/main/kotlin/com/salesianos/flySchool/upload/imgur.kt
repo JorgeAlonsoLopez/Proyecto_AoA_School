@@ -14,6 +14,9 @@ import org.springframework.web.util.UriBuilderFactory
 import java.net.URI
 import java.util.*
 
+/**
+ * Servicio que implementa los métodos de subida, obtención y borrado de imagenes de imgur
+ */
 @Service
 class ImgurService(
     @Value("\${imgur.clientid}") val clientId: String
@@ -21,6 +24,9 @@ class ImgurService(
 ) {
     var restTemplate: RestTemplate = RestTemplate()
 
+    /**
+     * Tratamiento de errores
+     */
     init {
         restTemplate.errorHandler = object : DefaultResponseErrorHandler() {
             override fun hasError(response: ClientHttpResponse) =
@@ -50,6 +56,10 @@ class ImgurService(
         const val SUCCESS_GET_STATUS = 200
     }
 
+    /**
+     * Subida de la imagen, envuelta en un Optional por si no hay una imagen como tal o el
+     * estado de la imagen no es el esperado
+     */
     fun upload(imageReq: NewImageReq): Optional<NewImageRes> {
 
         var headers = getHeaders()
@@ -66,6 +76,9 @@ class ImgurService(
 
     }
 
+    /**
+     * Eliminación de la imagen
+     */
     fun delete(hash: String): Unit {
         logger.debug("Realizando la petición DELETE para eliminar la imagen $hash")
 
@@ -79,6 +92,10 @@ class ImgurService(
 
     }
 
+    /**
+     * Obtención de la imagen, envuelta en un Optional por si no hay una imagen en el cuerpo de la respuesta
+     * o el estado de la respuesta no es el esperado
+     */
     fun get(id: String): Optional<GetImageRes> {
 
         //var restTemplate = RestTemplate()
