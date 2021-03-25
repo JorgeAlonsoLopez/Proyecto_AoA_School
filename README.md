@@ -8,6 +8,8 @@ La aplicación simula la gestión de un aeródromo. En este nos encontramos con 
 
 Como ya se ha mencionado, la aplicación cuenta con dos tipos de usuarios: los administradores y los pilotos. Los administradores se encargarán de realizar la gestión de usuarios, las aeronaves y los paquetes de horas. También se encargarán de obtener dos listados: un primero con la facturación de los productos y un segundo listado con los registros de vuelo. Los pilotos podrán registrar sus horas de vuelo, comprar paquetes de horas, ver las aeronaves disponibles y consultar sus registros de vuelo y facturas. Ambos, administradores y pilotos, podrán ver la información de su usuario y cambiar su contraseña.
 
+Ambas partes podrán acceder a la información meteorológica actual.
+
 
 ## Documentación relevante
 
